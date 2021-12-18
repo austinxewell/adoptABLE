@@ -3,8 +3,20 @@ const { gql } = require('apollo-server-express');
 
 // create our typeDefs
 const typeDefs = gql`
-type Query {
+type Adoptee {
+  _id: ID
+  username: String
+  email: String
+  familyMembers: Int
   products: [Product]
+  adoptedFamily: [Adoptee]
+}
+
+type Query {
+  adoptees: [Adoptee]
+  adoptee(username: String!): Adoptee 
+  products(username: String): [Product]
+  product(_id: ID!): Product
 }
 
 type Product {

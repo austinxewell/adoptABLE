@@ -20,10 +20,10 @@ const adopteeSchema = new Schema(
       required: true,
       minlength: 5
     },
-    // familyMembers: {
-    //   type: Number,
-    //   require: false,
-    // },
+    familyMembers: {
+      type: Number,
+      require: false,
+    },
     products: [
       {
         type: Schema.Types.ObjectId,
