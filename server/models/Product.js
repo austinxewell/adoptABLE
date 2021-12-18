@@ -3,8 +3,13 @@ const dateFormat = require('../utils/dateFormat');
 
 const productSchema = new Schema(
   {
-    product: {
+    productName: {
       type: String,
+    },
+    productNote: {
+      type: String,
+      minlength: 1,
+      maxlength: 280
     },
     createdAt: {
       type: Date,
