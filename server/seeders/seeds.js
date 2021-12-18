@@ -35,7 +35,7 @@ db.once('open', async () => {
         await Adoptee.updateOne({ _id: adopteeId }, { $addToSet: { adoptedFamily: adoptedFamilyId } });
       }
   
-        // create thoughts
+        // create products
     let createdProducts = [];
     for (let i = 0; i < 100; i += 1) {
       const productName = faker.lorem.words(Math.round(Math.random() * 2) + 1);
