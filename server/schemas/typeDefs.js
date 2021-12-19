@@ -26,6 +26,23 @@ type Product {
   createdAt: String
   username: String
 }
+
+type Category {
+  _id: ID
+  categoryName: String
+  products: [Product]
+}
+
+type Query {
+  categories: [Category]
+  products(username: String): [Product]
+  product(_id: ID!): Product
+}
+
+type Tag {
+  _id: ID
+  tagName: String
+}
 `;
 
 // export the typeDefs
