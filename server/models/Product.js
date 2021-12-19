@@ -20,7 +20,13 @@ const productSchema = new Schema(
     username: {
       type: String,
       required: true
-    }
+    },
+    tags: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Tag'
+      }
+    ]
   },
   {
     toJSON: {
