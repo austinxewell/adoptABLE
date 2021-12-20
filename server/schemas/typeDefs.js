@@ -4,22 +4,23 @@ const { gql } = require('apollo-server-express');
 
 // create our typeDefs
 const typeDefs = gql`
-type Adoptee {
+type User {
   _id: ID
   username: String
   email: String
+  password: String
   familyMembers: Int
   products: [Product]
-  adoptedFamily: [Adoptee]
+  adoptedFamily: [User]
 }
 
 type Query {
-  adoptees: [Adoptee]
-  adoptee(username: String!): Adoptee 
+  users: [User]
+  user(username: String!): User 
   products(username: String): [Product]
   product(_id: ID!): Product
   categories: [Category]
-  category(_id: ID!): Category
+  category(categoryName: String!): Category
   tags: [Tag]
   tag(_id: ID!): Tag
 }
@@ -42,17 +43,13 @@ type Tag {
   _id: ID
   tagName: String
 }
-type Auth {
-  token: ID!
-  user: Adoptee
-}
 type Mutation {
-        addAdoptee(username: String!, email: String!, password: String!): Auth
-        login(email: String!, password: String!): Auth
-        saveAdoptedFamily(input: String!): Adoptee
-        removeAdoptedFamily(username: String!): Adoptee
-        saveProduct(input: String!): Adoptee
-        removeProducts(productName: String!): Adoptee
+        addUser(username: String!, email: String!, password: String!): User
+        login(email: String!, password: String!): User
+        saveAdoptedFamily(input: String!): User
+        removeAdoptedFamily(username: String!): User
+        saveProduct(input: String!): User
+        removeProducts(productName: String!): User
     }
 
 `;
