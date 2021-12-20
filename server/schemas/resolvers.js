@@ -1,4 +1,4 @@
-const { Adoptee, Product } = require("../models") 
+const { Adoptee, Product, Category } = require("../models") 
 
 const resolvers = {
   Query: {
@@ -8,14 +8,14 @@ const resolvers = {
         .select('-__v -password')
         .populate('adoptedFamily')
         .populate('products');
-},
+    },
     // get a user by username
     adoptee: async (parent, { username }) => {
       return Adoptee.findOne({ username })
         .select('-__v -password')
         .populate('adoptedFamily')
         .populate('products');
-},
+    },
     products: async (parent, { username }) => {
       const params = username ? { username } : {};
       return Product.find(params).sort({ createdAt: -1 });
@@ -23,6 +23,11 @@ const resolvers = {
     product: async (parent, { _id }) => {
       return Product.findOne({ _id });
     },
+    categories: async () => {
+      return Category.find()
+      .select('-__v -password')
+      .populate('products');
+    }
   }
 };
   

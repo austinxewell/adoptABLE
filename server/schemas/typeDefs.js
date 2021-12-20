@@ -1,6 +1,7 @@
 // import the gql tagged template function
 const { gql } = require('apollo-server-express');
 
+
 // create our typeDefs
 const typeDefs = gql`
 type Adoptee {
@@ -17,6 +18,7 @@ type Query {
   adoptee(username: String!): Adoptee 
   products(username: String): [Product]
   product(_id: ID!): Product
+  categories: [Category]
 }
 
 type Product {
@@ -33,25 +35,19 @@ type Category {
   products: [Product]
 }
 
-type Query {
-  categories: [Category]
-  products(username: String): [Product]
-  product(_id: ID!): Product
-}
-
 type Tag {
   _id: ID
   tagName: String
 }
 
 type Mutation {
-        addAdoptee(username: String!, email: String!, password: String!): Auth
-        login(email: String!, password: String!): Auth
-        saveAdoptedFamily(input: Adoptee): Adoptee
+
+        saveAdoptedFamily(input: String!): Adoptee
         removeAdoptedFamily(username: String!): Adoptee
-        saveProduct(input: Product): Adoptee
+        saveProduct(input: String!): Adoptee
         removeProduct(productName: String!): Adoptee
     }
+
 `;
 
 // export the typeDefs
