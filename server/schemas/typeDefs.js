@@ -19,6 +19,9 @@ type Query {
   products(username: String): [Product]
   product(_id: ID!): Product
   categories: [Category]
+  category(_id: ID!): Category
+  tags: [Tag]
+  tag(_id: ID!): Tag
 }
 
 type Product {
@@ -39,13 +42,17 @@ type Tag {
   _id: ID
   tagName: String
 }
-
+type Auth {
+  token: ID!
+  user: Adoptee
+}
 type Mutation {
-
+        addAdoptee(username: String!, email: String!, password: String!): Auth
+        login(email: String!, password: String!): Auth
         saveAdoptedFamily(input: String!): Adoptee
         removeAdoptedFamily(username: String!): Adoptee
         saveProduct(input: String!): Adoptee
-        removeProduct(productName: String!): Adoptee
+        removeProducts(productName: String!): Adoptee
     }
 
 `;

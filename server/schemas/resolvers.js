@@ -25,10 +25,86 @@ const resolvers = {
     },
     categories: async () => {
       return Category.find()
-      .select('-__v -password')
+      // .select('-__v -password')
       .populate('products');
     }
-  }
+  },
+  Mutation: {
+    addAdoptee: async (parent, args) => {
+        const user = await User.create(args);
+        const token = signToken(user);
+
+        return { user, token };
+    },
+    login: async (parent, { email, password }) => {
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            throw new AuthenticationError('Incorrect credentials');
+        }
+
+        const correctPw = await user.isCorrectPassword(password);
+
+        if (!correctPw) {
+            throw new AuthenticationError('Incorrect credentials');
+        }
+
+        const token = signToken(user);
+        return { user, token };
+    },
+    saveAdoptedFamily: async (parent, { input }, context) => {
+
+        if (context.user) {
+
+            const user = await User.findByIdAndUpdate(
+                { _id: context.user._id },
+                { $addToSet: { adoptedFamily: { ...input } }},
+                { new: true, runValidators: true }
+            );
+
+            return user;
+        }
+
+        throw new AuthenticationError('You need to be logged in!');
+    },
+    removeAdoptedFamily: async (parent, { adopteeId }, context) => {
+        if (context.user) {
+            const user = await User.findByIdAndUpdate(
+                { _id: context.user._id },
+                { $pull: { adoptedFamily: { adopteeId } } },
+                { new: true, runValidators: true }
+            );
+
+            return user;
+        }
+    },
+    saveProduct: async (parent, { input }, context) => {
+
+      if (context.user) {
+
+          const user = await User.findByIdAndUpdate(
+              { _id: context.user._id },
+              { $addToSet: { products: { ...input } }},
+              { new: true, runValidators: true }
+          );
+
+          return user;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+  },
+  removeProducts: async (parent, { adopteeId }, context) => {
+    if (context.user) {
+        const user = await User.findByIdAndUpdate(
+            { _id: context.user._id },
+            { $pull: { products: { productId } } },
+            { new: true, runValidators: true }
+        );
+
+        return user;
+    }
+},
+}
 };
-  
-  module.exports = resolvers;
+
+module.exports = resolvers;
