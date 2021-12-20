@@ -1,16 +1,16 @@
 const faker = require('faker');
 
 const db = require('../config/connection')
-const { Product, Adoptee, Category, Tag } = require('../models');
+const { Product, User, Category, Tag } = require('../models');
 
 db.once('open', async () => {
     await Product.deleteMany({});
-    await Adoptee.deleteMany({});
+    await User.deleteMany({});
     await Category.deleteMany({});
     await Tag.deleteMany({});
 
-    //create Adoptee Data
-    const adopteeData = [];
+    //create User Data
+    const userData = [];
     const categoryData = [];
 
       for (let i = 0; i < 50; i += 1) {
@@ -18,24 +18,24 @@ db.once('open', async () => {
         const email = faker.internet.email(username);
         const password = faker.internet.password();
     
-        adopteeData.push({ username, email, password });
+        userData.push({ username, email, password });
       }
 
-      const createdAdoptee = await Adoptee.collection.insertMany(adopteeData);
+      const createdUser = await User.collection.insertMany(userData);
       
       // create adopted families
       for (let i = 0; i < 100; i += 1) {
-        const randomAdopteeIndex = Math.floor(Math.random() * createdAdoptee.ops.length);
-        const { _id: adopteeId } = createdAdoptee.ops[randomAdopteeIndex];
+        const randomUserIndex = Math.floor(Math.random() * createdUser.ops.length);
+        const { _id: userId } = createdUser.ops[randomUserIndex];
         
-        let adoptedFamilyId = adopteeId;
+        let adoptedFamilyId = userId;
         
-        while (adoptedFamilyId === adopteeId) {
-          const randomAdopteeIndex = Math.floor(Math.random() * createdAdoptee.ops.length);
-          adoptedFamilyId = createdAdoptee.ops[randomAdopteeIndex];
+        while (adoptedFamilyId === userId) {
+          const randomUserIndex = Math.floor(Math.random() * createdUser.ops.length);
+          adoptedFamilyId = createdUser.ops[randomUserIndex];
         }
     
-        await Adoptee.updateOne({ _id: adopteeId }, { $addToSet: { adoptedFamily: adoptedFamilyId } });
+        await User.updateOne({ _id: userId }, { $addToSet: { adoptedFamily: adoptedFamilyId } });
       }
 
       //create categories
@@ -67,16 +67,16 @@ db.once('open', async () => {
       const productName = faker.lorem.words(Math.round(Math.random() * 2) + 1);
       const productNote = faker.lorem.words(Math.round(Math.random() * 20) + 1);
 
-      const randomAdopteeIndex = Math.floor(Math.random() * createdAdoptee.ops.length);
-      const { username, _id: adopteeId } = createdAdoptee.ops[randomAdopteeIndex];
+      const randomUserIndex = Math.floor(Math.random() * createdUser.ops.length);
+      const { username, _id: userId } = createdUser.ops[randomUserIndex];
 
       const randomCategoryIndex = Math.floor(Math.random() * createdCategory.ops.length);
       const { categoryName, _id: categoryId } = createdCategory.ops[randomCategoryIndex];
 
       const createdProduct = await Product.create({ productName, productNote, username, categoryName });
       
-      const updatedAdoptee = await Adoptee.updateOne(
-        { _id: adopteeId },
+      const updatedUser = await User.updateOne(
+        { _id: userId },
         { $push: { products: createdProduct._id } }
       );
 
@@ -88,8 +88,8 @@ db.once('open', async () => {
     //   for (let i = 0; i < 100; i += 1) {
     //     const tagName = faker.lorem.words(Math.round(Math.random() * 2) + 1);
   
-    //     const randomAdopteeIndex = Math.floor(Math.random() * createdAdoptee.ops.length);
-    //     const { username, _id: adopteeId } = createdAdoptee.ops[randomAdopteeIndex];
+    //     const randomUserIndex = Math.floor(Math.random() * createdUser.ops.length);
+    //     const { username, _id: userId } = createdUser.ops[randomUserIndex];
   
     //     const randomProductIndex = Math.floor(Math.random() * createdProduct.ops.length);
     //     const { productName, _id: productId } = createdProduct.ops[randomProductIndex];
@@ -103,9 +103,6 @@ db.once('open', async () => {
   
     //   createdTags.push(createdTags);
     // }
-  
-
-
 
 
   console.log('all done!');
