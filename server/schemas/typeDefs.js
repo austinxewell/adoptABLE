@@ -42,13 +42,15 @@ type Tag {
   _id: ID
   tagName: String
 }
+
 type Auth {
   token: ID!
   user: Adoptee
 }
+
 type Mutation {
-        addAdoptee(username: String!, email: String!, password: String!): Auth
-        login(email: String!, password: String!): Auth
+        addAdoptee(username: String!, email: String!, password: String!): Adoptee
+        login(email: String!, password: String!): Adoptee
         saveAdoptedFamily(input: String!): Adoptee
         removeAdoptedFamily(username: String!): Adoptee
         saveProduct(input: String!): Adoptee
