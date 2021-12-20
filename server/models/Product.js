@@ -3,8 +3,14 @@ const dateFormat = require('../utils/dateFormat');
 
 const productSchema = new Schema(
   {
-    product: {
+    productName: {
       type: String,
+      required: true
+    },
+    productNote: {
+      type: String,
+      minlength: 1,
+      maxlength: 280
     },
     createdAt: {
       type: Date,
@@ -14,7 +20,13 @@ const productSchema = new Schema(
     username: {
       type: String,
       required: true
-    }
+    },
+    tags: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Tag'
+      }
+    ]
   },
   {
     toJSON: {
