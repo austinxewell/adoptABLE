@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const adopteeSchema = new Schema(
+const userSchema = new Schema(
   {
     username: {
       type: String,
@@ -33,14 +33,14 @@ const adopteeSchema = new Schema(
     adoptedFamily: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Adoptee'
+        ref: 'User'
       }
     ]
   },
 );
 
 // set up pre-save middleware to create password
-adopteeSchema.pre('save', async function(next) {
+userSchema.pre('save', async function(next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
@@ -50,10 +50,10 @@ adopteeSchema.pre('save', async function(next) {
 });
 
 // compare the incoming password with the hashed password
-adopteeSchema.methods.isCorrectPassword = async function(password) {
+userSchema.methods.isCorrectPassword = async function(password) {
   return bcrypt.compare(password, this.password);
 };
 
-const Adoptee = model('Adoptee', adopteeSchema);
+const User = model('User', userSchema);
 
-module.exports = Adoptee;
+module.exports = User;
