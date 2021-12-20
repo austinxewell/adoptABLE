@@ -43,6 +43,15 @@ type Tag {
   _id: ID
   tagName: String
 }
+
+type Mutation {
+        addAdoptee(username: String!, email: String!, password: String!): Auth
+        login(email: String!, password: String!): Auth
+        saveAdoptedFamily(input: Adoptee): Adoptee
+        removeAdoptedFamily(username: String!): Adoptee
+        saveProduct(input: Product): Adoptee
+        removeProduct(productName: String!): Adoptee
+    }
 `;
 
 // export the typeDefs
