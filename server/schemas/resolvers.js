@@ -1,4 +1,5 @@
-const { Adoptee, Product, Category } = require("../models") 
+const { Adoptee, Product, Category } = require("../models")
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
