@@ -1,4 +1,4 @@
-const { User, Product, Category } = require("../models")
+const { User, Product, Category, Tag } = require("../models")
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -18,19 +18,36 @@ const resolvers = {
         .populate('adoptedFamily')
         .populate('products');
     },
-    products: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Product.find(params).sort({ createdAt: -1 });
+    //get all products
+    products: async () => {
+      return Product.find()
+      .select('-__v -password')
+      .populate('users');
     },
-    product: async (parent, { _id }) => {
-      return Product.findOne({ _id });
+    //get all product by productName
+    product: async (parent, { productName }) => {
+      return Product.findOne({ productName })
+      .select('-__v -password')
+      .populate('users');
     },
+    //get all categories
     categories: async () => {
       return Category.find()
-      // .select('-__v -password')
-      .populate('products');
+        .select('-__v -password')
+        .populate('products');
+    },
+    //get all categories by categoryName
+    category: async (parent, { categoryName}) => {
+      return Category.findOne({ categoryName })
+        .select('-__v -password')
+        .populate('products');
+    },
+    //get all tags
+    tags: async () => {
+      return Tag.find();
     }
   },
+
   Mutation: {
     addUser: async (parent, args) => {
         const user = await User.create(args);

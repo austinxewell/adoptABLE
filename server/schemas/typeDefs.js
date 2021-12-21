@@ -18,7 +18,7 @@ type Query {
   users: [User]
   user(username: String!): User 
   products(username: String): [Product]
-  product(_id: ID!): Product
+  product(productName: String!): Product
   categories: [Category]
   category(categoryName: String!): Category
   tags: [Tag]
@@ -30,7 +30,7 @@ type Product {
   productName: String
   productNote: String
   createdAt: String
-  username: String
+  users: [User]
 }
 
 type Category {
@@ -43,6 +43,7 @@ type Tag {
   _id: ID
   tagName: String
 }
+
 type Mutation {
         addUser(username: String!, email: String!, password: String!): User
         login(email: String!, password: String!): User

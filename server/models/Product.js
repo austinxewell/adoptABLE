@@ -17,10 +17,12 @@ const productSchema = new Schema(
       default: Date.now,
       get: timestamp => dateFormat(timestamp)
     },
-    username: {
-      type: String,
-      required: true
-    },
+    users: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ],
     tags: [
       {
         type: Schema.Types.ObjectId,
@@ -28,11 +30,6 @@ const productSchema = new Schema(
       }
     ]
   },
-  {
-    toJSON: {
-      getters: true
-    }
-  }
 );
 
 const Product = model('Product', productSchema);

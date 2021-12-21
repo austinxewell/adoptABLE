@@ -7,11 +7,6 @@ const tagSchema = new Schema(
       required: true
     }
   },
-  {
-    toJSON: {
-      getters: true
-    }
-  }
 );
 
 const Tag = model('Tag', tagSchema);
