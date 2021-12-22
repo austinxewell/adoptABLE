@@ -45,14 +45,11 @@ type Tag {
   tagName: String
 }
 
-<<<<<<< HEAD
 type Auth {
   token: ID!
   user: User
 }
 
-=======
->>>>>>> e07876f3b61a17e7d8c8cad94d486c3f3cff0fa4
 type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
