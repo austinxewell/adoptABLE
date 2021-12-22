@@ -22,11 +22,11 @@ function App() {
         return(
           <About />
         );
-      case 'Portfolio':
+      case 'Contact':
         return(
           <Contact />
         );
-      case 'Contact':
+      case 'Adopt':
         return(
           <Adopt />
         );
