@@ -1,14 +1,14 @@
 h1 ---> adoptABLE
 h2 ---> Page Title
-h3 ---> 
-h4 --->
-h5 --->
-h6 --->
+h3 ---> Text Content
+h4 ---> 
+h5 ---> 
+h6 ---> 
 
-p --->
+p ---> 
 
-a --->
+a ---> 
 
-img --->
+img ---> 
 
 
