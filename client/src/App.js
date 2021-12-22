@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Home from './components/Home'
 import Header from './components/Header'
 import Nav from './components/Nav';
 import About from './components/About';
@@ -9,11 +10,15 @@ import Footer from './components/Footer';
 function App() {
 
   
-  const [currentPage, handlePageChange] = useState('About');
+  const [currentPage, handlePageChange] = useState('Home');
 
   function renderPage(currentPage) {
     switch(currentPage) {
       default:
+        return(
+          <Home />
+        );
+      case 'About':
         return(
           <About />
         );
@@ -25,17 +30,15 @@ function App() {
         return(
           <Adopt />
         );
-      // case '':
-      //   return(
-      //     < />
-      //   );
     }
   }
 
   return (
     <div>
-      <Header />
-      <Nav currentPage={currentPage} handlePageChange={handlePageChange} />
+      <header>
+        <Header />
+        <Nav currentPage={currentPage} handlePageChange={handlePageChange} />
+      </header>
       <main>
         {renderPage(currentPage)}
       </main>
