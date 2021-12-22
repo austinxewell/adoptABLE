@@ -22,7 +22,8 @@ const resolvers = {
     products: async () => {
       return Product.find()
       .select('-__v -password')
-      .populate('users');
+      .populate('users')
+      .populate('tags');
     },
     //get all product by productName
     product: async (parent, { productName }) => {

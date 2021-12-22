@@ -20,6 +20,8 @@ db.once('open', async () => {
         userData.push({ username, email, password });
       }
 
+      console.log('---> Users Created <---')
+
       const createdUser = await User.collection.insertMany(userData);
       
       // create Adopted Family
@@ -37,6 +39,8 @@ db.once('open', async () => {
         await User.updateOne({ _id: userId }, { $addToSet: { adoptedFamily: adoptedFamilyId } });
       }
 
+      console.log('---> Adopted Family Data added to Users <---')
+
       // create Category
       const categoryData = [];
 
@@ -45,6 +49,8 @@ db.once('open', async () => {
         
         categoryData.push({categoryName});
       }
+
+      console.log('---> Categories Created <---')
 
       const createdCategory = await Category.collection.insertMany(categoryData);
   
@@ -57,6 +63,8 @@ db.once('open', async () => {
 
         productData.push({ productName, productNote });
       }
+
+      console.log('---> Products Created <---')
 
       const createdProduct = await Product.collection.insertMany(productData);
 
@@ -76,6 +84,9 @@ db.once('open', async () => {
         await Product.updateOne({ _id: productId }, { $addToSet: { users: userId } })
       }
 
+      console.log('---> Added Products to Users <---')
+      console.log('---> Added Users to Products <---')
+
       //create products for categories
       for (let i = 0; i < 100; i += 1) {
         const randomCategoryIndex = Math.floor(Math.random() * createdCategory.ops.length);
@@ -91,17 +102,22 @@ db.once('open', async () => {
         await Category.updateOne({ _id: categoryId }, { $addToSet: { products: productId }})
       } 
 
-
-    //   // create tags
-    //   const tagData = [];
-
-    //   for (let i = 0; i < 50; i += 1) {
-    //     const tagName = faker.commerce.productAdjective();
-
-    //     tagData.push({ tagName })
-    // }
+      console.log('---> Added Products to Categories <---')
 
 
-  console.log('all done!');
+      // create tags
+      const tagData = [];
+
+      for (let i = 0; i < 50; i += 1) {
+        const tagName = faker.commerce.productAdjective();
+
+        tagData.push({ tagName })
+    }
+
+    console.log(tagData)
+
+    console.log('---> Added Tags <---')
+
+  console.log('Data has been seeded!');
   process.exit(0);
 });

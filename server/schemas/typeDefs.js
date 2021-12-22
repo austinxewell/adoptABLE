@@ -31,6 +31,7 @@ type Product {
   productNote: String
   createdAt: String
   users: [User]
+  tags: [Tag]
 }
 
 type Category {

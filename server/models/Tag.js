@@ -4,7 +4,6 @@ const tagSchema = new Schema(
   {
     tagName: {
       type: String,
-      required: true
     }
   },
 );
