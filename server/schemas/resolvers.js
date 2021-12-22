@@ -106,16 +106,18 @@ const resolvers = {
 
         throw new AuthenticationError('You need to be logged in!');
     },
-    deleteAdoptedFamily: async (parent, { userId }, context) => {
+    deleteAdoptedFamily: async (parent, { adoptedFamilyId }, context) => {
         if (context.user) {
-            const user = await User.findByIdAndUpdate(
+            const updatedUser = await User.findByIdAndUpdate(
                 { _id: context.user._id },
-                { $pull: { adoptedFamily: { userId } } },
+                { $pull: { adoptedFamily: adoptedFamilyId } },
                 { new: true, runValidators: true }
             );
 
-            return user;
+            return updatedUser;
         }
+
+        throw new AuthenticationError('You need to be logged in!');
     },
     addProduct: async (parent, { input }, context) => {
 

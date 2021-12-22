@@ -58,7 +58,7 @@ type Mutation {
         addUser(username: String!, email: String!, password: String!): User
         login(email: String!, password: String!): Auth
         addAdoptedFamily(adoptedFamilyId: ID!): User
-        deleteAdoptedFamily(username: String!): User
+        deleteAdoptedFamily(adoptedFamilyId: ID!): User
         addProduct(input: String!): User
         deleteProducts(productName: String!): User
     }
