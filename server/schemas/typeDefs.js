@@ -22,7 +22,7 @@ type Query {
   categories: [Category]
   category(categoryName: String!): Category
   tags: [Tag]
-  tag(_id: ID!): Tag
+  tag(tagName: String!): Tag
 }
 
 type Product {

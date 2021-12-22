@@ -114,9 +114,26 @@ db.once('open', async () => {
         tagData.push({ tagName })
     }
 
-    console.log(tagData)
+    const createdTag = await Tag.collection.insertMany(tagData);
 
     console.log('---> Added Tags <---')
+
+      //create products for categories
+      for (let i = 0; i < 100; i += 1) {
+        const randomProductIndex = Math.floor(Math.random() * createdProduct.ops.length);
+        const { _id: productId } = createdProduct.ops[randomProductIndex];
+  
+        let tagId = productId;
+  
+        while (tagId === productId) {
+          const randomTagIndex = Math.floor(Math.random() * createdTag.ops.length);
+          tagId = createdTag.ops[randomTagIndex];
+        }
+  
+        await Product.updateOne({ _id: productId }, { $addToSet: { tags: tagId }})
+      } 
+
+      console.log('---> Added Tags to Products <---')
 
   console.log('Data has been seeded!');
   process.exit(0);

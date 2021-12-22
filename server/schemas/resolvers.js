@@ -29,7 +29,8 @@ const resolvers = {
     product: async (parent, { productName }) => {
       return Product.findOne({ productName })
       .select('-__v -password')
-      .populate('users');
+      .populate('users')
+      .populate('tags');
     },
     //get all categories
     categories: async () => {
@@ -38,7 +39,7 @@ const resolvers = {
         .populate('products');
     },
     //get all categories by categoryName
-    category: async (parent, { categoryName}) => {
+    category: async (parent, { categoryName }) => {
       return Category.findOne({ categoryName })
         .select('-__v -password')
         .populate('products');
@@ -46,6 +47,11 @@ const resolvers = {
     //get all tags
     tags: async () => {
       return Tag.find();
+    },
+    //get tag by tagName
+    tag: async(parent, { tagName }) => {
+      return Tag.findOne({ tagName })
+      .select('-__v -password');
     }
   },
 
