@@ -1,113 +1,123 @@
 const faker = require('faker');
 
 const db = require('../config/connection')
-const { Product, Adoptee, Category, Tag } = require('../models');
+const { Product, User, Category, Tag } = require('../models');
 
 db.once('open', async () => {
     await Product.deleteMany({});
-    await Adoptee.deleteMany({});
+    await User.deleteMany({});
     await Category.deleteMany({});
     await Tag.deleteMany({});
 
-    //create Adoptee Data
-    const adopteeData = [];
-    const categoryData = [];
+    //create User Data
+    const userData = [];
 
       for (let i = 0; i < 50; i += 1) {
         const username = faker.internet.userName();
         const email = faker.internet.email(username);
         const password = faker.internet.password();
     
-        adopteeData.push({ username, email, password });
+        userData.push({ username, email, password });
       }
 
-      const createdAdoptee = await Adoptee.collection.insertMany(adopteeData);
+      console.log('---> Users Created <---')
+
+      const createdUser = await User.collection.insertMany(userData);
       
-      // create adopted families
+      // create Adopted Family
       for (let i = 0; i < 100; i += 1) {
-        const randomAdopteeIndex = Math.floor(Math.random() * createdAdoptee.ops.length);
-        const { _id: adopteeId } = createdAdoptee.ops[randomAdopteeIndex];
+        const randomUserIndex = Math.floor(Math.random() * createdUser.ops.length);
+        const { _id: userId } = createdUser.ops[randomUserIndex];
         
-        let adoptedFamilyId = adopteeId;
+        let adoptedFamilyId = userId;
         
-        while (adoptedFamilyId === adopteeId) {
-          const randomAdopteeIndex = Math.floor(Math.random() * createdAdoptee.ops.length);
-          adoptedFamilyId = createdAdoptee.ops[randomAdopteeIndex];
+        while (adoptedFamilyId === userId) {
+          const randomUserIndex = Math.floor(Math.random() * createdUser.ops.length);
+          adoptedFamilyId = createdUser.ops[randomUserIndex];
         }
     
-        await Adoptee.updateOne({ _id: adopteeId }, { $addToSet: { adoptedFamily: adoptedFamilyId } });
+        await User.updateOne({ _id: userId }, { $addToSet: { adoptedFamily: adoptedFamilyId } });
       }
 
-      //create categories
-      for (let i = 0; i < 10; i+= 1) {
-        const categoryName = faker.lorem.words(Math.round(Math.random() * 2) + 1);
+      console.log('---> Adopted Family Data added to Users <---')
 
-        categoryData.push({ categoryName });
+      // create Category
+      const categoryData = [];
+
+      for (let i = 0; i < 10; i+=1) {
+        const categoryName = faker.commerce.department();
+        
+        categoryData.push({categoryName});
       }
-    
-        const createdCategory = await Category.collection.insertMany(categoryData);
 
-      for (let i = 0; i < 20; i+= 1) {
+      console.log('---> Categories Created <---')
+
+      const createdCategory = await Category.collection.insertMany(categoryData);
+  
+      // create products
+      const productData = [];
+
+      for(let i = 0; i < 20; i += 1) {
+        const productName = faker.commerce.productName();
+        const productNote = faker.lorem.words(Math.round(Math.random() * 20) + 1);
+
+        productData.push({ productName, productNote });
+      }
+
+      console.log('---> Products Created <---')
+
+      const createdProduct = await Product.collection.insertMany(productData);
+
+      //create products for users
+      for (let i = 0; i < 100; i += 1) {
+        const randomUserIndex = Math.floor(Math.random() * createdUser.ops.length);
+        const { _id: userId } = createdUser.ops[randomUserIndex];
+
+        let productId = userId;
+
+        while (productId === userId) {
+          const randomUserIndex = Math.floor(Math.random() * createdProduct.ops.length);
+          productId = createdProduct.ops[randomUserIndex];
+        }
+
+        await User.updateOne({ _id: userId }, { $addToSet: { products: productId } })
+        await Product.updateOne({ _id: productId }, { $addToSet: { users: userId } })
+      }
+
+      console.log('---> Added Products to Users <---')
+      console.log('---> Added Users to Products <---')
+
+      //create products for categories
+      for (let i = 0; i < 100; i += 1) {
         const randomCategoryIndex = Math.floor(Math.random() * createdCategory.ops.length);
         const { _id: categoryId } = createdCategory.ops[randomCategoryIndex];
-
-        let productCategoryId = categoryId;
-
-        while (productCategoryId === categoryId) {
-          const randomCategoryIndex = Math.floor(Math.random() * createdCategory.ops.length);
-          productCategoryId = createdCategory.ops[randomCategoryIndex];
+  
+        let productId = categoryId;
+  
+        while (productId === categoryId) {
+          const randomCategoryIndex = Math.floor(Math.random() * createdProduct.ops.length);
+          productId = createdProduct.ops[randomCategoryIndex];
         }
-
-        await Product.updateOne({ _id: categoryId}, {$addToSet: { products: productCategoryId }});
-      }
   
-        // create products
-    let createdProducts = [];
-    for (let i = 0; i < 100; i += 1) {
-      const productName = faker.lorem.words(Math.round(Math.random() * 2) + 1);
-      const productNote = faker.lorem.words(Math.round(Math.random() * 20) + 1);
+        await Category.updateOne({ _id: categoryId }, { $addToSet: { products: productId }})
+      } 
 
-      const randomAdopteeIndex = Math.floor(Math.random() * createdAdoptee.ops.length);
-      const { username, _id: adopteeId } = createdAdoptee.ops[randomAdopteeIndex];
-
-      const randomCategoryIndex = Math.floor(Math.random() * createdCategory.ops.length);
-      const { categoryName, _id: categoryId } = createdCategory.ops[randomCategoryIndex];
-
-      const createdProduct = await Product.create({ productName, productNote, username, categoryName });
-      
-      const updatedAdoptee = await Adoptee.updateOne(
-        { _id: adopteeId },
-        { $push: { products: createdProduct._id } }
-      );
-
-    createdProducts.push(createdProducts);
-  }
-
-    //   // create tags
-    //   let createdTags = [];
-    //   for (let i = 0; i < 100; i += 1) {
-    //     const tagName = faker.lorem.words(Math.round(Math.random() * 2) + 1);
-  
-    //     const randomAdopteeIndex = Math.floor(Math.random() * createdAdoptee.ops.length);
-    //     const { username, _id: adopteeId } = createdAdoptee.ops[randomAdopteeIndex];
-  
-    //     const randomProductIndex = Math.floor(Math.random() * createdProduct.ops.length);
-    //     const { productName, _id: productId } = createdProduct.ops[randomProductIndex];
-  
-    //     const createdTag = await Tag.create({ tagName, productName, productId });
-        
-    //     const updatedProduct = await Product.updateOne(
-    //       { _id: productId },
-    //       { $push: { tags: createdTags._id } }
-    //     );
-  
-    //   createdTags.push(createdTags);
-    // }
-  
+      console.log('---> Added Products to Categories <---')
 
 
+      // create tags
+      const tagData = [];
 
+      for (let i = 0; i < 50; i += 1) {
+        const tagName = faker.commerce.productAdjective();
 
-  console.log('all done!');
+        tagData.push({ tagName })
+    }
+
+    console.log(tagData)
+
+    console.log('---> Added Tags <---')
+
+  console.log('Data has been seeded!');
   process.exit(0);
 });

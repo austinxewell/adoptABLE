@@ -1,42 +1,60 @@
-const { Adoptee, Product, Category } = require("../models")
+const { User, Product, Category, Tag } = require("../models")
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     // get all users
-    adoptees: async () => {
-      return Adoptee.find()
+    users: async () => {
+      return User.find()
         .select('-__v -password')
         .populate('adoptedFamily')
         .populate('products');
     },
     // get a user by username
-    adoptee: async (parent, { username }) => {
-      return Adoptee.findOne({ username })
+    user: async (parent, { username }) => {
+      return User.findOne({ username })
         .select('-__v -password')
         .populate('adoptedFamily')
         .populate('products');
     },
-    products: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Product.find(params).sort({ createdAt: -1 });
+    //get all products
+    products: async () => {
+      return Product.find()
+      .select('-__v -password')
+      .populate('users')
+      .populate('tags');
     },
-    product: async (parent, { _id }) => {
-      return Product.findOne({ _id });
+    //get all product by productName
+    product: async (parent, { productName }) => {
+      return Product.findOne({ productName })
+      .select('-__v -password')
+      .populate('users');
     },
+    //get all categories
     categories: async () => {
       return Category.find()
-      // .select('-__v -password')
-      .populate('products');
+        .select('-__v -password')
+        .populate('products');
+    },
+    //get all categories by categoryName
+    category: async (parent, { categoryName}) => {
+      return Category.findOne({ categoryName })
+        .select('-__v -password')
+        .populate('products');
+    },
+    //get all tags
+    tags: async () => {
+      return Tag.find();
     }
   },
-  Mutation: {
-    addAdoptee: async (parent, args) => {
-        const user = await User.create(args);
-        const token = signToken(user);
 
-        return { user, token };
+  Mutation: {
+    addUser: async (parent, args) => {
+        const user = await User.create(args);
+        // const token = signToken(user);
+
+        return { user };
     },
     login: async (parent, { email, password }) => {
         const user = await User.findOne({ email });
@@ -69,11 +87,11 @@ const resolvers = {
 
         throw new AuthenticationError('You need to be logged in!');
     },
-    removeAdoptedFamily: async (parent, { adopteeId }, context) => {
+    removeAdoptedFamily: async (parent, { userId }, context) => {
         if (context.user) {
             const user = await User.findByIdAndUpdate(
                 { _id: context.user._id },
-                { $pull: { adoptedFamily: { adopteeId } } },
+                { $pull: { adoptedFamily: { userId } } },
                 { new: true, runValidators: true }
             );
 
@@ -95,7 +113,7 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
   },
-  removeProducts: async (parent, { adopteeId }, context) => {
+  removeProducts: async (parent, { userId }, context) => {
     if (context.user) {
         const user = await User.findByIdAndUpdate(
             { _id: context.user._id },
