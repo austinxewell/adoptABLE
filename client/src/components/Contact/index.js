@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Adopt () {
+export default function Contact () {
     return (
         <div>
             <p>Dummy Data</p>
