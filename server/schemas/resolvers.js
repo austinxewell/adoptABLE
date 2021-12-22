@@ -27,16 +27,16 @@ const resolvers = {
     },
     categories: async () => {
       return Category.find()
-      // .select('-__v -password')
+      .select('-__v -password')
       .populate('products');
     }
   },
   Mutation: {
     addUser: async (parent, args) => {
         const user = await User.create(args);
-        // const token = signToken(user);
+        const token = signToken(user);
 
-        return { user };
+        return { user, token };
     },
     login: async (parent, { email, password }) => {
         const user = await User.findOne({ email });
