@@ -118,7 +118,7 @@ db.once('open', async () => {
 
     console.log('---> Added Tags <---')
 
-      //create products for categories
+      //create tags for products
       for (let i = 0; i < 100; i += 1) {
         const randomProductIndex = Math.floor(Math.random() * createdProduct.ops.length);
         const { _id: productId } = createdProduct.ops[randomProductIndex];
