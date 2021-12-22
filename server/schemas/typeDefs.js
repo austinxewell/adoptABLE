@@ -57,10 +57,10 @@ type Auth {
 type Mutation {
         addUser(username: String!, email: String!, password: String!): User
         login(email: String!, password: String!): Auth
-        saveAdoptedFamily(input: String!): User
-        removeAdoptedFamily(username: String!): User
-        saveProduct(input: String!): User
-        removeProducts(productName: String!): User
+        addAdoptedFamily(adoptedFamilyId: ID!): User
+        deleteAdoptedFamily(username: String!): User
+        addProduct(input: String!): User
+        deleteProducts(productName: String!): User
     }
 
 `;

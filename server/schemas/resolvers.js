@@ -91,22 +91,22 @@ const resolvers = {
         const token = signToken(user);
         return { user, token };
     },
-    saveAdoptedFamily: async (parent, { input }, context) => {
+    addAdoptedFamily: async (parent, { adoptedFamilyId }, context) => {
 
         if (context.user) {
 
-            const user = await User.findByIdAndUpdate(
+            const updatedUser = await User.findByIdAndUpdate(
                 { _id: context.user._id },
-                { $addToSet: { adoptedFamily: { ...input } }},
+                { $addToSet: { adoptedFamily: adoptedFamilyId }},
                 { new: true, runValidators: true }
-            );
+            ).populate('adoptedFamily');
 
-            return user;
+            return updatedUser;
         }
 
         throw new AuthenticationError('You need to be logged in!');
     },
-    removeAdoptedFamily: async (parent, { userId }, context) => {
+    deleteAdoptedFamily: async (parent, { userId }, context) => {
         if (context.user) {
             const user = await User.findByIdAndUpdate(
                 { _id: context.user._id },
@@ -117,7 +117,7 @@ const resolvers = {
             return user;
         }
     },
-    saveProduct: async (parent, { input }, context) => {
+    addProduct: async (parent, { input }, context) => {
 
       if (context.user) {
 
@@ -132,7 +132,7 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
   },
-  removeProducts: async (parent, { userId }, context) => {
+  deleteProducts: async (parent, { userId }, context) => {
     if (context.user) {
         const user = await User.findByIdAndUpdate(
             { _id: context.user._id },
