@@ -18,6 +18,19 @@ const resolvers = {
         .populate('adoptedFamily')
         .populate('products');
     },
+    //auth token
+    me: async(parent, args, context) => {
+      if (context.user){
+      const userData = await User.findOne({_id: context.user._id})
+      .select('-__V -password')
+      .populate('adoptedFamily')
+      .populate('products');
+      
+      return userData;
+      }
+      
+      throw new AuthenticationError('Not logged in');
+    },
     //get all products
     products: async () => {
       return Product.find()

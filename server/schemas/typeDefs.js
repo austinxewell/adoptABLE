@@ -16,7 +16,8 @@ type User {
 
 type Query {
   users: [User]
-  user(username: String!): User 
+  user(username: String!): Auth
+  me: User
   products(username: String): [Product]
   product(productName: String!): Product
   categories: [Category]
