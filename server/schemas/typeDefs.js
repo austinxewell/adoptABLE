@@ -51,7 +51,7 @@ type Auth {
 }
 
 type Mutation {
-        addUser(username: String!, email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): User
         login(email: String!, password: String!): Auth
         saveAdoptedFamily(input: String!): User
         removeAdoptedFamily(username: String!): User
