@@ -70,11 +70,12 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, args) => {
-        const user = await User.create(args);
+    addUser: async (parent, { username, email, password }) => {
+        const user = await User.create({ username, email, password });
         const token = signToken(user);
-
-        return { user, token };
+        
+        console.log(user)
+        return { user, token, username, email };
     },
     login: async (parent, { email, password }) => {
         const user = await User.findOne({ email });
@@ -124,7 +125,7 @@ const resolvers = {
 
       if (context.user) {
 
-          var product = await Product.create({ productName: productName, productNote: productNote , username: context.user.username });
+          var product = await Product.create({ productName, productNote , username: context.user.username });
 
          await User.findByIdAndUpdate( 
               { _id: context.user._id },
@@ -143,16 +144,19 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
   },
-  deleteProducts: async (parent, { userId }, context) => {
+  deleteProduct: async (parent, { productId }, context) => {
     if (context.user) {
-        const user = await User.findByIdAndUpdate(
-            { _id: context.user._id },
-            { $pull: { products: { productId } } },
-            { new: true, runValidators: true }
+        var product = await Product.findOne();
+        var productId = product._id;
+        const updatedProduct = await Product.findByIdAndRemove(
+            { _id: product._id }
         );
-
-        return user;
+        
+        console.log(updatedProduct);
+        return updatedProduct;
     }
+
+    throw new AuthenticationError('You need to be logged in!');
 },
 }
 };

@@ -60,7 +60,7 @@ type Mutation {
         addAdoptedFamily(adoptedFamilyId: ID!): User
         deleteAdoptedFamily(adoptedFamilyId: ID!): User
         addProduct(productName: String!, productNote: String!): Product
-        deleteProducts(productName: String!): User
+        deleteProduct(productId: String!): Product
     }
 
 `;
