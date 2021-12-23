@@ -1,6 +1,7 @@
 const { User, Product, Category, Tag } = require("../models")
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const { ProvidedRequiredArgumentsOnDirectivesRule } = require("graphql/validation/rules/ProvidedRequiredArgumentsRule");
 
 const resolvers = {
   Query: {
@@ -119,17 +120,19 @@ const resolvers = {
 
         throw new AuthenticationError('You need to be logged in!');
     },
-    addProduct: async (parent, { input }, context) => {
+    addProduct: async (parent, args, context) => {
 
       if (context.user) {
 
-          const user = await User.findByIdAndUpdate(
+          const product = await Product.create({ ...args, username: context.user.username });
+
+          await User.findByIdAndUpdate( 
               { _id: context.user._id },
-              { $addToSet: { products: { ...input } }},
-              { new: true, runValidators: true }
+              { $push: { products: product._id }},
+              { new: true}
           );
 
-          return user;
+          return product;
       }
 
       throw new AuthenticationError('You need to be logged in!');
