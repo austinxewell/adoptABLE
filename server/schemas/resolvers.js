@@ -120,19 +120,25 @@ const resolvers = {
 
         throw new AuthenticationError('You need to be logged in!');
     },
-    addProduct: async (parent, args, context) => {
+    addProduct: async (parent, { productName, productNote }, context) => {
 
       if (context.user) {
 
-          const product = await Product.create({ ...args, username: context.user.username });
+          var product = await Product.create({ productName: productName, productNote: productNote , username: context.user.username });
 
-          await User.findByIdAndUpdate( 
+         await User.findByIdAndUpdate( 
               { _id: context.user._id },
-              { $push: { products: product._id }},
-              { new: true}
-          );
+              { $push: { products: product } },
+              { new: true, runValidators: true},
+              );
 
-          return product;
+          product = await Product.findOneAndUpdate(
+            { _id: product._id },
+            { $addToSet: { users: context.user._id}},
+            { new: true, runValidators: true}, 
+          ).populate('users');
+
+          return product         
       }
 
       throw new AuthenticationError('You need to be logged in!');
