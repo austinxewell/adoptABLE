@@ -1,7 +1,7 @@
 const { User, Product, Category, Tag } = require("../models")
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { ProvidedRequiredArgumentsOnDirectivesRule } = require("graphql/validation/rules/ProvidedRequiredArgumentsRule");
+
 
 const resolvers = {
   Query: {
