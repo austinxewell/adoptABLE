@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function Footer () {
     return (
-        <footer>
-            <a>This is for the Footer donation button</a>
+        <footer className='columns'>
+            <a className='column is-full'>This is for the Footer donation button</a>
         </footer>
     )
 }
