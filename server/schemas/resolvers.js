@@ -2,21 +2,35 @@ const { User, Product, Category, Tag } = require("../models")
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
+
 const resolvers = {
   Query: {
     // get all users
     users: async () => {
       return User.find()
-        .select('-__v -password')
-        .populate('adoptedFamily')
-        .populate('products');
+      .select('-__v -password')
+      .populate('adoptedFamily')
+      .populate('products');
     },
     // get a user by username
     user: async (parent, { username }) => {
       return User.findOne({ username })
-        .select('-__v -password')
-        .populate('adoptedFamily')
-        .populate('products');
+      .select('-__v -password')
+      .populate('adoptedFamily')
+      .populate('products');
+    },
+    //auth token
+    me: async(parent, args, context) => {
+      if (context.user){
+      const userData = await User.findOne({_id: context.user._id})
+      .select('-__V -password')
+      .populate('adoptedFamily')
+      .populate('products');
+      
+      return userData;
+      }
+      
+      throw new AuthenticationError('Not logged in');
     },
     //get all products
     products: async () => {
@@ -29,102 +43,118 @@ const resolvers = {
     product: async (parent, { productName }) => {
       return Product.findOne({ productName })
       .select('-__v -password')
-      .populate('users');
+      .populate('users')
+      .populate('tags');
     },
     //get all categories
     categories: async () => {
       return Category.find()
-        .select('-__v -password')
-        .populate('products');
+      .select('-__v -password')
+      .populate('products');
     },
     //get all categories by categoryName
-    category: async (parent, { categoryName}) => {
+    category: async (parent, { categoryName }) => {
       return Category.findOne({ categoryName })
-        .select('-__v -password')
-        .populate('products');
+      .select('-__v -password')
+      .populate('products');
     },
     //get all tags
     tags: async () => {
       return Tag.find();
+    },
+    //get tag by tagName
+    tag: async(parent, { tagName }) => {
+      return Tag.findOne({ tagName })
+      .select('-__v -password');
     }
   },
 
   Mutation: {
-    addUser: async (parent, args) => {
-        const user = await User.create(args);
-        // const token = signToken(user);
-
-        return { user };
+    //create a new user
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
+        
+      return { user, token, username, email };
     },
+    //user log in/token generation
     login: async (parent, { email, password }) => {
-        const user = await User.findOne({ email });
+      const user = await User.findOne({ email });
+      if (!user) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
 
-        if (!user) {
-            throw new AuthenticationError('Incorrect credentials');
-        }
+      const correctPw = await user.isCorrectPassword(password);
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
 
-        const correctPw = await user.isCorrectPassword(password);
-
-        if (!correctPw) {
-            throw new AuthenticationError('Incorrect credentials');
-        }
-
-        const token = signToken(user);
-        return { user, token };
+      const token = signToken(user);
+      return { user, token };
     },
-    saveAdoptedFamily: async (parent, { input }, context) => {
-
-        if (context.user) {
-
-            const user = await User.findByIdAndUpdate(
-                { _id: context.user._id },
-                { $addToSet: { adoptedFamily: { ...input } }},
-                { new: true, runValidators: true }
-            );
-
-            return user;
-        }
-
-        throw new AuthenticationError('You need to be logged in!');
-    },
-    removeAdoptedFamily: async (parent, { userId }, context) => {
-        if (context.user) {
-            const user = await User.findByIdAndUpdate(
-                { _id: context.user._id },
-                { $pull: { adoptedFamily: { userId } } },
-                { new: true, runValidators: true }
-            );
-
-            return user;
-        }
-    },
-    saveProduct: async (parent, { input }, context) => {
-
+    //add a user to adoptedFamily
+    addAdoptedFamily: async (parent, { adoptedFamilyId }, context) => {
       if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { adoptedFamily: adoptedFamilyId }},
+          { new: true, runValidators: true }
+        ).populate('adoptedFamily');
 
-          const user = await User.findByIdAndUpdate(
-              { _id: context.user._id },
-              { $addToSet: { products: { ...input } }},
-              { new: true, runValidators: true }
-          );
-
-          return user;
+        return updatedUser;
       }
 
       throw new AuthenticationError('You need to be logged in!');
-  },
-  removeProducts: async (parent, { userId }, context) => {
-    if (context.user) {
-        const user = await User.findByIdAndUpdate(
-            { _id: context.user._id },
-            { $pull: { products: { productId } } },
-            { new: true, runValidators: true }
+    },
+    //delete a user from adoptedFamily
+    deleteAdoptedFamily: async (parent, { adoptedFamilyId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $pull: { adoptedFamily: adoptedFamilyId } },
+          { new: true, runValidators: true }
         );
 
-        return user;
+        return updatedUser;
+      }
+
+        throw new AuthenticationError('You need to be logged in!');
+    },
+    //create a new product and assign it to the logged in user
+    addProduct: async (parent, { productName, productNote }, context) => {
+      if (context.user) {
+        var product = await Product.create({ productName, productNote , username: context.user.username });
+
+        await User.findByIdAndUpdate( 
+          { _id: context.user._id },
+          { $push: { products: product } },
+          { new: true, runValidators: true},
+        );
+
+        product = await Product.findOneAndUpdate(
+          { _id: product._id },
+          { $addToSet: { users: context.user._id}},
+          { new: true, runValidators: true}, 
+        ).populate('users');
+
+        return product         
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    //delete a product and is relation to all users.
+    deleteProduct: async (parent, { productId }, context) => {
+      if(context.user) {
+        await Product.findByIdAndRemove(
+          { _id: productId },
+        )
+
+        return (`Product with the ID: ${productId} has been removed.`)
+      }
+
+      throw new AuthenticationError('You need to be logged in!');     
     }
-},
-}
+  }
 };
 
 module.exports = resolvers;
