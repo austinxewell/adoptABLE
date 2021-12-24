@@ -1,4 +1,5 @@
 import React from 'react'
+import HomeImage from '../../assets/images/HomeImage.jpg'
 
 export default function Home () {
     return (
@@ -7,7 +8,7 @@ export default function Home () {
                 <h2>Home</h2>
             </title>
             <div>
-                <img></img>
+                <img src={ HomeImage }></img>
                 <h3></h3>
             </div>
         </div>

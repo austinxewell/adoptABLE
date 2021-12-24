@@ -8,16 +8,16 @@ const resolvers = {
     // get all users
     users: async () => {
       return User.find()
-        .select('-__v -password')
-        .populate('adoptedFamily')
-        .populate('products');
+      .select('-__v -password')
+      .populate('adoptedFamily')
+      .populate('products');
     },
     // get a user by username
     user: async (parent, { username }) => {
       return User.findOne({ username })
-        .select('-__v -password')
-        .populate('adoptedFamily')
-        .populate('products');
+      .select('-__v -password')
+      .populate('adoptedFamily')
+      .populate('products');
     },
     //auth token
     me: async(parent, args, context) => {
@@ -55,8 +55,8 @@ const resolvers = {
     //get all categories by categoryName
     category: async (parent, { categoryName }) => {
       return Category.findOne({ categoryName })
-        .select('-__v -password')
-        .populate('products');
+      .select('-__v -password')
+      .populate('products');
     },
     //get all tags
     tags: async () => {
@@ -70,95 +70,101 @@ const resolvers = {
   },
 
   Mutation: {
+    //create a new user
     addUser: async (parent, { username, email, password }) => {
-        const user = await User.create({ username, email, password });
-        const token = signToken(user);
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
         
-        console.log(user)
-        return { user, token, username, email };
+      return { user, token, username, email };
     },
+    //user log in/token generation
     login: async (parent, { email, password }) => {
-        const user = await User.findOne({ email });
+      const user = await User.findOne({ email });
+      if (!user) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
 
-        if (!user) {
-            throw new AuthenticationError('Incorrect credentials');
-        }
+      const correctPw = await user.isCorrectPassword(password);
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
 
-        const correctPw = await user.isCorrectPassword(password);
-
-        if (!correctPw) {
-            throw new AuthenticationError('Incorrect credentials');
-        }
-
-        const token = signToken(user);
-        return { user, token };
+      const token = signToken(user);
+      return { user, token };
     },
+    //add a user to adoptedFamily
     addAdoptedFamily: async (parent, { adoptedFamilyId }, context) => {
-
-        if (context.user) {
-
-            const updatedUser = await User.findByIdAndUpdate(
-                { _id: context.user._id },
-                { $addToSet: { adoptedFamily: adoptedFamilyId }},
-                { new: true, runValidators: true }
-            ).populate('adoptedFamily');
-
-            return updatedUser;
-        }
-
-        throw new AuthenticationError('You need to be logged in!');
-    },
-    deleteAdoptedFamily: async (parent, { adoptedFamilyId }, context) => {
-        if (context.user) {
-            const updatedUser = await User.findByIdAndUpdate(
-                { _id: context.user._id },
-                { $pull: { adoptedFamily: adoptedFamilyId } },
-                { new: true, runValidators: true }
-            );
-
-            return updatedUser;
-        }
-
-        throw new AuthenticationError('You need to be logged in!');
-    },
-    addProduct: async (parent, { productName, productNote }, context) => {
-
       if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { adoptedFamily: adoptedFamilyId }},
+          { new: true, runValidators: true }
+        ).populate('adoptedFamily');
 
-          var product = await Product.create({ productName, productNote , username: context.user.username });
-
-         await User.findByIdAndUpdate( 
-              { _id: context.user._id },
-              { $push: { products: product } },
-              { new: true, runValidators: true},
-              );
-
-          product = await Product.findOneAndUpdate(
-            { _id: product._id },
-            { $addToSet: { users: context.user._id}},
-            { new: true, runValidators: true}, 
-          ).populate('users');
-
-          return product;        
+        return updatedUser;
       }
 
       throw new AuthenticationError('You need to be logged in!');
-  },
-  deleteProduct: async (parent, { productId }, context) => {
-    if (context.user) {
-        var product = await Product.findOne();
-        var productId = product._id;
-        const updatedProduct = await Product.findByIdAndRemove(
-            { _id: product._id }
+    },
+    //delete a user from adoptedFamily
+    deleteAdoptedFamily: async (parent, { adoptedFamilyId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $pull: { adoptedFamily: adoptedFamilyId } },
+          { new: true, runValidators: true }
         );
-        
-        console.log(updatedProduct);
-        return updatedProduct;
-    }
 
+        return updatedUser;
+      }
+
+        throw new AuthenticationError('You need to be logged in!');
+    },
+    //create a new product and assign it to the logged in user
+    addProduct: async (parent, { productName, productNote }, context) => {
+      if (context.user) {
+        var product = await Product.create({ productName, productNote , username: context.user.username });
+
+        await User.findByIdAndUpdate( 
+          { _id: context.user._id },
+          { $push: { products: product } },
+          { new: true, runValidators: true},
+        );
+
+        product = await Product.findOneAndUpdate(
+          { _id: product._id },
+          { $addToSet: { users: context.user._id}},
+          { new: true, runValidators: true}, 
+        ).populate('users');
+
+<<<<<<< HEAD
+          return product;        
+=======
+        return product         
+>>>>>>> develop
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    //delete a product and is relation to all users.
+    deleteProduct: async (parent, { productId }, context) => {
+      if(context.user) {
+        await Product.findByIdAndRemove(
+          { _id: productId },
+        )
+
+        return (`Product with the ID: ${productId} has been removed.`)
+      }
+
+<<<<<<< HEAD
     throw new AuthenticationError('You need to be logged in!');
   }
 }
+=======
+      throw new AuthenticationError('You need to be logged in!');     
+    }
+  }
+>>>>>>> develop
 };
 
 module.exports = resolvers;
