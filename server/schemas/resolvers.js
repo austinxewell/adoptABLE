@@ -139,7 +139,7 @@ const resolvers = {
             { new: true, runValidators: true}, 
           ).populate('users');
 
-          return product         
+          return product;        
       }
 
       throw new AuthenticationError('You need to be logged in!');
@@ -157,7 +157,7 @@ const resolvers = {
     }
 
     throw new AuthenticationError('You need to be logged in!');
-},
+  }
 }
 };
 
