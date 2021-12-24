@@ -35,9 +35,9 @@ function App() {
 
   return (
     <div>
-      <header>
-        <Header />
-        <Nav currentPage={currentPage} handlePageChange={handlePageChange} />
+      <header className='columns'>
+        <Header className='column is-half' />
+        <Nav className='column is-6 is-offset-6' currentPage={currentPage} handlePageChange={handlePageChange} />
       </header>
       <main>
         {renderPage(currentPage)}
