@@ -41,8 +41,8 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             {isModalOpen && <Modal currentFamily={currentFamily} onClose={toggleModal} />}
             <div className="columns is-flex-wrap-wrap">
                 {peeps.map((family, i) => (
-                    <div className="column px-5 is-3" key={family.name} onClick={() => toggleModal(family, i)}>
-                        <div className="card">
+                    <div className="column px-5 is-3" >
+                        <div className="card" key={family.name} onClick={() => toggleModal(family, i)}>
                             <div className="card-image">
                                 <figure className="image is-4by3">
                                     <img src={placeholder} alt="placeholder" />
