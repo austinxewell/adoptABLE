@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const adopteeSchema = new Schema(
+const userSchema = new Schema(
   {
     username: {
       type: String,
@@ -33,15 +33,10 @@ const adopteeSchema = new Schema(
     adoptedFamily: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Adoptee'
+        ref: 'User'
       }
     ]
   },
-  {
-    toJSON: {
-      virtuals: true
-    }
-  }
 );
 
 // set up pre-save middleware to create password
@@ -59,6 +54,6 @@ userSchema.methods.isCorrectPassword = async function(password) {
   return bcrypt.compare(password, this.password);
 };
 
-const Adoptee = model('Adoptee', adopteeSchema);
+const User = model('User', userSchema);
 
-module.exports = Adoptee;
+module.exports = User;
