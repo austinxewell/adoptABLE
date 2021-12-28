@@ -44,18 +44,16 @@ function App() {
   }
 
   return (
-    <ApolloProvider client={client}>
-      <div>
-        <header>
-          <Header />
-          <Nav currentPage={currentPage} handlePageChange={handlePageChange} />
-        </header>
-        <main>
-          {renderPage(currentPage)}
-        </main>
-        <Footer />
-      </div>
-    </ApolloProvider>
+    <div>
+      <header className='columns'>
+        <Header className='column is-half' />
+        <Nav className='column is-6 is-offset-6' currentPage={currentPage} handlePageChange={handlePageChange} />
+      </header>
+      <main>
+        {renderPage(currentPage)}
+      </main>
+      <Footer />
+    </div>
   );
 }
 

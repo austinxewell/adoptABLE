@@ -4,10 +4,10 @@ export default function Nav(props) {
     const tabs = ['Home', 'About', 'Contact', 'Adopt'];
 
     return (
-        <div>
-            <nav className='row nav-wrapper'>
+        <div className='column'>
+            <nav className='row column nav-wrapper'>
                         {tabs.map(tab => (
-                            <a   
+                            <a  className='column'
                                 href={'#' + tab.toLowerCase()}
                                 onClick={() => props.handlePageChange(tab)}
                                 key={tab}
