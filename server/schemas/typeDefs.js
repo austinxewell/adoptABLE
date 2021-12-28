@@ -60,6 +60,7 @@ const typeDefs = gql`
     deleteProduct(productId: String!): Product
     addTag(tagName: String!): Product
     deleteTag(tagId: String!): Product
+    updateUser(email: String, familyMembers: String): User
   }
 `;
 
