@@ -9,7 +9,7 @@ export default function Adopt () {
 
     const { loading, data } = useQuery(QUERY_USERS);
 
-    const families = data?.families || [];
+    const families = data?.users || [];
     console.log(families);
 
     const [currentFamily, setCurrentFamily] = useState();
@@ -45,6 +45,13 @@ export default function Adopt () {
     }
 
     return (
+        <section>
+          <br/>
+          <div className='columns is-centered'>
+            <h2 className=''>
+            Adopt
+            </h2>
+          </div> 
         <main className="purplecolor1">
             {loading ? (
                 <div>
@@ -79,6 +86,7 @@ export default function Adopt () {
                 </div>
             </div>
             )}
-        </main>    
+        </main>   
+        </section> 
     )
 }
