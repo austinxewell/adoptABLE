@@ -7,6 +7,9 @@ export const QUERY_USERS = gql`
             username
             email
             familyMembers
+            products {
+                productName
+            }
         }
     }
 `
