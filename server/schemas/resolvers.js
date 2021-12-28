@@ -1,6 +1,7 @@
 const { User, Product, Category, Tag } = require("../models")
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const tagSchema = require("../models/Tag");
 
 
 const resolvers = {
@@ -123,7 +124,7 @@ const resolvers = {
     //create a new product and assign it to the logged in user
     addProduct: async (parent, { productName, productNote }, context) => {
       if (context.user) {
-        var product = await Product.create({ productName, productNote , username: context.user.username });
+        var product = await Product.create({ productName, productNote, username: context.user.username });
 
         await User.findByIdAndUpdate( 
           { _id: context.user._id },
@@ -137,7 +138,11 @@ const resolvers = {
           { new: true, runValidators: true}, 
         ).populate('users');
 
+<<<<<<< HEAD
           return product;        
+=======
+        return product;
+>>>>>>> feature/amber-mutations
       }
 
       throw new AuthenticationError('You need to be logged in!');
@@ -153,7 +158,46 @@ const resolvers = {
       }
 
     throw new AuthenticationError('You need to be logged in!');
+<<<<<<< HEAD
   }
+=======
+  },
+  //create a new tag and assign it to product
+  addTag: async(parent, { tagName, productId }, context) => {
+    if(context.user) {
+      var product = await Product.findOne({productId});
+      
+      const updatedProduct = await Product.findByIdAndUpdate(
+        { _id: product._id },
+        { $push: { tags: {tagName} } },
+        { new: true, runValidators: true }
+      ).populate('product');
+
+      return updatedProduct;
+    }
+
+    throw new AuthenticationError('You need to be logged in!');
+  },
+  //delete a tag and is relation to product.
+  deleteTag: async (parent, { tagId, productId }, context) => {
+    if(context.user) {
+
+      var product = await Product.findOne({productId});
+
+
+      const updatedProduct = await Product.findByIdAndUpdate(
+        { _id: product._id },
+        { $pull: { tags: {_id: tagId} }}
+      ).populate('product');
+      console.log(tagId);
+      console.log(updatedProduct);
+
+      return (`Tag with the ID: ${tagId} has been removed.`);
+    }
+
+  throw new AuthenticationError('You need to be logged in!');
+},
+>>>>>>> feature/amber-mutations
 }
 };
 
