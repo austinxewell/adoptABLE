@@ -1,7 +1,6 @@
 const { User, Product, Category, Tag } = require("../models")
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const tagSchema = require("../models/Tag");
 
 
 const resolvers = {
@@ -124,7 +123,7 @@ const resolvers = {
     //create a new product and assign it to the logged in user
     addProduct: async (parent, { productName, productNote }, context) => {
       if (context.user) {
-        var product = await Product.create({ productName, productNote, username: context.user.username });
+        var product = await Product.create({ productName, productNote , username: context.user.username });
 
         await User.findByIdAndUpdate( 
           { _id: context.user._id },
@@ -182,40 +181,44 @@ const resolvers = {
         { new: true, runValidators: true }
       ).populate('product');
 
-        var product = await Product.findOne({productId});
-
-
-        const updatedProduct = await Product.findByIdAndUpdate(
-          { _id: product._id },
-          { $pull: { tags: {_id: tagId} }}
-        ).populate('product');
-        console.log(tagId);
-        console.log(updatedProduct);
-
         return (`Tag with the ID: ${tagId} has been removed.`);
       }
 
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    //delete tag
+    
     //update user details
     updateUser: async (parent, { email, familyMembers }, context) => {
       if (context.user) {
 
-        console.log(context.user._id);
-        console.log(email);
-        console.log(familyMembers);
         const updatedUser = await User.findByIdAndUpdate( 
           { _id: context.user._id },
           { $set: { email: email, familyMembers: familyMembers } },
           { new: true, runValidators: true},
         ).populate('user');
-        console.log(updatedUser);
 
         return updatedUser;
       }
 
-  throw new AuthenticationError('You need to be logged in!');
-},
+    throw new AuthenticationError('You need to be logged in!');
+  },
+//   //update product details
+//   updateProduct: async (parent, { productName, productNote }, context) => {
+//     if (context.user) {
+
+//       const updatedProductData = await Product.findByIdAndUpdate( 
+//         { _id: product._id },
+//         { $set: { productName: productName, productNote: productNote } },
+//         { new: true, runValidators: true},
+//       ).populate('product');
+
+//       return updatedProductData;
+//     }
+
+//     throw new AuthenticationError('You need to be logged in!');
+//   }
 }
 };
 

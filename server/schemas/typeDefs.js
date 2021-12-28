@@ -61,6 +61,7 @@ const typeDefs = gql`
     addTag(tagName: String!): Product
     deleteTag(tagId: String!): Product
     updateUser(email: String, familyMembers: String): User
+    updateProduct(productName: String, productNote: String): Product
   }
 `;
 
