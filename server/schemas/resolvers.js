@@ -190,6 +190,25 @@ const resolvers = {
 
   throw new AuthenticationError('You need to be logged in!');
 },
+//update user details
+updateUser: async (parent, { email, familyMembers }, context) => {
+  if (context.user) {
+
+    console.log(context.user._id);
+    console.log(email);
+    console.log(familyMembers);
+    const updatedUser = await User.findByIdAndUpdate( 
+      { _id: context.user._id },
+      { $set: { email: email, familyMembers: familyMembers } },
+      { new: true, runValidators: true},
+    ).populate('user');
+    console.log(updatedUser);
+
+    return updatedUser;
+  }
+
+  throw new AuthenticationError('You need to be logged in!');
+},
 }
 };
 
