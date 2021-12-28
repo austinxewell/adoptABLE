@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import Home from './components/Home'
-import Header from './components/Header'
+import Home from './components/Home';
+import Header from './components/Header';
 import Nav from './components/Nav';
+import Login from './components/Login'
 import About from './components/About';
 import Contact from './components/Contact';
-import Adopt from './components/Adopt'
+import Adopt from './components/Adopt';
 import Footer from './components/Footer';
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
       case 'Adopt':
         return(
           <Adopt />
+        );
+      case 'Login':
+        return(
+          <Login />
         );
     }
   }

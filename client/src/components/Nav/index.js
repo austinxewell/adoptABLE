@@ -10,8 +10,7 @@ export default function Nav(props) {
                             <a  className='column'
                                 href={'#' + tab.toLowerCase()}
                                 onClick={() => props.handlePageChange(tab)}
-                                key={tab}
-                            >
+                                key={tab}>
                                 {tab}
                             </a>
                         ))}
