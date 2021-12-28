@@ -137,11 +137,7 @@ const resolvers = {
           { new: true, runValidators: true}, 
         ).populate('users');
 
-<<<<<<< HEAD
-          return product;        
-=======
         return product         
->>>>>>> develop
       }
 
       throw new AuthenticationError('You need to be logged in!');
@@ -156,15 +152,9 @@ const resolvers = {
         return (`Product with the ID: ${productId} has been removed.`)
       }
 
-<<<<<<< HEAD
-    throw new AuthenticationError('You need to be logged in!');
-  }
-}
-=======
       throw new AuthenticationError('You need to be logged in!');     
     }
   }
->>>>>>> develop
 };
 
 module.exports = resolvers;

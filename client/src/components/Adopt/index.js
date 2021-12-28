@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
 import placeholder from '../../assets/images/1280x960.png';
 import Modal from '../Modal';
-
+import { useQuery } from '@apollo/client';
+import { QUERY_USERS } from '../../utils/queries';
 
 export default function Adopt () {
-const [currentFamily, setCurrentFamily] = useState();
 
-const [isModalOpen, setIsModalOpen] = useState(false);
+    const { loading, data } = useQuery(QUERY_USERS);
+
+    const families = data?.families || [];
+    console.log(families);
+
+    const [currentFamily, setCurrentFamily] = useState();
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const peeps = [
         {name: "john",
