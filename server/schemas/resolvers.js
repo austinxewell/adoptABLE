@@ -138,11 +138,7 @@ const resolvers = {
           { new: true, runValidators: true}, 
         ).populate('users');
 
-<<<<<<< HEAD
-          return product;        
-=======
         return product;
->>>>>>> feature/amber-mutations
       }
 
       throw new AuthenticationError('You need to be logged in!');
@@ -158,9 +154,6 @@ const resolvers = {
       }
 
     throw new AuthenticationError('You need to be logged in!');
-<<<<<<< HEAD
-  }
-=======
   },
   //create a new tag and assign it to product
   addTag: async(parent, { tagName, productId }, context) => {
@@ -197,7 +190,6 @@ const resolvers = {
 
   throw new AuthenticationError('You need to be logged in!');
 },
->>>>>>> feature/amber-mutations
 }
 };
 
