@@ -169,13 +169,6 @@ const resolvers = {
         return updatedProduct;
       }
 
-<<<<<<< HEAD
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    //delete a tag and is relation to product.
-    deleteTag: async (parent, { tagId, productId }, context) => {
-      if(context.user) {
-=======
     throw new AuthenticationError('You need to be logged in!');
   },
   //create a new tag and assign it to product
@@ -188,7 +181,6 @@ const resolvers = {
         { $push: { tags: {tagName} } },
         { new: true, runValidators: true }
       ).populate('product');
->>>>>>> e686c4ef32da4bd4536ddfa74eabdc071a84833a
 
         var product = await Product.findOne({productId});
 
@@ -222,15 +214,9 @@ const resolvers = {
         return updatedUser;
       }
 
-<<<<<<< HEAD
-      throw new AuthenticationError('You need to be logged in!');
-    }
-  },
-=======
   throw new AuthenticationError('You need to be logged in!');
 },
 }
->>>>>>> e686c4ef32da4bd4536ddfa74eabdc071a84833a
 };
 
 module.exports = resolvers;
