@@ -181,19 +181,14 @@ const resolvers = {
         { new: true, runValidators: true }
       ).populate('product');
 
-        var product = await Product.findOne({productId});
-
-
-        const updatedProduct = await Product.findByIdAndUpdate(
-          { _id: product._id },
-          { $pull: { tags: {_id: tagId} }}
-        ).populate('product');
-
         return (`Tag with the ID: ${tagId} has been removed.`);
       }
 
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    //delete tag
+    
     //update user details
     updateUser: async (parent, { email, familyMembers }, context) => {
       if (context.user) {
