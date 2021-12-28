@@ -137,7 +137,7 @@ const resolvers = {
           { new: true, runValidators: true}, 
         ).populate('users');
 
-        return product         
+        return product;
       }
 
       throw new AuthenticationError('You need to be logged in!');
@@ -152,9 +152,44 @@ const resolvers = {
         return (`Product with the ID: ${productId} has been removed.`)
       }
 
-      throw new AuthenticationError('You need to be logged in!');     
+    throw new AuthenticationError('You need to be logged in!');
+  },
+  //create a new tag and assign it to product
+  addTag: async(parent, { tagName, productId }, context) => {
+    if(context.user) {
+      var product = await Product.findOne({productId});
+      
+      const updatedProduct = await Product.findByIdAndUpdate(
+        { _id: product._id },
+        { $push: { tags: {tagName} } },
+        { new: true, runValidators: true }
+      ).populate('product');
+
+      return updatedProduct;
     }
-  }
+
+    throw new AuthenticationError('You need to be logged in!');
+  },
+  //delete a tag and is relation to product.
+  deleteTag: async (parent, { tagId, productId }, context) => {
+    if(context.user) {
+
+      var product = await Product.findOne({productId});
+
+
+      const updatedProduct = await Product.findByIdAndUpdate(
+        { _id: product._id },
+        { $pull: { tags: {_id: tagId} }}
+      ).populate('product');
+      console.log(tagId);
+      console.log(updatedProduct);
+
+      return (`Tag with the ID: ${tagId} has been removed.`);
+    }
+
+  throw new AuthenticationError('You need to be logged in!');
+},
+}
 };
 
 module.exports = resolvers;
