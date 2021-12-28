@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './components/Home'
 import Header from './components/Header'
 import Nav from './components/Nav';
@@ -9,7 +10,7 @@ import Footer from './components/Footer';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
 const client = new ApolloClient({

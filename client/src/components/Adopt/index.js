@@ -9,7 +9,7 @@ export default function Adopt () {
 
     const { loading, data } = useQuery(QUERY_USERS);
 
-    const families = data?.families || [];
+    const families = data?.users || [];
     console.log(families);
 
     const [currentFamily, setCurrentFamily] = useState();
