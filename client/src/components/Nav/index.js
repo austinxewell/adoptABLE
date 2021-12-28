@@ -1,4 +1,5 @@
 import React from 'react'
+import Auth from '../../utils/auth'
 
 export default function Nav(props) {
     const tabs = ['adoptABLE', 'About', 'Contact', 'Adopt'];
@@ -7,6 +8,15 @@ export default function Nav(props) {
     return (
         <header className='columns navbar is-boxed is-dark is-transparent is-fixed-top'>
             <nav className='column'>
+                {Auth.loggedIn() ? (
+                    <>
+                        <div className='columns navbar-item'>
+                            <a href="/" onClick={logout}>
+                            Logout
+                            </a>
+                        </div>
+                    </>
+                ) : (
                 <div className='columns navbar-item'>
                         {Registrations.map(Registration => (
                             <a  className='column is-2'
@@ -16,7 +26,8 @@ export default function Nav(props) {
                                 {Registration}
                             </a>
                         ))}
-                </div>
+                </div>   
+                )}
             </nav>
             <nav className='column'>
                 <div className='columns navbar-item'>
