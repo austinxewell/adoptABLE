@@ -6,6 +6,16 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Adopt from './components/Adopt'
 import Footer from './components/Footer';
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const client = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache(),
+});
 
 function App() {
 
@@ -34,16 +44,18 @@ function App() {
   }
 
   return (
-    <div>
-      <header>
-        <Header />
-        <Nav currentPage={currentPage} handlePageChange={handlePageChange} />
-      </header>
-      <main>
-        {renderPage(currentPage)}
-      </main>
-      <Footer />
-    </div>
+    <ApolloProvider client={client}>
+      <div>
+        <header className='columns'>
+          <Header className='column is-half' />
+          <Nav className='column is-6 is-offset-6' currentPage={currentPage} handlePageChange={handlePageChange} />
+        </header>
+        <main>
+          {renderPage(currentPage)}
+        </main>
+        <Footer />
+      </div>
+    </ApolloProvider>
   );
 }
 

@@ -6,19 +6,19 @@ export default function Contact () {
         <div className="columns">
             <div className="column is-6">
                 <form className='mx-4'>
-                    <label for="name">
+                    <label htmlFor="name">
                         Name:
                     </label>
                     <input type="text" name="name"/>
-                    <label for="email">
+                    <label htmlFor="email">
                         Email:
                     </label>
                     <input type="email" />
-                    <label for="subject">
+                    <label htmlFor="subject">
                         Subject:
                     </label>
                     <input type="text" name="subject" />
-                    <label for="body">
+                    <label htmlFor="body">
                         Body:
                     </label>
                     <textarea name="body" />
