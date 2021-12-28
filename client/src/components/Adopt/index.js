@@ -24,6 +24,13 @@ export default function Adopt () {
     }
 
     return (
+        <section>
+          <br/>
+          <div className='columns is-centered'>
+            <h2 className=''>
+            Adopt
+            </h2>
+          </div> 
         <main className="purplecolor1">
             <div className="p-3">
                 <h2>Families in need</h2>
@@ -56,6 +63,7 @@ export default function Adopt () {
                 </div>
             </div>
             )}
-        </main>    
+        </main>   
+        </section> 
     )
 }

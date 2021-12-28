@@ -43,6 +43,7 @@ const typeDefs = gql`
   type Tag {
     _id: ID
     tagName: String
+    products: [Product]
   }
 
   type Auth {
@@ -57,6 +58,8 @@ const typeDefs = gql`
     deleteAdoptedFamily(adoptedFamilyId: ID!): User
     addProduct(productName: String!, productNote: String!): Product
     deleteProduct(productId: String!): Product
+    addTag(tagName: String!): Product
+    deleteTag(tagId: String!): Product
   }
 `;
 
