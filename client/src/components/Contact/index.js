@@ -3,6 +3,13 @@ import img from '../../assets/images/support.jpg'
 
 export default function Contact () {
     return (
+        <section>
+          <br/>
+          <div className='columns is-centered'>
+            <h2 className=''>
+            Contact
+            </h2>
+          </div>
         <div className="columns">
             <div className="column is-6">
                 <form className='mx-4'>
@@ -43,5 +50,6 @@ export default function Contact () {
                 <img src={img} alt="Support for domestic violence" />
             </div>
         </div>
+        </section>
     )
 }

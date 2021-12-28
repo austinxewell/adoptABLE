@@ -45,6 +45,13 @@ export default function Adopt () {
     }
 
     return (
+        <section>
+          <br/>
+          <div className='columns is-centered'>
+            <h2 className=''>
+            Adopt
+            </h2>
+          </div> 
         <main className="purplecolor1">
             {loading ? (
                 <div>
@@ -79,6 +86,7 @@ export default function Adopt () {
                 </div>
             </div>
             )}
-        </main>    
+        </main>   
+        </section> 
     )
 }

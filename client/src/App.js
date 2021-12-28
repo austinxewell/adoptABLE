@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './components/Home'
-import Header from './components/Header'
+import Login from './components/Login'
+import SignUp from './components/SignUp'
 import Nav from './components/Nav';
 import About from './components/About';
 import Contact from './components/Contact';
@@ -29,6 +29,14 @@ function App() {
         return(
           <Home />
         );
+      case 'Login':
+        return(
+          <Login />
+        )
+      case 'SignUp':
+        return(
+          <SignUp />
+        )
       case 'About':
         return(
           <About />
@@ -46,18 +54,18 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <Router>
       <div>
-        <header className='columns'>
-          <Header className='column is-half' />
-          <Nav className='column is-6 is-offset-6' currentPage={currentPage} handlePageChange={handlePageChange} />
+        <header className='container'>
+          <Nav className='' currentPage={currentPage} handlePageChange={handlePageChange} />
         </header>
-        <main>
+        <br/>
+        <main className='container'>
+          <div className='column'>
           {renderPage(currentPage)}
+          </div>
         </main>
         <Footer />
       </div>
-      </Router>
     </ApolloProvider>
   );
 }
