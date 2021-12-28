@@ -188,8 +188,6 @@ const resolvers = {
           { _id: product._id },
           { $pull: { tags: {_id: tagId} }}
         ).populate('product');
-        console.log(tagId);
-        console.log(updatedProduct);
 
         return (`Tag with the ID: ${tagId} has been removed.`);
       }
@@ -200,21 +198,32 @@ const resolvers = {
     updateUser: async (parent, { email, familyMembers }, context) => {
       if (context.user) {
 
-        console.log(context.user._id);
-        console.log(email);
-        console.log(familyMembers);
         const updatedUser = await User.findByIdAndUpdate( 
           { _id: context.user._id },
           { $set: { email: email, familyMembers: familyMembers } },
           { new: true, runValidators: true},
         ).populate('user');
-        console.log(updatedUser);
 
         return updatedUser;
       }
 
-  throw new AuthenticationError('You need to be logged in!');
-},
+    throw new AuthenticationError('You need to be logged in!');
+  },
+//   //update product details
+//   updateProduct: async (parent, { productName, productNote }, context) => {
+//     if (context.user) {
+
+//       const updatedProductData = await Product.findByIdAndUpdate( 
+//         { _id: product._id },
+//         { $set: { productName: productName, productNote: productNote } },
+//         { new: true, runValidators: true},
+//       ).populate('product');
+
+//       return updatedProductData;
+//     }
+
+//     throw new AuthenticationError('You need to be logged in!');
+//   }
 }
 };
 
