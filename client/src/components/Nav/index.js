@@ -5,6 +5,10 @@ export default function Nav(props) {
     const tabs = ['adoptABLE', 'About', 'Contact', 'Adopt'];
     const Registrations = ['Login', 'SignUp']
 
+    function logout() {
+        console.log('logging out')
+    }
+
     return (
         <header className='columns navbar is-boxed is-dark is-transparent is-fixed-top'>
             <nav className='column'>

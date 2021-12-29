@@ -3,7 +3,7 @@ import placeholder from '../../assets/images/1280x960.png';
 import Modal from '../Modal';
 import { useQuery } from '@apollo/client';
 import { QUERY_USERS } from '../../utils/queries';
-import { capitalizeFirstLetter } from '../../utils/helper';
+import { capitalizeFirstLetter, cleanupName } from '../../utils/helper';
 
 export default function Adopt () {
 
@@ -15,27 +15,6 @@ export default function Adopt () {
     const [currentFamily, setCurrentFamily] = useState();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const peeps = [
-        {name: "john",
-        familysize: 3
-        },
-        {name: "samantha",
-        familysize: 2
-        },
-        {name: "Kim",
-        familysize: 3
-        },
-        {name: "Joan",
-        familysize: 6
-        },
-        {name: "smiths",
-        familysize: 2
-        },
-        {name: "deans",
-        familysize: 4
-        }
-    ];
 
     function toggleModal(name, i) {
         setCurrentFamily(name);
@@ -53,26 +32,24 @@ export default function Adopt () {
             </h2>
           </div> 
         <main className="purplecolor1">
+            <div className="p-3">
+                <h2>Families in need</h2>
+            </div>
             {loading ? (
-                <div>
+                <div className="p-3">
                     Loading Families!
                 </div>
             ) : (
             <div>
                 {isModalOpen && <Modal currentFamily={currentFamily} onClose={toggleModal} />}
                 <div className="columns is-flex-wrap-wrap">
-                    {peeps.map((family, i) => (
-                        <div className="column px-5 is-3" key={family.name}>
-                            <div className="card" onClick={() => toggleModal(family, i)}>
-                                <div className="card-image">
-                                    <figure className="image is-4by3">
-                                        <img src={placeholder} alt="placeholder" />
-                                    </figure>
-                                </div>
+                    {families.map((family, i) => (
+                        <div className="column px-5 is-3" key={family.username}>
+                            <div className="card p-3" onClick={() => toggleModal(family, i)}>
                                 <div className="card-content">
                                     <div className="media-content">
-                                        <p className="title is-4 cardfamilyname">{capitalizeFirstLetter(family.name)}</p>
-                                        <p className="subtitle is-6">{family.familysize}</p>
+                                        <p className="title is-4 cardfamilyname">{cleanupName(capitalizeFirstLetter(family.username))}</p>
+                                        
 
                                     </div>
                                 </div>

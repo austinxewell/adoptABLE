@@ -1,20 +1,21 @@
 import React from 'react';
 
-export default function List () {
-    const { items } = family.products
+export default function List (products) {
+    //var {productName } = products;
+    //console.log(productName)
+    if(!products.list.length) {
+        console.log('no products')
+        return (
+            <div> No items selected for this family. </div>
+        )
+    }
     return (
         <div>
-            {items ? (
-                <div> No items selected for this family. </div>
-            ) : (
-                <div>
-                    <ul>
-                        {items.map((item) => (
-                            <li>{item.productName}</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-        </div>  
+            <ul>
+                {products.list.map((item) => (
+                    <li key={item.productName}>{item.productName}</li>
+                ))}
+            </ul>
+        </div> 
     )
 }

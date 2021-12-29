@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { capitalizeFirstLetter } from '../../utils/helper';
+import { capitalizeFirstLetter, cleanupName } from '../../utils/helper';
+import List from '../List';
 
 function Modal ({ onClose, currentFamily }) {
-    const { name, familysize } = currentFamily;
+    const { username, products, familyMembers, email } = currentFamily;
 
     const [showList, setShowList] = useState(false);
 
@@ -16,13 +17,18 @@ function Modal ({ onClose, currentFamily }) {
             <div className="modal-background"></div>
             <div className="modal-card">
                 <header className="modal-card-head">
-                    <p className="modal-card-title cardfamilyname">{capitalizeFirstLetter(name)}</p>
+                    <p className="modal-card-title cardfamilyname">{cleanupName(capitalizeFirstLetter(username))}</p>
                 </header>
                 <section className="modal-card-body">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris
                 
                     {showList ? (
-                        <div>Show list</div>
+                        <div>
+                            <List 
+                                list={products}
+                            />
+                            <a href="#" onClick={() => toggleList()}>Minimize List</a>
+                        </div>
                     ) : (
                         <div>
                             <a href="#" onClick={() => toggleList()}>View Family Needs</a>
