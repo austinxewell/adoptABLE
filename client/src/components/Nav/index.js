@@ -5,8 +5,10 @@ export default function Nav(props) {
     const tabs = ['adoptABLE', 'About', 'Contact', 'Adopt'];
     const Registrations = ['Login', 'SignUp']
 
-    function logout() {
+    function logout(event) {
         console.log('logging out')
+        event.preventDefault()
+        Auth.logout()
     }
 
     return (
@@ -15,9 +17,9 @@ export default function Nav(props) {
                 {Auth.loggedIn() ? (
                     <>
                         <div className='columns navbar-item'>
-                            {/* <a href="/" onClick={logout}>
+                            <a href="/" onClick={logout}>
                             Logout
-                            </a> */}
+                            </a>
                         </div>
                     </>
                 ) : (
