@@ -10,14 +10,14 @@ export default function Nav(props) {
     }
 
     return (
-        <header className='columns navbar is-boxed is-dark is-transparent is-fixed-top'>
+        <header className='columns navbar is-boxed is-transparent is-fixed-top'>
             <nav className='column'>
                 {Auth.loggedIn() ? (
                     <>
                         <div className='columns navbar-item'>
-                            <a href="/" onClick={logout}>
+                            {/* <a href="/" onClick={logout}>
                             Logout
-                            </a>
+                            </a> */}
                         </div>
                     </>
                 ) : (

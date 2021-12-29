@@ -67,7 +67,7 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <div className="purplecolor2">
+      <div className='purplecolor2'>
         <header className='container'>
           <Nav className='' currentPage={currentPage} handlePageChange={handlePageChange} />
         </header>
@@ -77,6 +77,7 @@ function App() {
           {renderPage(currentPage)}
           </div>
         </main>
+        <br/>
         <Footer />
       </div>
     </ApolloProvider>

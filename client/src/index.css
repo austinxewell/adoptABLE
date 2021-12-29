@@ -17,6 +17,11 @@ code {
   width: 100%;
 }
 
+.navbar {
+  background-color: #31405F;
+  font-family: 'Lora', normal;
+}
+
 .cardfamilyname {
   font-weight: bold;
   font-size: 100px;
