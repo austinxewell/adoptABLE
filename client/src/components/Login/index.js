@@ -58,6 +58,7 @@ export default function Login (props) {
                 <label className='columns is-centered' htmlFor="">Username:</label>
                 
                 <input className='' placeholder='Your Username' name='username' type='username' id='username' value={formState.username} onChange={handleChange} />
+              
               </div>
               
               <div className=''>
@@ -65,17 +66,21 @@ export default function Login (props) {
                 <label className='columns is-centered' htmlFor="">Password:</label>
                 
                 <input className='' placeholder='*******' name='password' type='password' id='password' value={formState.password} onChange={handleChange} />
+              
               </div>
               
               <div className='columns is-centered'>
                 
                 <button className='' type="submit">Submit</button>
+              
               </div>
+            
             </form>
             
             {error && <div>Login failed</div>}
 
             </div>
+          
           </section>
       );
     

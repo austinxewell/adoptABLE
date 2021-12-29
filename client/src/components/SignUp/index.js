@@ -1,38 +1,94 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../../utils/mutations';
+
+import Auth from '../../utils/auth';
 
 export default function SignUp() {
+  const [formState, setFormState] = useState({ username: '', email: '', password: '' });
+  const [login, { error }] = useMutation(LOGIN_USER);
+
+  // update state based on form input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  // submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setFormState({
+      username: '',
+      password: '',
+    });
+  };
+
     return (
         <section>
           <br/>
+            
             <div className='columns is-centered'>
-              <h2 className=''>
-              Sign-Up
-              </h2>
+              
+              <h2 className=''>Sign-Up</h2>
+
             </div>
+          
           <div className='columns is-centered is-hcentered'>
-            <form className='' id="" onSubmit="">
+            
+            <form className='' id="" onSubmit={handleFormSubmit}>
+              
               <div className=''>
+                
                 <label className='columns is-centered' htmlFor="">Username:</label>
-                <input className='' type="" name="" defaultValue="" onBlur="" />
+                
+                <input className='' placeholder='Your Username' name='username' type='username' id='username' value={formState.username} onChange={handleChange} />
+              
               </div>
+              
               <div className=''>
+                
                 <label className='columns is-centered' htmlFor="">Email address:</label>
-                <input className='' type="" name="" defaultValue="" onBlur="" />
+                
+                <input className='' placeholder='Your Email' name='email' type='email' id='email' value={formState.email} onChange={handleChange}  />
+              
               </div>
+              
               <div className=''>
+                
                 <label className='columns is-centered' htmlFor="">Password:</label>
-                <input className='' type="" name="" defaultValue="" onBlur="" />
+                
+                <input className='' placeholder='******' name='password' type='password' id='password' value={formState.password} onChange={handleChange} />
+              
               </div>
-            {/* {errorMessage && (
-              <div>
-                <p className="">{errorMessage}</p>
-              </div>
-            )} */}
+              
               <div className='columns is-centered'>
-                <button className='' data-testid="" type="">Submit</button>
+                
+                <button className='' type="submit">Submit</button>
+              
               </div>
+            
             </form>
+
+            {error && <div>Signup Failed</div>}
+          
           </div>
+        
         </section>
       );
     
