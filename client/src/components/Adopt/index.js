@@ -33,7 +33,7 @@ export default function Adopt () {
           </div> 
         <main className="purplecolor1">
             <div className="p-3">
-                <h2>Families in need</h2>
+                <h3>Families in need</h3>
             </div>
             {loading ? (
                 <div className="p-3">

@@ -38,13 +38,19 @@ export default function Contact () {
                             <span className="contactlinkstitle">Additional resources</span>
                             <ul>
                                 <li>
-                                    <a className="contactlinks" href="#">Something</a>
+                                    <a className="contactlinks" target="_blank" href="https://www.udvc.org/">Utah Domestic Violence Coalition</a>
                                 </li>
                                 <li>
-                                    <a className="contactlinks" href="#">Something</a>
+                                    <a className="contactlinks" target="_blank" href="https://dcfs.utah.gov/">Utah department of human services</a>
                                 </li>
                                 <li>
-                                    <a className="contactlinks" href="#">Something</a>
+                                    <a className="contactlinks" target="_blank" href="https://www.domesticshelters.org/">Domestic Shelters</a>
+                                </li>
+                                <li>
+                                    <a className="contactlinks" target="_blank" href="https://nrd.gov/">National Resource Directory</a>
+                                </li>
+                                <li>
+                                    <a className="contactlinks" target="_blank" href="https://www.sldvc.org/">Salt Lake Domestic Violence Coalition</a>
                                 </li>
                             </ul>
                         </div>
