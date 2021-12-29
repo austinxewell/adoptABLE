@@ -10,7 +10,7 @@ export default function Nav(props) {
     }
 
     return (
-        <header className='columns navbar is-boxed is-dark is-transparent is-fixed-top'>
+        <header className='columns navbar is-boxed is-transparent is-fixed-top'>
             <nav className='column'>
                 {Auth.loggedIn() ? (
                     <>

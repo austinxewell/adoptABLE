@@ -3,7 +3,7 @@ import img from '../../assets/images/support.jpg'
 
 export default function Contact () {
     return (
-        <section className="purplecolor2 container.is-fullhd">
+        <section className="container.is-fullhd">
             <br/>
             <div>
                 <h2 className="has-text-centered contactpagetitle">
