@@ -29,6 +29,7 @@ code {
 .contactinput {
   background-color: #602750;
   border: 1px solid black;
+  color: white;
 }
 
 .contactinput:focus {
@@ -67,4 +68,9 @@ code {
 .contactimage {
   border: 1px solid black;
   border-radius: 4%;
+}
+
+.card:hover {
+  background-color: rgba(96,39,80,.3);
+  border: 1px solid #31405f;
 }
