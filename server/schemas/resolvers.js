@@ -201,21 +201,22 @@ const resolvers = {
 
     throw new AuthenticationError('You need to be logged in!');
   },
-//   //update product details
-//   updateProduct: async (parent, { productName, productNote }, context) => {
-//     if (context.user) {
+  //update product details
+  updateProduct: async (parent, { productName, productNote, productId }, context) => {
+    if (context.user) {
+      var product = await Product.findOne({productId});
+      
+      const updatedProduct = await Product.findByIdAndUpdate( 
+        { _id: product._id },
+        { $set: { productName: productName, productNote: productNote } },
+        { new: true, runValidators: true},
+      ).populate('product');
 
-//       const updatedProductData = await Product.findByIdAndUpdate( 
-//         { _id: product._id },
-//         { $set: { productName: productName, productNote: productNote } },
-//         { new: true, runValidators: true},
-//       ).populate('product');
+      return updatedProduct;
+    }
 
-//       return updatedProductData;
-//     }
-
-//     throw new AuthenticationError('You need to be logged in!');
-//   }
+    throw new AuthenticationError('You need to be logged in!');
+  }
 }
 };
 
