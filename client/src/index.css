@@ -14,6 +14,7 @@ code {
 
 .purplecolor1 {
   background-color: #E1B6E4;
+  width: 100%;
 }
 
 .cardfamilyname {
@@ -24,6 +25,8 @@ code {
 
 .purplecolor2 {
   background-color: rgba(163, 83, 144, 0.4);
+  max-width: 100%;
+  background-size: cover;
 }
 
 .contactinput {

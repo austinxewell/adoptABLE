@@ -20,7 +20,7 @@ function Modal ({ onClose, currentFamily }) {
                     <p className="modal-card-title cardfamilyname">{cleanupName(capitalizeFirstLetter(username))}</p>
                 </header>
                 <section className="modal-card-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris
+                <span>{familyMembers} People in this family.</span>
                 
                     {showList ? (
                         <div>
