@@ -58,7 +58,7 @@ code {
   background-color: #31405f;
 }
 
-.contactpagetitle {
+h2 {
   color: #31405f;
   font-weight: bolder;
   font-family: 'Shadows Into Light Two', cursive;
@@ -68,6 +68,10 @@ code {
 .contactimage {
   border: 1px solid black;
   border-radius: 4%;
+}
+
+.card {
+  border: 1px solid #31405f
 }
 
 .card:hover {
