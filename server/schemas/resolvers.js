@@ -171,8 +171,21 @@ const resolvers = {
     throw new AuthenticationError('You need to be logged in!');
   },
 
-    //delete tag
-    
+     //delete a tag and is relation to product.
+  deleteTag: async (parent, { tagId, productId }, context) => {
+    if(context.user) {
+
+      var product = await Product.findOne({productId});
+
+
+      const updatedProduct = await Product.findByIdAndUpdate(
+        { _id: product._id },
+        { $pull: { tags: {_id: tagId} }}
+      ).populate('product');
+
+      return (`Tag with the ID: ${tagId} has been removed.`);
+      }
+    },
     //update user details
     updateUser: async (parent, { email, familyMembers }, context) => {
       if (context.user) {
