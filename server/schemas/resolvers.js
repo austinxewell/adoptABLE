@@ -170,22 +170,6 @@ const resolvers = {
 
     throw new AuthenticationError('You need to be logged in!');
   },
-  //create a new tag and assign it to product
-  addTag: async(parent, { tagName, productId }, context) => {
-    if(context.user) {
-      var product = await Product.findOne({productId});
-      
-      const updatedProduct = await Product.findByIdAndUpdate(
-        { _id: product._id },
-        { $push: { tags: {tagName} } },
-        { new: true, runValidators: true }
-      ).populate('product');
-
-        return (`Tag with the ID: ${tagId} has been removed.`);
-      }
-
-      throw new AuthenticationError('You need to be logged in!');
-    },
 
     //delete tag
     
