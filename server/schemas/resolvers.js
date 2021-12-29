@@ -170,25 +170,22 @@ const resolvers = {
 
     throw new AuthenticationError('You need to be logged in!');
   },
-  //create a new tag and assign it to product
-  addTag: async(parent, { tagName, productId }, context) => {
+
+     //delete a tag and is relation to product.
+  deleteTag: async (parent, { tagId, productId }, context) => {
     if(context.user) {
+
       var product = await Product.findOne({productId});
-      
+
+
       const updatedProduct = await Product.findByIdAndUpdate(
         { _id: product._id },
-        { $push: { tags: {tagName} } },
-        { new: true, runValidators: true }
+        { $pull: { tags: {_id: tagId} }}
       ).populate('product');
 
-        return (`Tag with the ID: ${tagId} has been removed.`);
+      return (`Tag with the ID: ${tagId} has been removed.`);
       }
-
-      throw new AuthenticationError('You need to be logged in!');
     },
-
-    //delete tag
-    
     //update user details
     updateUser: async (parent, { email, familyMembers }, context) => {
       if (context.user) {
@@ -204,21 +201,22 @@ const resolvers = {
 
     throw new AuthenticationError('You need to be logged in!');
   },
-//   //update product details
-//   updateProduct: async (parent, { productName, productNote }, context) => {
-//     if (context.user) {
+  //update product details
+  updateProduct: async (parent, { productName, productNote, productId }, context) => {
+    if (context.user) {
+      var product = await Product.findOne({productId});
+      
+      const updatedProduct = await Product.findByIdAndUpdate( 
+        { _id: product._id },
+        { $set: { productName: productName, productNote: productNote } },
+        { new: true, runValidators: true},
+      ).populate('product');
 
-//       const updatedProductData = await Product.findByIdAndUpdate( 
-//         { _id: product._id },
-//         { $set: { productName: productName, productNote: productNote } },
-//         { new: true, runValidators: true},
-//       ).populate('product');
+      return updatedProduct;
+    }
 
-//       return updatedProductData;
-//     }
-
-//     throw new AuthenticationError('You need to be logged in!');
-//   }
+    throw new AuthenticationError('You need to be logged in!');
+  }
 }
 };
 

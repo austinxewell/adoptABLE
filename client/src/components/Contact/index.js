@@ -16,7 +16,10 @@ export default function Contact () {
                             <label className="contactlabel" htmlFor="name">
                                 Name:
                             </label>
-                            <input className="contactinput" type="text" name="name"/>
+
+                            <input className="contactinput is-primary" type="text" name="name"/>
+
+                            
                             <label className="contactlabel" htmlFor="email">
                                 Email:
                             </label>
