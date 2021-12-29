@@ -23,7 +23,7 @@ export default function Nav(props) {
                 ) : (
                 <div className='columns navbar-item'>
                         {Registrations.map(Registration => (
-                            <a  className='column is-2'
+                            <a  className='column is-2 navoptions'
                                 href={'#' + Registration.toLowerCase()}
                                 onClick={() => props.handlePageChange(Registration)}
                                 key={Registration}>
@@ -36,7 +36,7 @@ export default function Nav(props) {
             <nav className='column'>
                 <div className='columns navbar-item'>
                         {tabs.map(tab => (
-                            <a  className='column'
+                            <a  className='column navoptions'
                                 href={'#' + tab.toLowerCase()}
                                 onClick={() => props.handlePageChange(tab)}
                                 key={tab}>

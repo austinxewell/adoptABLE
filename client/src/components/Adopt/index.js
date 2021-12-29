@@ -24,7 +24,7 @@ export default function Adopt () {
     }
 
     return (
-        <main className="purplecolor1">
+        <main>
             <div className='columns is-centered mt-3'>
                 <h2>Adobt</h2>
             </div>
