@@ -24,16 +24,12 @@ export default function Adopt () {
     }
 
     return (
-        <section>
-          <br/>
-          <div className='columns is-centered'>
-            <h2 className=''>
-            Adopt
-            </h2>
-          </div> 
         <main className="purplecolor1">
-            <div className="p-3">
-                <h2>Families in need</h2>
+            <div className='columns is-centered mt-3'>
+                <h2>Adobt</h2>
+            </div>
+            <div className="columns is-centered">
+                <h3>Families in need</h3>
             </div>
             {loading ? (
                 <div className="p-3">
@@ -54,8 +50,10 @@ export default function Adopt () {
                                     </div>
                                 </div>
                                 <div className="content">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Phasellus nec iaculis mauris.
+                                    <ul>
+                                        <li>{family.familyMembers} Family members</li>
+                                        <li>{family.products.length} needed items</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -64,6 +62,5 @@ export default function Adopt () {
             </div>
             )}
         </main>   
-        </section> 
     )
 }

@@ -3,7 +3,7 @@ import img from '../../assets/images/statsimage.jpg';
 
 export default function About () {
     return (
-        <section>
+        <section className='purplecolor2'>
           <br/>
           <div className='columns is-centered'>
             <h2 className=''>
