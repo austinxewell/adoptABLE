@@ -3,7 +3,7 @@ import img from '../../assets/images/support.jpg'
 
 export default function Contact () {
     return (
-        <div className="purplecolor2">
+        <div>
             <br/>
             <div>
                 <h2 className="has-text-centered contactpagetitle">
@@ -18,17 +18,17 @@ export default function Contact () {
                             Name:
                         </label>
 
-                        <input className="contactinput is-primary" type="text" name="name"/>
+                        <textarea className="contactinput is-primary" type="text" name="name"/>
 
                         
                         <label className="contactlabel" htmlFor="email">
                             Email:
                         </label>
-                        <input className="contactinput" type="email" />
+                        <textarea className="contactinput" type="email" />
                         <label className="contactlabel" htmlFor="subject">
                             Subject:
                         </label>
-                        <input className="contactinput" type="text" name="subject" />
+                        <textarea className="contactinput" type="text" name="subject" />
                         <label className="contactlabel" htmlFor="body">
                             Body:
                         </label>
