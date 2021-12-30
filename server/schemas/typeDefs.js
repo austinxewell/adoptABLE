@@ -23,6 +23,7 @@ const typeDefs = gql`
     category(categoryName: String): Category
     tags: [Tag]
     tag(tagName: String!): Tag
+    conversations: [Conversation]
   }
 
   type Product {
@@ -46,6 +47,11 @@ const typeDefs = gql`
     products: [Product]
   }
 
+  type Conversation {
+    _id: ID
+    members: [User]
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -62,6 +68,7 @@ const typeDefs = gql`
     deleteTag(tagId: String!): Product
     updateUser(email: String, familyMembers: String): User
     updateProduct(productName: String, productNote: String): Product
+    addConversation(receiverId: String!): Conversation
   }
 `;
 

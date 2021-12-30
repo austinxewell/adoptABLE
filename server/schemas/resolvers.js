@@ -1,4 +1,4 @@
-const { User, Product, Category, Tag } = require("../models")
+const { User, Product, Category, Tag, Conversation } = require("../models")
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -66,6 +66,11 @@ const resolvers = {
     tag: async(parent, { tagName }) => {
       return Tag.findOne({ tagName })
       .select('-__v -password');
+    },
+    conversations: async () => {
+      return Conversation.find()
+      .select('-__v -password')
+      .populate('members')
     }
   },
 
@@ -216,7 +221,21 @@ const resolvers = {
     }
 
     throw new AuthenticationError('You need to be logged in!');
-  }
+  },
+    //adds conversation with user relations.
+    addConversation: async (parent, { receiverId }, context) => {
+      if(context.user) {
+        var conversation = await Conversation.create({members: receiverId})
+        
+        conversation = await Conversation.findOneAndUpdate(
+          { _id: conversation._id },
+          { $addToSet: { members: context.user._id } },
+          { new: true }
+        ).populate('members')
+
+        return conversation
+      }
+    } 
 }
 };
 
