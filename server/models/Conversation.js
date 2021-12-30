@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const MessageSchema = require('./Message');
 
 
 const ConversationSchema = new Schema(
@@ -8,7 +9,8 @@ const ConversationSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'User'
         }
-    ]
+    ],
+    messages: [MessageSchema]
   },
   {
     timestamps: true

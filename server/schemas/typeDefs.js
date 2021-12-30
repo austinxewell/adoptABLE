@@ -24,7 +24,7 @@ const typeDefs = gql`
     tags: [Tag]
     tag(tagName: String!): Tag
     conversations: [Conversation]
-    conversationsById: [Conversation]
+    myConversations: [Conversation]
   }
 
   type Product {
@@ -51,6 +51,14 @@ const typeDefs = gql`
   type Conversation {
     _id: ID
     members: [User]
+    messages: [Message]
+  }
+
+  type Message {
+    _id: ID
+    sender: String
+    text: String
+    createdAt: String
   }
 
   type Auth {
@@ -70,6 +78,7 @@ const typeDefs = gql`
     updateUser(email: String, familyMembers: String): User
     updateProduct(productName: String, productNote: String): Product
     addConversation(receiverId: String!): Conversation
+    createMessage(text: String!, conversationId: String!): Conversation
   }
 `;
 

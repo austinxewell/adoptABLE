@@ -1,4 +1,4 @@
-const { User, Product, Category, Tag, Conversation } = require("../models")
+const { User, Product, Category, Tag, Conversation, Message } = require("../models")
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -73,12 +73,13 @@ const resolvers = {
       .populate('members')
     },
     //find conversations related to a user 
-    conversationsById: async (parent, args, context) => {
+    myConversations: async (parent, args, context) => {
       if (context.user) {
 
         const conversationData = Conversation.find({members: { $in: context.user._id}})
         return conversationData
         .populate('members')
+        .populate('messages')
       }
 
       throw new AuthenticationError('Not logged in');
@@ -246,7 +247,21 @@ const resolvers = {
 
         return conversation
       }
-    } 
+    },
+    //creates messages within the conversation.
+    createMessage: async (parent, { text, conversationId  }, context) => {
+      if(context.user) {
+        var updatedConversation = await Conversation.findByIdAndUpdate(
+          { _id: conversationId },
+          { $push: {  messages: {text: text, sender: context.user.username}}  },
+          { new: true }
+        )
+        .populate('conversation')
+
+        return updatedConversation
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }
 }
 };
 
