@@ -7,6 +7,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Adopt from './components/Adopt'
 import Footer from './components/Footer';
+import Messenger from './components/Messenger';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
@@ -62,24 +63,30 @@ function App() {
         return(
           <Adopt />
         );
+      case 'Messenger':
+        return(
+          <Messenger />
+        );
     }
   }
 
   return (
     <ApolloProvider client={client}>
-      <div className='purplecolor2'>
-        <header className='container'>
-          <Nav className='' currentPage={currentPage} handlePageChange={handlePageChange} />
-        </header>
-        <br/>
-        <main className='container'>
-          <div className='column'>
-          {renderPage(currentPage)}
-          </div>
-        </main>
-        <br/>
-        <Footer />
-      </div>
+      
+        <div className='purplecolor2'>
+          <header className='container'>
+            <Nav className='' currentPage={currentPage} handlePageChange={handlePageChange} />
+          </header>
+          <br/>
+          <main className='container'>
+            <div className='column'>
+            {renderPage(currentPage)}
+            </div>
+          </main>
+          <br/>
+          <Footer />
+        </div>
+      
     </ApolloProvider>
   );
 }

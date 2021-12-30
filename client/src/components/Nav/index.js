@@ -2,7 +2,7 @@ import React from 'react'
 import Auth from '../../utils/auth'
 
 export default function Nav(props) {
-    const tabs = ['adoptABLE', 'About', 'Contact', 'Adopt'];
+    const tabs = ['adoptABLE', 'About', 'Contact', 'Adopt', 'Messenger'];
     const Registrations = ['Login', 'SignUp']
 
     function logout(event) {

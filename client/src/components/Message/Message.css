@@ -1,0 +1,36 @@
+.message{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    background-color: #E1B6E4;
+}
+
+.messageTop{
+    display: flex;
+}
+
+/* E1B6E4, A35390, 602750, CE65BA, 327087, 31405F */
+
+.messageText{
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #327087;
+    max-width: 300px;
+    color: black;
+    font-size: 15px;
+    color: white;
+}
+
+.messageBottom{
+    font-size: 12px;
+}
+
+.message.own{
+    align-items: flex-end;
+}
+
+.message.own .messageText{
+    background-color: #31405F;
+    color: white;
+    
+}
