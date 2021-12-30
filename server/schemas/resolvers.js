@@ -71,7 +71,18 @@ const resolvers = {
       return Conversation.find()
       .select('-__v -password')
       .populate('members')
-    }
+    },
+    //find conversations related to a user 
+    conversationsById: async (parent, args, context) => {
+      if (context.user) {
+
+        const conversationData = Conversation.find({members: { $in: context.user._id}})
+        return conversationData
+        .populate('members')
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
   },
 
   Mutation: {

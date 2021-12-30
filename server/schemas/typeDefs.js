@@ -24,6 +24,7 @@ const typeDefs = gql`
     tags: [Tag]
     tag(tagName: String!): Tag
     conversations: [Conversation]
+    conversationsById: [Conversation]
   }
 
   type Product {
