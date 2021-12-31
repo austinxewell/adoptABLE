@@ -1,5 +1,6 @@
 import React from 'react'
 import Auth from '../../utils/auth'
+import Cart from '../Cart';
 
 export default function Nav(props) {
     const tabs = ['adoptABLE', 'About', 'Contact', 'Adopt', 'Messenger'];
@@ -45,6 +46,11 @@ export default function Nav(props) {
                                 {tab}
                             </a>
                         ))}
+                </div>
+            </nav>
+            <nav>
+                <div className="column mr-3 mt-3">
+                    <Cart></Cart>
                 </div>
             </nav>
         </header>
