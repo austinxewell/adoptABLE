@@ -4,7 +4,7 @@ import './contact.css'
 
 export default function Contact () {
     return (
-        <div>
+        <div className='box'>
             <br/>
             <div>
                 <h2 className="has-text-centered contactpagetitle">

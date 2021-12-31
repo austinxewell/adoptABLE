@@ -43,7 +43,7 @@ export default function SignUp() {
   };
 
     return (
-        <section>
+        <section className='box'>
           <br/>
             
             <div className='columns is-centered'>

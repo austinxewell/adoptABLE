@@ -4,7 +4,7 @@ import img from '../../assets/images/statsimage.jpg';
 
 export default function About () {
     return (
-        <section>
+        <section className='box'>
           <br/>
           <div className='columns is-centered'>
             <h2>

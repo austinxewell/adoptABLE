@@ -4,7 +4,7 @@ import './home.css'
 
 export default function Home () {
     return (
-        <section>
+        <section className='box'>
           <br/>
           <div className='columns is-centered'>
             <h2 className=''>
