@@ -25,6 +25,7 @@ export default function Adopt () {
 
     return (
         <main>
+            <br/>
             <div className='columns is-centered mt-3'>
                 <h2>Adobt</h2>
             </div>
