@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { capitalizeFirstLetter, cleanupName } from '../../utils/helper';
+import { UPDATE_CART } from '../../utils/actions';
 import List from '../List';
+import { useStoreContext } from '../../utils/GlobalState';
 
 function Modal ({ onClose, currentFamily }) {
     const { username, products, familyMembers, email } = currentFamily;
 
     const [showList, setShowList] = useState(false);
+
+    const [state, dispatch] = useStoreContext();
+    const { cart } = state;
 
     function toggleList() {
         setShowList(!showList);

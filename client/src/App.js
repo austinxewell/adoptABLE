@@ -10,6 +10,8 @@ import Footer from './components/Footer';
 import Messenger from './components/Messenger';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import Success from './components/Success';
+import { StoreProvider } from './utils/GlobalState';
 
 
 const httpLink = createHttpLink({
@@ -67,6 +69,10 @@ function App() {
         return(
           <Messenger />
         );
+      case 'Success':
+        return(
+          <Success />
+        );
     }
   }
 
@@ -74,6 +80,7 @@ function App() {
     <ApolloProvider client={client}>
       
         <div className='purplecolor2'>
+          <StoreProvider>
           <header className='container'>
             <Nav className='' currentPage={currentPage} handlePageChange={handlePageChange} />
           </header>
@@ -85,6 +92,7 @@ function App() {
           </main>
           <br/>
           <Footer />
+          </StoreProvider>
         </div>
       
     </ApolloProvider>
