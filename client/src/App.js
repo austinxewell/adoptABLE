@@ -55,7 +55,7 @@ function App() {
           <SignUp />
         )
       case 'Logout':
-        return (
+        return (    
           <Home />
         )
       case 'About':
