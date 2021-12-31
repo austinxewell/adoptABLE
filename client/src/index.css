@@ -1,5 +1,5 @@
 html {
-  background-color: #E1B6E4;
+  /* background-color: #E1B6E4; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -44,6 +44,10 @@ code {
 
 nav {
   background-color: #31405f;
+}
+
+.homeimg {
+  border-radius: 30px;
 }
 
 .aboutimg {

@@ -17,7 +17,7 @@ export default function Nav(props) {
                 {Auth.loggedIn() ? (
                     <>
                         <div className='columns navbar-item'>
-                            <a href="/" onClick={logout}>
+                            <a className='column is-2 navoptions' href="/" onClick={logout}>
                             Logout
                             </a>
                         </div>
