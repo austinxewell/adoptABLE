@@ -12,4 +12,33 @@ export const QUERY_USERS = gql`
             }
         }
     }
-`
+`;
+
+export const QUERY_MY_CONVERSATIONS = gql`
+    query myConversations {
+        myConversations{
+	        _id
+            members{
+                username
+            }
+            messages{
+                text
+                sender
+            }
+        }
+    }
+`;
+
+export const QUERY_ME_BASIC = gql`
+    {
+        me {
+            _id
+            email
+            username
+            adoptedFamily{
+                _id
+                username
+            }
+        }
+    }
+`;

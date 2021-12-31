@@ -1,16 +1,35 @@
-import React from 'react'
-import './Messenger.css'
-import Message from "../Message"
-import Conversation from "../Conversations"
-import ChatOnline from "../ChatOnline"
+import React from 'react';
+import { useQuery } from '@apollo/client';
+
+import  { QUERY_MY_CONVERSATIONS, QUERY_ME_BASIC } from '../../utils/queries'
+import Auth from '../../utils/auth';
+import './Messenger.css';
+import Message from "../Message";
+import Conversation from "../Conversations";
+import ChatOnline from "../ChatOnline";
+
 
 export default function Messenger() {
+    const { loading, data } = useQuery(QUERY_MY_CONVERSATIONS);
+
+    const { data: userData } = useQuery(QUERY_ME_BASIC);
+
+    const conversations = data?.myConversations || [];
+    console.log(conversations)
+
+    const loggedIn = Auth.loggedIn();
+
     return (
-        <div className="messenger">
+        <div className={`messenger ${loggedIn}`}>
             <div className="chatMenu">
                 <div className="chatMenuWrapper">
                     <input type="text" placeholder="Search for Family" className="chatMenuInput"/>
+                    {loading ? (
+                        <div>Loading...</div>
+                    ) : (
                         <Conversation />
+                    )}
+                        
                         <Conversation />
                         <Conversation />
                         <Conversation />
