@@ -4,6 +4,7 @@ import Modal from '../Modal';
 import { useQuery } from '@apollo/client';
 import { QUERY_USERS } from '../../utils/queries';
 import { capitalizeFirstLetter, cleanupName } from '../../utils/helper';
+import './adopt.css'
 
 export default function Adopt () {
 

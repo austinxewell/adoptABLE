@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import cart from '../../assets/images/cart.png'
+import './cart.css'
 
 function Cart () {
     //const { family } = items;

@@ -1,5 +1,6 @@
 import React from 'react'
 import img from '../../assets/images/support.jpg'
+import './contact.css'
 
 export default function Contact () {
     return (

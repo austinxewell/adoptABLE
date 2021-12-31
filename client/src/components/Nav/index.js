@@ -2,6 +2,8 @@ import React from 'react'
 import Auth from '../../utils/auth'
 import Cart from '../Cart';
 
+import './nav.css'
+
 export default function Nav(props) {
     const tabs = ['adoptABLE', 'About', 'Contact', 'Adopt', 'Messenger'];
     const Registrations = ['Login', 'SignUp']

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 
+import './signUp.css'
+
 import Auth from '../../utils/auth';
 
 export default function SignUp() {
