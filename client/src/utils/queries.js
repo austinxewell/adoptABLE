@@ -19,6 +19,7 @@ export const QUERY_MY_CONVERSATIONS = gql`
         myConversations{
 	        _id
             members{
+                _id
                 username
             }
             messages{

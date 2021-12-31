@@ -11,12 +11,7 @@ import ChatOnline from "../ChatOnline";
 
 export default function Messenger() {
     const { loading, data } = useQuery(QUERY_MY_CONVERSATIONS);
-
-    const { data: userData } = useQuery(QUERY_ME_BASIC);
-
     const conversations = data?.myConversations || [];
-    console.log(conversations)
-
     const loggedIn = Auth.loggedIn();
 
     return (
@@ -27,13 +22,8 @@ export default function Messenger() {
                     {loading ? (
                         <div>Loading...</div>
                     ) : (
-                        <Conversation />
+                        conversations.map(c => <Conversation _id={c._id} members={c.members} />)
                     )}
-                        
-                        <Conversation />
-                        <Conversation />
-                        <Conversation />
-                        <Conversation />
                 </div>
             </div>
             <div className="chatBox">
