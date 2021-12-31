@@ -9,6 +9,7 @@ export default function About () {
             <h2>
             About
             </h2>
+            
           </div>
         <div className='columns'>
             <div className='column is-6'>

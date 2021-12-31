@@ -1,6 +1,7 @@
 const { User, Product, Category, Tag, Conversation, Message } = require("../models")
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
 
 
 const resolvers = {
@@ -83,6 +84,11 @@ const resolvers = {
       }
 
       throw new AuthenticationError('Not logged in');
+    },
+    //for checkout
+    checkout: async(parent, args, context) => {
+      const order = new Order({ users: args.users });
+      const { users } = await order.populate('users').execPopulate();
     },
   },
 
