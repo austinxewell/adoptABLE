@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 
-import  { QUERY_MY_CONVERSATIONS, QUERY_ME_BASIC } from '../../utils/queries'
+import  { QUERY_MY_CONVERSATIONS } from '../../utils/queries'
 import Auth from '../../utils/auth';
 import './Messenger.css';
 import Message from "../Message";
@@ -29,6 +29,10 @@ export default function Messenger() {
             <div className="chatBox">
                 <div className="chatBoxWrapper">
                     <div className="chatBoxTop">
+
+
+
+
                         <Message/>
                         <Message own={true} />
                         <Message />
