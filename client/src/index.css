@@ -1,3 +1,12 @@
+:root {
+  --primary-color: #E1B6E4;
+  --secondary-color: #A35390;
+  --terciary-color: #602750;
+  --quartinary-color: #CE65BA;
+  --quintinary-color: #327087;
+  --sextinary-color: #31405F;
+}
+
 html {
   /* background-color: #E1B6E4; */
   -webkit-background-size: cover;
@@ -28,6 +37,7 @@ code {
 .navbar {
   background-color: #31405F;
   font-family: 'Lora', normal;
+  font-size: larger;
 }
 
 .cardfamilyname {
