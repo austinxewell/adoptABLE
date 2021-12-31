@@ -25,6 +25,7 @@ const typeDefs = gql`
     tag(tagName: String!): Tag
     conversations: [Conversation]
     myConversations: [Conversation]
+    checkout(users: [ID]!): Checkout
   }
 
   type Product {
@@ -79,6 +80,10 @@ const typeDefs = gql`
     updateProduct(productName: String, productNote: String): Product
     addConversation(receiverId: String!): Conversation
     createMessage(text: String!, conversationId: String!): Conversation
+  }
+
+  type Checkout {
+    session: ID
   }
 `;
 
