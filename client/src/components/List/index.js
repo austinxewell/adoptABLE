@@ -1,4 +1,5 @@
 import React from 'react';
+import './list.css'
 
 export default function List (products) {
     //var {productName } = products;

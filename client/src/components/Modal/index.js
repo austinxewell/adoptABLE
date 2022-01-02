@@ -4,6 +4,8 @@ import { UPDATE_CART } from '../../utils/actions';
 import List from '../List';
 import { useStoreContext } from '../../utils/GlobalState';
 
+import './modal.css'
+
 function Modal ({ onClose, currentFamily }) {
     const { username, products, familyMembers, email } = currentFamily;
 

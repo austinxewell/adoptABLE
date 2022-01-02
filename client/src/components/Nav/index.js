@@ -2,9 +2,13 @@ import React from 'react'
 import Auth from '../../utils/auth'
 import Cart from '../Cart';
 
+import './nav.css'
+
 export default function Nav(props) {
-    const tabs = ['adoptABLE', 'About', 'Contact', 'Adopt', 'Messenger'];
-    const Registrations = ['Login', 'SignUp']
+    const tabsOut = ['adoptABLE', 'About', 'Contact'];
+    const tabsIn = ['adoptABLE', 'About', 'Contact', 'Adopt', 'Messenger']
+    const registerOut = ['Login', 'SignUp']
+    const registerIn = ['Logout']
 
     function logout(event) {
         console.log('logging out')
@@ -18,27 +22,46 @@ export default function Nav(props) {
                 {Auth.loggedIn() ? (
                     <>
                         <div className='columns navbar-item'>
-                            <a href="/" onClick={logout}>
-                            Logout
+                        {registerIn.map(register => (
+                            <a  className='column is-2 navoptions'
+                                href={'#' + register.toLowerCase()}
+                                onClick={logout}
+                                key={register}>
+                                {register}
                             </a>
+                        ))}
                         </div>
                     </>
                 ) : (
                 <div className='columns navbar-item'>
-                        {Registrations.map(Registration => (
+                        {registerOut.map(register => (
                             <a  className='column is-2 navoptions'
-                                href={'#' + Registration.toLowerCase()}
-                                onClick={() => props.handlePageChange(Registration)}
-                                key={Registration}>
-                                {Registration}
+                                href={'#' + register.toLowerCase()}
+                                onClick={() => props.handlePageChange(register)}
+                                key={register}>
+                                {register}
                             </a>
                         ))}
                 </div>   
                 )}
             </nav>
             <nav className='column'>
+            {Auth.loggedIn() ? (
+                    <>
+                        <div className='columns navbar-item'>
+                        {tabsIn.map(tab => (
+                            <a  className='column  navoptions'
+                                href={'#' + tab.toLowerCase()}
+                                onClick={() => props.handlePageChange(tab)}
+                                key={tab}>
+                                {tab}
+                            </a>
+                        ))}
+                        </div>
+                    </>
+                ) : (
                 <div className='columns navbar-item'>
-                        {tabs.map(tab => (
+                        {tabsOut.map(tab => (
                             <a  className='column navoptions'
                                 href={'#' + tab.toLowerCase()}
                                 onClick={() => props.handlePageChange(tab)}
@@ -46,13 +69,22 @@ export default function Nav(props) {
                                 {tab}
                             </a>
                         ))}
-                </div>
+                </div>   
+                )}
             </nav>
-            <nav>
+            {Auth.loggedIn() ? (
+                <>
+                                <nav>
                 <div className="column mr-3 mt-3">
                     <Cart></Cart>
                 </div>
             </nav>
+
+                </>
+            ) : (
+                <>
+                </>
+            )}
         </header>
     );
 }

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 
+import './signUp.css'
+
 import Auth from '../../utils/auth';
 
 export default function SignUp() {
@@ -27,7 +29,7 @@ export default function SignUp() {
         variables: { ...formState },
       });
 
-      // Auth.login(data.addUser.token);
+      Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
@@ -41,7 +43,7 @@ export default function SignUp() {
   };
 
     return (
-        <section>
+        <section className='box'>
           <br/>
             
             <div className='columns is-centered'>

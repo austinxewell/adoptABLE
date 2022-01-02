@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import cart from '../../assets/images/cart.png'
+import './cart.css'
 
 function Cart () {
     //const { family } = items;
@@ -9,7 +10,7 @@ function Cart () {
     }
 
     return (
-        <div className="dropdown is-hoverable">
+        <div className="dropdown is-hoverable is-right">
             <div className="dropdown-trigger">
                 <button className="button" aria-haspopup="true" aria-controls="dropdown-menu2">
                 <span>Cart</span>

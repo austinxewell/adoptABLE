@@ -8,6 +8,7 @@ import Contact from './components/Contact';
 import Adopt from './components/Adopt'
 import Footer from './components/Footer';
 import Messenger from './components/Messenger';
+import Logout from './components/Logout'
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import Success from './components/Success';
@@ -52,6 +53,10 @@ function App() {
       case 'SignUp':
         return(
           <SignUp />
+        )
+      case 'Logout':
+        return (    
+          <Home />
         )
       case 'About':
         return(

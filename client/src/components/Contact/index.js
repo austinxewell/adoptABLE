@@ -1,9 +1,10 @@
 import React from 'react'
 import img from '../../assets/images/support.jpg'
+import './contact.css'
 
 export default function Contact () {
     return (
-        <div>
+        <div className='box'>
             <br/>
             <div>
                 <h2 className="has-text-centered contactpagetitle">

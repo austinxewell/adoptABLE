@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 
+import './login.css'
+
 import Auth from '../../utils/auth';
 
 export default function Login (props) {
@@ -40,7 +42,7 @@ export default function Login (props) {
   };
 
     return (
-      <section>
+      <section className='box'>
           <br/>
           
           <div className='columns is-centered'>

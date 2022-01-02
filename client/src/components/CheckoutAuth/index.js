@@ -1,4 +1,5 @@
 import React from 'react'
+import './checkoutAuth.css'
 
 export default function Checkout() {
 

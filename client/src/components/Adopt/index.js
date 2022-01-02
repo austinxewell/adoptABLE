@@ -4,6 +4,7 @@ import Modal from '../Modal';
 import { useQuery } from '@apollo/client';
 import { QUERY_USERS } from '../../utils/queries';
 import { capitalizeFirstLetter, cleanupName } from '../../utils/helper';
+import './adopt.css'
 
 export default function Adopt () {
 
@@ -24,7 +25,8 @@ export default function Adopt () {
     }
 
     return (
-        <main>
+        <main className='box'>
+            <br/>
             <div className='columns is-centered mt-3'>
                 <h2>Adobt</h2>
             </div>
