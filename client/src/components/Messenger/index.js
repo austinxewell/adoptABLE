@@ -18,7 +18,10 @@ export default function Messenger() {
         <div className={`messenger ${loggedIn}`}>
             <div className="chatMenu">
                 <div className="chatMenuWrapper">
-                    <input type="text" placeholder="Search for Family" className="chatMenuInput"/>
+                    <input
+                    type="text"
+                    placeholder="Search for Family"
+                    className="chatMenuInput"/>
                     {loading ? (
                         <div>Loading...</div>
                     ) : (

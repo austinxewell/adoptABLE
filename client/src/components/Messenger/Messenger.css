@@ -2,7 +2,8 @@
     height: calc(100vh - 70px);
     display: flex;
     padding-top: 10px;
-    /* background-color: #31405F; */
+    background-color: whitesmoke;
+
 }
 
 .chatMenu{
@@ -12,7 +13,10 @@
 .chatMenuInput{
     width: 90%;
     padding: 10px 0;
+    margin-top: 10px;
 }
+
+
 
 .chatBox{
     flex: 5.5;
@@ -40,6 +44,7 @@
     width: 80%;
     height: 90px;
     padding: 10px;
+    border: 2px solid black;
     background-color: whitesmoke;
 }
 
@@ -64,4 +69,12 @@
     padding: 10px;
     height: 100%;
     border: 2px solid #31405F;
+}
+
+.chatOnlineWrapper{
+    border-right: 4px solid #31405F;
+}
+
+.chatMenuWrapper{
+    border-left: 4px solid #31405F;
 }
