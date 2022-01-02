@@ -1,5 +1,5 @@
 import React from 'react'
-import "./message.css"
+import "./Message.css"
 
 export default function Message({own}) {
     return (
