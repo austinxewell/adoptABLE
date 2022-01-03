@@ -6,3 +6,12 @@
     --quintinary-color: #327087;
     --sextinary-color: #31405F;
   }
+
+  .cartMenu {
+    height: 39px;
+  }
+
+  .dropdown-content {
+    padding: 10px;
+    width: fit-content;
+  }

@@ -43,7 +43,7 @@ export default function SignUp() {
   };
 
     return (
-        <section className='box'>
+        <section className='boxSignUp'>
           <br/>
             
             <div className='columns is-centered'>
@@ -58,15 +58,15 @@ export default function SignUp() {
               
               <div className=''>
                 
-                <label className='columns is-centered' htmlFor="">Username:</label>
+                <label className='columns is-centered signUpLabel' htmlFor="">Username:</label>
                 
-                <input className='' placeholder='Your Username' name='username' type='username' id='username' value={formState.username} onChange={handleChange} />
+                <input className='' placeholder='Your Username' name='username' type='text' id='username' value={formState.username} onChange={handleChange} />
               
               </div>
               
               <div className=''>
                 
-                <label className='columns is-centered' htmlFor="">Email address:</label>
+                <label className='columns is-centered signUpLabel' htmlFor="">Email address:</label>
                 
                 <input className='' placeholder='Your Email' name='email' type='email' id='email' value={formState.email} onChange={handleChange}  />
               
@@ -74,7 +74,7 @@ export default function SignUp() {
               
               <div className=''>
                 
-                <label className='columns is-centered' htmlFor="">Password:</label>
+                <label className='columns is-centered signUpLabel' htmlFor="">Password:</label>
                 
                 <input className='' placeholder='******' name='password' type='password' id='password' value={formState.password} onChange={handleChange} />
               
@@ -82,7 +82,7 @@ export default function SignUp() {
               
               <div className='columns is-centered'>
                 
-                <button className='' type="submit">Submit</button>
+                <button className='signUpSubmitButton' type="submit">Submit</button>
               
               </div>
             

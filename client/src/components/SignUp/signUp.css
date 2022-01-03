@@ -6,3 +6,19 @@
     --quintinary-color: #327087;
     --sextinary-color: #31405F;
   }
+
+  .boxSignUp {
+    background-color: var(--primary-color);
+    height: 100vh;
+    border: 2px solid var(--sextinary-color);
+  }
+
+  .signUpLabel {
+    color: var(--quintinary-color);
+    font-weight: bolder;
+    font-size: xx-large;  
+  }
+
+  .signUpSubmitButton {
+    background-color: #31405f;
+  }

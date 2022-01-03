@@ -25,20 +25,21 @@ export default function Adopt () {
     }
 
     return (
-        <main className='box'>
-            <br/>
-            <div className='columns is-centered mt-3'>
-                <h2>Adobt</h2>
-            </div>
-            <div className="columns is-centered">
-                <h3>Families in need</h3>
-            </div>
+        <main className=''>
+          <div className='container boxAdopt has-text-centered is-centered mt-3'>
+            <h2 className='container'>
+            Adopt
+            </h2>
+            <h3 className='container'>Families in need</h3>
+          </div>
+          <div className='container'>
+            <div>
             {loading ? (
                 <div className="p-3">
                     Loading Families!
                 </div>
             ) : (
-            <div>
+            <div className='boxAdopt adoptContainer'>
                 {isModalOpen && <Modal currentFamily={currentFamily} onClose={toggleModal} />}
                 <div className="columns is-flex-wrap-wrap">
                     {families.map((family, i) => (
@@ -46,14 +47,14 @@ export default function Adopt () {
                             <div className="card p-3" onClick={() => toggleModal(family, i)}>
                                 <div className="card-content">
                                     <div className="media-content">
-                                        <p className="title is-4 cardfamilyname">{cleanupName(capitalizeFirstLetter(family.username))}</p>
+                                        <p className="is-4 cardfamilyname has-text-centered">{cleanupName(capitalizeFirstLetter(family.username))}</p>
                                         
 
                                     </div>
                                 </div>
                                 <div className="content">
                                     <ul>
-                                        <li>{family.familyMembers} Family members</li>
+                                        <li>{family.familyMembers} family members</li>
                                         <li>{family.products.length} needed items</li>
                                     </ul>
                                 </div>
@@ -63,6 +64,8 @@ export default function Adopt () {
                 </div>
             </div>
             )}
+            </div>
+            </div>
         </main>   
     )
 }

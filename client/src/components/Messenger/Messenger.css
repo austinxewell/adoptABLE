@@ -7,24 +7,20 @@
     --sextinary-color: #31405F;
   }
 
+#messageBox {
+    color: var(--quintinary-color);
+    font-size: large;
+}
+
 .messenger{
     height: calc(100vh - 70px);
     display: flex;
-    padding-top: 10px;
-    /* background-color: #31405F; */
-}
-
-.chatMenu{
-    flex: 3.5;
+    /* padding-top: 10px; */
 }
 
 .chatMenuInput{
     width: 90%;
     padding: 10px 0;
-}
-
-.chatBox{
-    flex: 5.5;
 }
 
 .chatBoxWrapper{
@@ -58,13 +54,14 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #31405F;
+    background-color: var(--sextinary-color);
     display: flex;
     justify-content: center;
 }
 
-.chatOnline{
-    flex: 3;
+.titleWrapper{
+    border: 2px solid var(--sextinary-color);
+    background-color: var(--primary-color);
 }
 
 .chatMenuWrapper,
@@ -72,5 +69,6 @@
 .chatOnlineWrapper{
     padding: 10px;
     height: 100%;
-    border: 2px solid #31405F;
+    border: 2px solid var(--sextinary-color);
+    background-color: var(--primary-color);
 }

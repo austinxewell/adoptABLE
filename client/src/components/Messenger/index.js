@@ -15,8 +15,14 @@ export default function Messenger() {
     const loggedIn = Auth.loggedIn();
 
     return (
-        <div className={`messenger ${loggedIn}`}>
-            <div className="chatMenu">
+        <section>
+            <div className='container columns has-text-centered is-centered mt-3 titleWrapper'>
+                <h2 className='container'>
+                Messenger
+                </h2>
+            </div>
+        <div id='messageBox' className='columns' className={`messenger ${loggedIn}`}>
+            <div className="chatMenu column">
                 <div className="chatMenuWrapper">
                     <input type="text" placeholder="Search for Family" className="chatMenuInput"/>
                     {loading ? (
@@ -26,7 +32,7 @@ export default function Messenger() {
                     )}
                 </div>
             </div>
-            <div className="chatBox">
+            <div className="chatBox column is-6">
                 <div className="chatBoxWrapper">
                     <div className="chatBoxTop">
 
@@ -52,7 +58,7 @@ export default function Messenger() {
                     </div>
                 </div>
             </div>
-            <div className="chatOnline">
+            <div className="chatOnline column">
                 <div className="chatOnlineWrapper">
                     <p className='onlineText'>Families Online</p>
                     <ChatOnline />
@@ -60,5 +66,6 @@ export default function Messenger() {
                 </div>
             </div>
         </div>
+        </section>
     )
 }

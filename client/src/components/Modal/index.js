@@ -27,7 +27,7 @@ function Modal ({ onClose, currentFamily }) {
                     <p className="modal-card-title cardfamilyname">{cleanupName(capitalizeFirstLetter(username))}</p>
                 </header>
                 <section className="modal-card-body">
-                <span>{familyMembers} People in this family.</span>
+                <h4>{familyMembers} People in this family.</h4>
                 
                     {showList ? (
                         <div>

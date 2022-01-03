@@ -84,17 +84,21 @@ function App() {
   return (
     <ApolloProvider client={client}>
       
-        <div className='purplecolor2'>
+        <div className='container'>
           <StoreProvider>
-          <header className='container'>
+          <header className=''>
             <Nav className='' currentPage={currentPage} handlePageChange={handlePageChange} />
           </header>
           <br/>
-          <main className='container'>
-            <div className='column'>
+          <main className=''>
+            <br/>
+            <div className=''>
+              <br/>
             {renderPage(currentPage)}
             </div>
           </main>
+          <br/>
+          <br/>
           <br/>
           <Footer />
           </StoreProvider>

@@ -14,7 +14,7 @@ export default function List (products) {
         <div>
             <ul>
                 {products.list.map((item) => (
-                    <li key={item.productName}>{item.productName}</li>
+                    <ol key={item.productName}><h5>{item.productName}</h5></ol>
                 ))}
             </ul>
         </div> 
