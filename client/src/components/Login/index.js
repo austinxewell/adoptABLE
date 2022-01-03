@@ -42,7 +42,7 @@ export default function Login (props) {
   };
 
     return (
-      <section className='box'>
+      <section className='boxLogin'>
           <br/>
           
           <div className='columns is-centered'>
@@ -57,7 +57,7 @@ export default function Login (props) {
               
               <div className=''>
                 
-                <label className='columns is-centered' htmlFor="">Email:</label>
+                <label className='columns is-centered loginLabel' htmlFor="">Email:</label>
                 
                 <input className='' placeholder='Your Email' name='email' type='email' id='email' value={formState.email} onChange={handleChange} />
               
@@ -65,7 +65,7 @@ export default function Login (props) {
               
               <div className=''>
                 
-                <label className='columns is-centered' htmlFor="">Password:</label>
+                <label className='columns is-centered loginLabel' htmlFor="">Password:</label>
                 
                 <input className='' placeholder='*******' name='password' type='password' id='password' value={formState.password} onChange={handleChange} />
               
@@ -73,7 +73,7 @@ export default function Login (props) {
               
               <div className='columns is-centered'>
                 
-                <button className='' type="submit">Submit</button>
+                <button className='loginSubmitButton' type="submit">Submit</button>
               
               </div>
             

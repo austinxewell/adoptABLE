@@ -4,17 +4,16 @@ import './contact.css'
 
 export default function Contact () {
     return (
-        <div className='box'>
-            <br/>
-            <div>
-                <h2 className="has-text-centered contactpagetitle">
+        <div className=''>
+            <div className='container boxContact columns has-text-centered is-centered mt-3'>
+                <h2 className="contatiner">
                     Contact
                 </h2>
             </div>
-            
-            <div className="columns">
-                <div className="column is-6">
-                    <form className='mx-4'>
+            <div className='container'>
+            <div>
+            <div className="columns contactContainer1 boxContact in-vcentered">
+                <form className='column is-6'>
                         <label className="contactlabel" htmlFor="name">
                             Name:
                         </label>
@@ -36,31 +35,34 @@ export default function Contact () {
                         <textarea className="contactinput" name="body" />
                         <button className="contactsubmitbutton" type="submit">Submit</button>
                     </form>
-                    <div className="mx-4">
-                        <span className="contactlinkstitle">Additional resources</span>
-                        <ul>
-                            <li>
-                                <a className="contactlinks" target="_blank" rel="noopener noreferrer" href="https://www.udvc.org/">Utah Domestic Violence Coalition</a>
-                            </li>
-                            <li>
-                                <a className="contactlinks" target="_blank" rel="noopener noreferrer" href="https://dcfs.utah.gov/">Utah department of human services</a>
-                            </li>
-                            <li>
-                                <a className="contactlinks" target="_blank" rel="noopener noreferrer" href="https://www.domesticshelters.org/">Domestic Shelters</a>
-                            </li>
-                            <li>
-                                <a className="contactlinks" target="_blank" rel="noopener noreferrer" href="https://nrd.gov/">National Resource Directory</a>
-                            </li>
-                            <li>
-                                <a className="contactlinks" target="_blank" rel="noopener noreferrer" href="https://www.sldvc.org/">Salt Lake Domestic Violence Coalition</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="column is-6">
-                    <img className="contactimage" src={img} alt="Support for domestic violence" />
-                </div>
+                <img className="contactimage column is-6" src={img} alt="Support for domestic violence" />
             </div>
+            </div>
+            </div>
+            <div className='container'>
+            <div className="columns has-text-centered contactContainer2 boxContact">
+                        <div className='column'>
+                        <h2 className="contactlinkstitle ">Additional resources</h2>
+                        <ul>
+                            <ol>
+                                <a className='contactlinks' target="_blank" rel="noopener noreferrer" href="https://www.udvc.org/">Utah Domestic Violence Coalition </a>
+                            </ol>
+                            <ol>
+                                <a className='contactlinks' target="_blank" rel="noopener noreferrer" href="https://dcfs.utah.gov/">Utah department of human services </a>
+                            </ol>
+                            <ol>
+                                <a className='contactlinks' target="_blank" rel="noopener noreferrer" href="https://www.domesticshelters.org/">Domestic Shelters </a>
+                            </ol>
+                            <ol>
+                                <a className='contactlinks' target="_blank" rel="noopener noreferrer" href="https://nrd.gov/">National Resource Directory </a>
+                            </ol>
+                            <ol>
+                                <a className='contactlinks' target="_blank" rel="noopener noreferrer" href="https://www.sldvc.org/">Salt Lake Domestic Violence Coalition </a>
+                            </ol>
+                        </ul>
+                        </div>
+                    </div>
+                    </div>
         </div>
     )
 }

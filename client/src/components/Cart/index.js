@@ -10,7 +10,7 @@ function Cart () {
     }
 
     return (
-        <div className="dropdown is-hoverable is-right">
+        <div className="cartMenu dropdown is-hoverable is-right">
             <div className="dropdown-trigger">
                 <button className="button" aria-haspopup="true" aria-controls="dropdown-menu2">
                 <span>Cart</span>
@@ -21,25 +21,26 @@ function Cart () {
             </div>
             <div className="dropdown-menu mr-3" id="dropdown-menu2" role="menu">
                 <div className="dropdown-content">
-                <div className="dropdown-item">
+                <div className="dropdown-item dropMenu">
                     <p>You can insert <strong>any type of content</strong> within the dropdown menu.</p>
                 </div>
                 <hr className="dropdown-divider" />
-                <div className="dropdown-item">
+                <div className="dropdown-item dropMenu">
                     <p>You simply need to use a <code>&lt;div&gt;</code> instead.</p>
                 </div>
                 <hr className="dropdown-divider" />
-                <a href="#" className="dropdown-item">
+                <a href="#" className="dropdown-item dropMenu">
                     This is a link
                 </a>
                 <span
+                className='dropMenu'
                 role="img"
                 aria-label="trash"
                 onClick={() => removeFromCart()}
                 >
                 🗑️
                 </span>
-                <button className="button is-success">Checkout</button>
+                <button className="button is-success dropMenu">Checkout</button>
                 </div>  
             </div>
         </div>

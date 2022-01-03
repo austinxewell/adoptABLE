@@ -11,11 +11,13 @@ nav {
   background-color: var(--sextinary-color);
 }
 
-.navbar {
+.navbarFooter {
   background-color: var(--sextinary-color);
   font-family: 'Lora', normal;
   font-size: larger;
-  height: 60px;
+}
+
+.donatenav {
   align-items: center;
 }
 

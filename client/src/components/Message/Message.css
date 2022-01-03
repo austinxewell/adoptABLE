@@ -11,7 +11,8 @@
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-    background-color: whitesmoke;
+    background-color: var(--primary-color);
+    border-radius: 20px;
 }
 
 .messageTop{
@@ -22,8 +23,8 @@
 
 .messageText{
     padding: 10px;
-    border-radius: 20px;
-    background-color: #CE65BA;
+    border-radius: 20px 20px 20px 0px;
+    background-color: var(--quintinary-color);
     max-width: 300px;
     color: black;
     font-size: 15px;
@@ -32,14 +33,30 @@
 
 .messageBottom{
     font-size: 12px;
+    color: white;
+    background-color: var(--quintinary-color);
+    border-radius: 5px 5px 5px 0px;
+    padding: 1px;
+    width: fit-content;
 }
 
 .message.own{
     align-items: flex-end;
+    color: var(--sextinary-color);
 }
 
 .message.own .messageText{
-    background-color: #31405F;
+    align-items: flex-end;
+    border-radius: 20px 20px 0px 20px ;
+    background-color: var(--sextinary-color);
     color: white;
     
+}
+
+.message.own .messageBottom {
+    align-items: flex-end;
+    font-size: 12px;
+    color: white;
+    background-color: var(--sextinary-color);
+    border-radius: 5px 5px 0px 5px;
 }

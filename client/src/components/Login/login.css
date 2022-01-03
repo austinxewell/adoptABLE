@@ -6,3 +6,19 @@
     --quintinary-color: #327087;
     --sextinary-color: #31405F;
   }
+
+  .boxLogin {
+    background-color: var(--primary-color);
+    height: 100vh;
+    border: 2px solid var(--sextinary-color);
+  }
+
+  .loginLabel {
+    color: var(--quintinary-color);
+    font-weight: bolder;
+    font-size: xx-large;  
+  }
+  
+  .loginSubmitButton {
+    background-color: #31405f;
+  }

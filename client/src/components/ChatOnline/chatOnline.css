@@ -17,7 +17,7 @@
 }
 
 .chatOnlineFriend:hover{
-    background-color: #327087;
+    background-color: var(--quintinary-color);
     color: white;
 }
 

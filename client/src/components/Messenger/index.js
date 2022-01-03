@@ -17,8 +17,14 @@ export default function Messenger() {
     const [currentChat, setCurrentChat] = useState(null);
 
     return (
-        <div className={`messenger ${loggedIn}`}>
-            <div className="chatMenu">
+        <section>
+            <div className='container columns has-text-centered is-centered mt-3 titleWrapper'>
+                <h2 className='container'>
+                Messenger
+                </h2>
+            </div>
+        <div id='messageBox' className='columns' className={`messenger ${loggedIn}`}>
+            <div className="chatMenu column">
                 <div className="chatMenuWrapper">
                     <input
                     type="text"
@@ -37,7 +43,7 @@ export default function Messenger() {
                     </div>
                 </div>
             </div>
-            <div className="chatBox">
+            <div className="chatBox column is-6">
                 <div className="chatBoxWrapper">
                         {
                             currentChat ?
@@ -67,7 +73,7 @@ export default function Messenger() {
                     </div></> : <span>Open a conversation to view a chat</span> }
                 </div>
             </div>
-            <div className="chatOnline">
+            <div className="chatOnline column">
                 <div className="chatOnlineWrapper">
                     <p className='onlineText'>Families Online</p>
                     <ChatOnline />
@@ -75,5 +81,6 @@ export default function Messenger() {
                 </div>
             </div>
         </div>
+        </section>
     )
 }
