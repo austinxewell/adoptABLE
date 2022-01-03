@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-import placeholder from '../../assets/images/1280x960.png';
 import Modal from '../Modal';
 import { useQuery } from '@apollo/client';
 import { QUERY_USERS } from '../../utils/queries';
 import { capitalizeFirstLetter, cleanupName } from '../../utils/helper';
 import './adopt.css'
+import { useStoreContext } from '../../utils/GlobalState';
 
 export default function Adopt () {
 
     const { loading, data } = useQuery(QUERY_USERS);
+    const [state, dispatch] = useStoreContext();
 
     const families = data?.users || [];
     console.log(families);
@@ -22,7 +23,7 @@ export default function Adopt () {
         console.log(currentFamily)
         setIsModalOpen(!isModalOpen);
         console.log(isModalOpen)
-    }
+    };
 
     return (
         <main className=''>

@@ -20,3 +20,25 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADOPT_USER = gql`
+  mutation addAdoptedFamily($adoptedFamilyId: ID!) {
+    addAdoptedFamily(adoptedFamilyId: $adoptedFamilyId) {
+      _id
+      username
+      adoptedFamily{
+        _id
+        username
+      }
+    }
+  }
+`;
+
+export const ADD_PRODUCT = gql`
+  mutation addProduct($productName: String!, $productNote: String!) {
+    addProduct(productName: $productName, productNote: $productNote) {
+      productName
+      productNote
+    }
+  }
+`;

@@ -13,6 +13,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@ap
 import { setContext } from '@apollo/client/link/context';
 import Success from './components/Success';
 import { StoreProvider } from './utils/GlobalState';
+import Profile from './components/Profile';
 
 
 const httpLink = createHttpLink({
@@ -78,6 +79,10 @@ function App() {
         return(
           <Success />
         );
+      case 'Profile':
+        return(
+          <Profile />
+        )
     }
   }
 
