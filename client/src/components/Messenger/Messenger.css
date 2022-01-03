@@ -27,6 +27,7 @@
 .chatBoxWrapper{
     display: flex;
     flex-direction: column;
+    position: relative
 }
 
 .chatBoxTop{
@@ -75,14 +76,6 @@
     background-color: var(--primary-color);
 }
 
-.chatOnlineWrapper{
-    border-right: 4px solid #31405F;
-}
-
-.chatMenuWrapper{
-    border-left: 4px solid #31405F;
-}
-
 .dropbtn {
     background-color: #31405F;
     color: white;
@@ -91,6 +84,8 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    height: 60px;
+    margin: 10px 18px;
   }
   
   .dropdown {
@@ -119,3 +114,12 @@
   .dropdown:hover .dropdown-content {display: block;}
   
   .dropdown:hover .dropbtn {background-color: #327087;}
+
+  .noConversationText {
+    position: absolute;
+    top: 10%;
+    font-size: 50px;
+    color: var(--sextinary-color);
+    text-align: center;
+    cursor: default;
+  }

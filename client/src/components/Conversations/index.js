@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {useQuery} from '@apollo/client'
 import "./Conversations.css"
 
@@ -9,9 +9,11 @@ export default function Conversation({_id, members}) {
     const currentUser = data?.me.username
     const otherUser = members.find((m) => m.username !== currentUser)
 
+    const [currentChat, setCurrentChat] = useState(null);
+
     return (
-        <div className="conversation">
-            <span className="conversationName">{otherUser.username}</span>
+        <div onClick={() => setCurrentChat(_id)} className="conversation">
+            <span className="conversationName">{otherUser?.username}</span>
         </div>
     )
 }

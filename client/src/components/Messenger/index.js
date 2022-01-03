@@ -15,6 +15,9 @@ export default function Messenger() {
     const loggedIn = Auth.loggedIn();
 
     const [currentChat, setCurrentChat] = useState(null);
+    const [messages, setMessages] = useState([]);
+
+    console.log(conversations[0])
 
     return (
         <section>
@@ -26,21 +29,18 @@ export default function Messenger() {
         <div id='messageBox' className='columns' className={`messenger ${loggedIn}`}>
             <div className="chatMenu column">
                 <div className="chatMenuWrapper">
-                    <input
-                    type="text"
-                    placeholder="Search for Family"
-                    className="chatMenuInput"/>
+                    <div class="dropdown">
+                        <button class="dropbtn">Start a Conversation</button>
+                        <div class="dropdown-content">
+                            <a href="#">Link 1</a>
+                        </div>
+                    </div>
+
                     {loading ? (
                         <div>Loading...</div>
-                    ) : (
-                        conversations.map(c => <Conversation _id={c._id} members={c.members} />)
+                    ) : (                                              
+                            conversations.map(c =>  <Conversation _id={c._id} members={c.members} />)
                     )}
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">Start a Conversation</button>
-                    <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                    </div>
                 </div>
             </div>
             <div className="chatBox column is-6">
@@ -50,9 +50,6 @@ export default function Messenger() {
                         <>
 
                     <div className="chatBoxTop">
-
-
-
 
                         <Message/>
                         <Message own={true} />
@@ -70,7 +67,8 @@ export default function Messenger() {
                     <div className="chatBoxBottom">
                         <textarea className="chatMessageInput" placeholder="Whats on your mind?"></textarea>
                         <button className="chatSubmitButton">Send</button>
-                    </div></> : <span>Open a conversation to view a chat</span> }
+                    </div>
+                    </> : <span className='noConversationText'>Open a conversation to view a chat</span> }
                 </div>
             </div>
             <div className="chatOnline column">
@@ -84,3 +82,4 @@ export default function Messenger() {
         </section>
     )
 }
+
