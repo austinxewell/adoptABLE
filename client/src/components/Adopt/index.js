@@ -32,14 +32,14 @@ export default function Adopt () {
             </h2>
             <h3 className='container'>Families in need</h3>
           </div>
-          <div className='container'>
+          <div className='container adoptContainer'>
             <div>
             {loading ? (
                 <div className="p-3">
                     Loading Families!
                 </div>
             ) : (
-            <div className='boxAdopt adoptContainer'>
+            <div className='boxAdopt adoptFamilyContainer columns is-vcentered'>
                 {isModalOpen && <Modal currentFamily={currentFamily} onClose={toggleModal} />}
                 <div className="columns is-flex-wrap-wrap">
                     {families.map((family, i) => (

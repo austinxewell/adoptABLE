@@ -13,7 +13,11 @@
 }
 
 .adoptContainer {
-  padding: 10px;
+  padding-top: 15px;
+}
+
+.adoptFamilyContainer {
+  padding-top: 10px;
 }
 
 .card {
