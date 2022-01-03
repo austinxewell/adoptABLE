@@ -4,9 +4,9 @@ import './contact.css'
 
 export default function Contact () {
     return (
-        <div className=''>
+        <section className=''>
             <div className='container boxContact columns has-text-centered is-centered mt-3'>
-                <h2 className="contatiner">
+                <h2 className="container">
                     Contact
                 </h2>
             </div>
@@ -63,6 +63,6 @@ export default function Contact () {
                         </div>
                     </div>
                     </div>
-        </div>
+        </section>
     )
 }
