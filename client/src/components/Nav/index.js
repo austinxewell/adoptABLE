@@ -6,7 +6,7 @@ import './nav.css'
 
 export default function Nav(props) {
     const tabsOut = ['adoptABLE', 'About', 'Contact'];
-    const tabsIn = ['adoptABLE', 'About', 'Contact', 'Adopt', 'Messenger']
+    const tabsIn = ['adoptABLE', 'About', 'Contact', 'Adopt', 'Messenger', 'Profile']
     const registerOut = ['Login', 'SignUp']
     const registerIn = ['Logout']
 
@@ -72,19 +72,6 @@ export default function Nav(props) {
                 </div>   
                 )}
             </nav>
-            {Auth.loggedIn() ? (
-                <>
-                                <nav>
-                <div className="column mr-3 mt-3">
-                    <Cart></Cart>
-                </div>
-            </nav>
-
-                </>
-            ) : (
-                <>
-                </>
-            )}
         </header>
     );
 }

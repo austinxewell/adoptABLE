@@ -1,4 +1,4 @@
-import { UPDATE_CART } from './actions';
+import { UPDATE_CART, REMOVE_FROM_CART, CLEAR_CART } from './actions';
 import { useReducer } from 'react';
 
 export const reducer = (state, action) => {
@@ -6,7 +6,16 @@ export const reducer = (state, action) => {
         case UPDATE_CART:
             return {
                 ...state,
-                products: [...action.products]
+                cart: [...action.products]
+            }
+        case REMOVE_FROM_CART:
+            let newState = state.cart.filter(product => {
+                return product.id !== action._id;
+            })
+        case CLEAR_CART:
+            return {
+                ...state,
+                cart: []
             }
         
         default:

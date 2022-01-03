@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { capitalizeFirstLetter, cleanupName } from '../../utils/helper';
-import { UPDATE_CART } from '../../utils/actions';
 import List from '../List';
-import { useStoreContext } from '../../utils/GlobalState';
-
+import { ADOPT_USER } from '../../utils/mutations';
 import './modal.css'
+import { useMutation } from '@apollo/client';
 
 function Modal ({ onClose, currentFamily }) {
-    const { username, products, familyMembers, email } = currentFamily;
+    const { _id, username, products, familyMembers, email } = currentFamily;
+    const [adoptUser] = useMutation(ADOPT_USER)
 
     const [showList, setShowList] = useState(false);
-
-    const [state, dispatch] = useStoreContext();
-    const { cart } = state;
 
     function toggleList() {
         setShowList(!showList);
         console.log(showList);
     }
+
+    const adoptFamily = async (id) => {
+        console.log(`we adopted family ` + id)
+        const addingUser = await adoptUser({
+            variables: {
+                adoptedFamilyId: id
+            }
+        })
+        console.log(addingUser)
+    };
 
     return(
         <div className="modal is-active">
@@ -44,7 +51,7 @@ function Modal ({ onClose, currentFamily }) {
                     
                 </section>
                 <footer className="modal-card-foot">
-                    <button className="button is-success">Adopt</button>
+                    <button className="button is-success" onClick={() => adoptFamily(_id)}>Adopt</button>
                     <button className="button" onClick={onClose}>Cancel</button>
                 </footer>
             </div>
