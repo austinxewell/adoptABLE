@@ -1,4 +1,4 @@
-const { User, Product, Category, Tag, Conversation, Message } = require("../models")
+const { User, Product, Category, Tag, Conversation, Message, Donate } = require("../models")
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
@@ -85,22 +85,23 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+
     //for checkout
     checkout: async(parent, args, context) => {
-      const order = new Order({ users: args.users });
-      const { users } = await order.populate('users').execPopulate();
+      const url = new URL(context.headers.referer).origin
+      const donate = new Donate({ users: args.users });
+      const { users } = await donate.populate('users').execPopulate();
       const line_items = [];
 
-      for (let i = 0; i < products.length; i++) {
-        const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`]
+      for (let i = 0; i < 1; i++) {
+        const user = await stripe.users.create({
+          name: users.username,
+          description: users[i].description,
         });
 
         const price = await stripe.prices.create({
-          product: product.id,
-          unit_amount: products[i].price * 100,
+          user: user.id,
+          unit_amount: users[i].price * 100,
           currency: 'usd',
         });
 
@@ -110,7 +111,7 @@ const resolvers = {
         });
       }
 
-      const session = await stripe.checkout.sessions.create({
+      const session = await stripe.checkout.Sessions.create({
         payment_method_types: ['card'],
         line_items,
         mode: 'payment',
