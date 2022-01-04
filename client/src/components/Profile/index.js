@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { QUERY_ME_BASIC } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
 import { capitalizeFirstLetter, cleanupName } from '../../utils/helper';
 import './profile.css';
 import NewProductModal from '../NewProductModal';
 import UpdateProductModal from '../UpdateProductModal';
+import { useMutation } from '@apollo/client';
+import { DELETE_ADOPTED_FAMILY, UPDATE_USER } from '../../utils/mutations';
+import UpdateProfile from '../UpdateProfile';
 
 export default function Profile() {
-    const [currentProduct, setCurrentProduct] = useState("");
+    const [currentProduct, setCurrentProduct] = useState();
     const {loading, data} = useQuery(QUERY_ME_BASIC);
     const me = data?.me || [];
     const { products, adoptedFamily } = me;
+    const [removeFamily] = useMutation(DELETE_ADOPTED_FAMILY);
+
+    const [isEditOn, setIsEditOn] = useState(false);
 
     const [isProductModalOpen, setIsProductModalOpen] = useState(false);
     const [isUpdateProductModalOpen, setIsUpdateProductModalOpen] = useState(false);
@@ -19,14 +25,21 @@ export default function Profile() {
         setIsProductModalOpen(!isProductModalOpen);
     }
 
-    function toggleUpdateProductModal(products) {
-        setIsUpdateProductModalOpen(!isUpdateProductModalOpen);
-        console.log(products)
+    function toggleEdit() {
+        setIsEditOn(!isEditOn);
     }
 
-    function updateProduct(product) {
+    function toggleUpdateProductModal(product) {
         setCurrentProduct(product)
-        toggleUpdateProductModal();
+        setIsUpdateProductModalOpen(!isUpdateProductModalOpen);
+    }
+
+    const handleDeleteFriend = async (friend) => {
+        console.log(friend)
+        const removing = await removeFamily({
+                adoptedFamilyId: friend._id
+        })
+        console.log(removing)
     }
 
     return (
@@ -37,7 +50,8 @@ export default function Profile() {
                 </div>
             ) : (
                     <div>
-                        {isUpdateProductModalOpen && <UpdateProductModal onClose={toggleUpdateProductModal} />}
+                        {isEditOn && <UpdateProfile onClose={toggleEdit} me={me}/> }
+                        {isUpdateProductModalOpen && <UpdateProductModal currentProduct={currentProduct} onClose={toggleUpdateProductModal} />}
                         {isProductModalOpen && <NewProductModal onClose={toggleProductModal} />}
                         <div>
                             <h2>Profile</h2>
@@ -46,19 +60,22 @@ export default function Profile() {
                             <h3>{capitalizeFirstLetter(me.username)}</h3>
                             <hr />
                             <label>Current Email:</label>
-                            <br />
                             <span>{me.email}</span>
+                            <label>Family Count:</label>
+                            <span>{me.familyMembers}</span>
+                            <button className="button is-info" onClick={toggleEdit}>Update Information</button>
+                            <hr/>
                             <label>Current Items Needed</label>
                             <div className="columns">
                                 <div className="column is-3">
-                                    {products.map((products) => (
-                                        <div className="card" key={products.productName} onClick={() => updateProduct(products)}>
-                                            <div className="card-header">{capitalizeFirstLetter(products.productName)}</div>
+                                    {products.map((product) => (
+                                        <div className="card" key={product._id} onClick={() => toggleUpdateProductModal(product)}>
+                                            <div className="card-header">{capitalizeFirstLetter(product.productName)}</div>
                                             <div className="card-content">
                                                 <span className="productnote">Product Notes:</span>
                                                 <br/>
                                                 <p className="productnotes">
-                                                    {capitalizeFirstLetter(products.productNote)}
+                                                    {capitalizeFirstLetter(product.productNote)}
                                                 </p>
                                             </div>
                                         </div>
@@ -71,6 +88,9 @@ export default function Profile() {
                                             <div key={friends.username} className="card column is-3">
                                                 <div className="card-header">
                                                     {capitalizeFirstLetter(friends.username)}
+                                                </div>
+                                                <div className="card-conent">
+                                                    <button className="button is-danger" onClick={() => handleDeleteFriend(friends)}>Delete</button>
                                                 </div>
                                             </div>
                                         ))}

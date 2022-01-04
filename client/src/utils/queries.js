@@ -36,7 +36,9 @@ export const QUERY_ME_BASIC = gql`
             _id
             email
             username
+            familyMembers
             products {
+                _id
                 productName
                 productNote
             }

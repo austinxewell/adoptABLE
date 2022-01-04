@@ -1,59 +1,69 @@
 import { useMutation } from "@apollo/client";
-import React, { useState } from "react";
-import { ADD_PRODUCT } from "../../utils/mutations";
+import React, { useEffect, useState } from "react";
+import { DELETE_PRODUCT, UPDATE_PRODUCT } from "../../utils/mutations";
 
 
-export default function NewProductModal({ product, onClose }) {
-    const [newproduct, setNewProduct] = useState({ productName: '', productNote: ''});
-    const [addProduct] = useMutation(ADD_PRODUCT)
-    console.log(product)
+export default function NewProductModal({ currentProduct, onClose }) {
+    const [product, setProduct] = useState({ productName: '', productNote: ''});
+    const [updateProduct] = useMutation(UPDATE_PRODUCT)
+    const [deleteitem] = useMutation(DELETE_PRODUCT)
 
-    const addNewProduct = async (newproduct) => {
-        console.log(newproduct)
-        const addingProduct = await addProduct({
+    useEffect(() => {
+        setProduct({
+            productName: currentProduct.productName,
+            productNote: currentProduct.productNote
+        })
+    }, [])
+    
+
+    const updateOldProduct = async () => {
+        console.log(product)
+        const updatingProduct = await updateProduct({
             variables: {
-                productName: newproduct.productName,
-                productNote: newproduct.productNote
+                productName: product.productName,
+                productNote: product.productNote
             }
         })
-        console.log(addingProduct);
+        console.log(updatingProduct);
+        onclose();
     }
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
 
-        setNewProduct({
-            ...newproduct,
+        setProduct({
+            ...product,
             [name]: value
         })
-        console.log(newproduct)
     }
 
-    // if(product.productName) {
-    //     setNewProduct({
-    //         ...newproduct,
-    //         [productName]: product.productName,
-    //         [productNote]: product.productNote
-    //     })
-    //     console.log(newproduct)
-    // }
+    const handleDelete = async (product) => {
+        console.log(product.productId)
+        const removeProduct = await deleteitem({
+            variables: {
+                _id: product.productId
+            }
+        })
+        console.log(removeProduct)
+    }
 
     return (
         <div className="modal is-active">
             <div className="modal-background"></div>
             <div className="modal-card">
                 <header className="modal-card-head">
-                    <p className="modal-card-title">New product Information</p>
+                    <p className="modal-card-title">Update product Information</p>
                 </header>
                 <section className="modal-card-body">
                     <label>Item Name</label>
-                    <input name='productName' onChange={handleInputChange}></input>
+                    <input name='productName' value={product.productName} onChange={handleInputChange}></input>
                     <hr />
                     <label>Item note</label>
-                    <textarea name="productNote" onChange={handleInputChange} placeholder="Description, shoe, clothing size, or gender"></textarea>
+                    <textarea name="productNote" value={product.productNote} onChange={handleInputChange} placeholder="Description, shoe, clothing size, or gender"></textarea>
                     <hr />
-                    <button className="button is-success" onClick={() => addNewProduct(newproduct)}>Add Item</button>
+                    <button className="button is-success" onClick={() => updateOldProduct(product)}>Update Product</button>
                     <button className="button" onClick={onClose}>Cancel</button>
+                    <button className="button is-danger" onClick={() => handleDelete(product)}>Delete Product</button>
                 </section>
             </div>
         </div>

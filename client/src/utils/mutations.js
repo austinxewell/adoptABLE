@@ -42,3 +42,38 @@ export const ADD_PRODUCT = gql`
     }
   }
 `;
+
+export const UPDATE_PRODUCT =gql`
+  mutation updateProduct($productName: String!, $productNote: String!) {
+    updateProduct(productName: $productName, productNote: $productNote ) {
+      productName
+      productNote
+    }
+  }
+`;
+
+export const DELETE_PRODUCT = gql`
+  mutation deleteProduct($productId: String!) {
+    deleteProduct(productId: $productId) {
+      productId
+    }
+  }
+`;
+
+export const DELETE_ADOPTED_FAMILY = gql`
+  mutation deleteAdoptedFamily($adoptedFamilyId: ID!) {
+    deleteAdoptedFamily(adoptedFamilyId: $adoptedFamilyId) {
+      _id
+    }
+  }
+`;
+
+export const UPDATE_USER = gql`
+  mutation updateUser($email: String, $familyMembers: String) {
+    updateUser(email: $email, familyMembers: $familyMembers) {
+      username
+      email
+      familyMembers
+    }
+  }
+`;
