@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import cart from '../../assets/images/cart.png'
 import './cart.css'
+import { useStoreContext } from '../../utils/GlobalState';
 
 function Cart () {
-    //const { family } = items;
+    const [state, dispatch] = useStoreContext();
 
     function removeFromCart(item) {
         console.log('deleting item')
@@ -40,7 +41,7 @@ function Cart () {
                 >
                 🗑️
                 </span>
-                <button className="button is-success dropMenu">Checkout</button>
+                <button className="button is-success dropMenu checkoutbutton">Checkout</button>
                 </div>  
             </div>
         </div>

@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 
 import  { QUERY_MY_CONVERSATIONS } from '../../utils/queries'
 import Auth from '../../utils/auth';
-import './messenger.css';
+import './Messenger.css';
 import Message from "../Message";
 import Conversation from "../Conversations";
 import ChatOnline from "../ChatOnline";
