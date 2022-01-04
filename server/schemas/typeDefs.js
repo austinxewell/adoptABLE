@@ -82,6 +82,11 @@ const typeDefs = gql`
     createMessage(text: String!, conversationId: String!): Conversation
   }
 
+  type Donate {
+    _id: ID
+    purchaseDate: String
+  }
+
   type Checkout {
     session: ID
   }
