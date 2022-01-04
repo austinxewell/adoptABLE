@@ -6,7 +6,7 @@ import './signUp.css'
 
 import Auth from '../../utils/auth';
 
-export default function SignUp() {
+export default function SignUp(props) {
   const [formState, setFormState] = useState({ username: '', email: '', password: '' });
   const [addUser, { error }] = useMutation(ADD_USER);
 
@@ -43,53 +43,55 @@ export default function SignUp() {
   };
 
     return (
-        <section className='boxSignUp'>
-          <br/>
-            
-            <div className='columns is-centered'>
-              
-              <h2 className=''>Sign-Up</h2>
+        <section className=''>
+          <div className='container boxSignUp has-text-centered is-centered mt-3'>
+            <h2 className='container'>
+            SignUp
+            </h2>
+            <a className='container aSignUp' href='#login' onClick={() => props.handlePageChange('Login')}>← Go to Login</a>
 
+          </div>
+          <div className='container'>
+              <div>
+                <div className='boxSignUp signUpContainer columns is-vcentered is-centered'>
+                  
+                  <form className='' id="" onSubmit={handleFormSubmit}>
+                    
+                    <div className=''>
+                      
+                      <label className='columns is-centered signUpLabel' htmlFor="">Username:</label>
+                      
+                      <input className='' placeholder='Your Username' name='username' type='text' id='username' value={formState.username} onChange={handleChange} />
+                    
+                    </div>
+                    
+                    <div className=''>
+                      
+                      <label className='columns is-centered signUpLabel' htmlFor="">Email address:</label>
+                      
+                      <input className='' placeholder='Your Email' name='email' type='email' id='email' value={formState.email} onChange={handleChange}  />
+                    
+                    </div>
+                    
+                    <div className=''>
+                      
+                      <label className='columns is-centered signUpLabel' htmlFor="">Password:</label>
+                      
+                      <input className='' placeholder='******' name='password' type='password' id='password' value={formState.password} onChange={handleChange} />
+                    
+                    </div>
+                    
+                    <div className='columns is-centered'>
+                      
+                      <button className='signUpSubmitButton' type="submit">Submit</button>
+                    
+                    </div>
+                  
+                  </form>
+
+                  {error && <div>Signup Failed</div>}
+              </div>
             </div>
-          
-          <div className='columns is-centered is-hcentered'>
-            
-            <form className='' id="" onSubmit={handleFormSubmit}>
-              
-              <div className=''>
-                
-                <label className='columns is-centered signUpLabel' htmlFor="">Username:</label>
-                
-                <input className='' placeholder='Your Username' name='username' type='text' id='username' value={formState.username} onChange={handleChange} />
-              
-              </div>
-              
-              <div className=''>
-                
-                <label className='columns is-centered signUpLabel' htmlFor="">Email address:</label>
-                
-                <input className='' placeholder='Your Email' name='email' type='email' id='email' value={formState.email} onChange={handleChange}  />
-              
-              </div>
-              
-              <div className=''>
-                
-                <label className='columns is-centered signUpLabel' htmlFor="">Password:</label>
-                
-                <input className='' placeholder='******' name='password' type='password' id='password' value={formState.password} onChange={handleChange} />
-              
-              </div>
-              
-              <div className='columns is-centered'>
-                
-                <button className='signUpSubmitButton' type="submit">Submit</button>
-              
-              </div>
-            
-            </form>
-
-            {error && <div>Signup Failed</div>}
-          
           </div>
         
         </section>

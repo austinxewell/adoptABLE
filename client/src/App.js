@@ -3,6 +3,7 @@ import Home from './components/Home'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Nav from './components/Nav';
+import Donate from './components/Donate'
 import About from './components/About';
 import Contact from './components/Contact';
 import Adopt from './components/Adopt'
@@ -49,11 +50,11 @@ function App() {
         );
       case 'Login':
         return(
-          <Login />
+          <Login className='' currentPage={currentPage} handlePageChange={handlePageChange}/>
         )
       case 'SignUp':
         return(
-          <SignUp />
+          <SignUp className='' currentPage={currentPage} handlePageChange={handlePageChange}/>
         )
       case 'Logout':
         return (    
@@ -82,7 +83,11 @@ function App() {
       case 'Profile':
         return(
           <Profile />
-        )
+        );
+      case 'Donate':
+        return(
+          <Donate />
+        );
     }
   }
 
@@ -97,7 +102,7 @@ function App() {
           <br/>
           <main className=''>
             <br/>
-            <div className=''>
+            <div>
               <br/>
             {renderPage(currentPage)}
             </div>
@@ -105,7 +110,7 @@ function App() {
           <br/>
           <br/>
           <br/>
-          <Footer />
+          <Footer className='' currentPage={currentPage} handlePageChange={handlePageChange} />
           </StoreProvider>
         </div>
       

@@ -7,10 +7,21 @@
     --sextinary-color: #31405F;
   }
 
+  .aLogin {
+    color: var(--quintinary-color);
+  }
+
+  .aLogin:hover {
+    color: var(--terciary-color);
+  }
+
   .boxLogin {
     background-color: var(--primary-color);
-    height: 100vh;
     border: 2px solid var(--sextinary-color);
+  }
+
+  .loginContainer {
+    margin-top: 10px;
   }
 
   .loginLabel {
