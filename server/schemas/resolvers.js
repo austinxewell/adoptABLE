@@ -121,6 +121,11 @@ const resolvers = {
       return { session: session.id };
 
     },
+
+    conversationById: async ( parent, { _id }) => {
+      return Conversation.findOne({ _id })
+      .select('-__v -password')
+    }
   },
 
   Mutation: {

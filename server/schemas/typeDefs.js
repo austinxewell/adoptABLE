@@ -26,6 +26,7 @@ const typeDefs = gql`
     conversations: [Conversation]
     myConversations: [Conversation]
     checkout(users: [ID]!): Checkout
+    conversationById( _id: ID): Conversation
   }
 
   type Product {

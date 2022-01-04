@@ -4,7 +4,7 @@ import "./Conversations.css"
 
 import  { QUERY_ME_BASIC } from '../../utils/queries'
 
-export default function Conversation({_id, members}) {
+export default function Conversation({_id, members, newId}) {
     const { loading, data } = useQuery(QUERY_ME_BASIC);
     const currentUser = data?.me.username
     const otherUser = members.find((m) => m.username !== currentUser)
@@ -12,8 +12,9 @@ export default function Conversation({_id, members}) {
     const [currentChat, setCurrentChat] = useState(null);
 
     return (
-        <div onClick={() => setCurrentChat(_id)} className="conversation">
+        <div onClick={() => newId(_id)} className="conversation">
             <span className="conversationName">{otherUser?.username}</span>
         </div>
+
     )
 }

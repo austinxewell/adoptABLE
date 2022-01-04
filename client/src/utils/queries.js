@@ -25,6 +25,7 @@ export const QUERY_MY_CONVERSATIONS = gql`
             messages{
                 text
                 sender
+                createdAt
             }
         }
     }
@@ -42,4 +43,20 @@ export const QUERY_ME_BASIC = gql`
             }
         }
     }
+`;
+
+export const QUERY_CONVERSATION_BY_ID = gql`
+query($_id: ID!){
+  conversationById(_id: $_id){
+    _id
+    members{
+      username
+    }
+    messages{
+      sender
+      text
+      createdAt
+    }
+  }
+}
 `;

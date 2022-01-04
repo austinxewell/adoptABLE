@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 
 import  { QUERY_MY_CONVERSATIONS } from '../../utils/queries'
 import Auth from '../../utils/auth';
-import './Messenger.css';
+import './messenger.css';
 import Message from "../Message";
 import Conversation from "../Conversations";
 import ChatOnline from "../ChatOnline";
@@ -16,8 +16,10 @@ export default function Messenger() {
 
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
+    const newId = childId => {setCurrentChat(childId)}
+    
 
-    console.log(conversations[0])
+
 
     return (
         <section>
@@ -38,39 +40,27 @@ export default function Messenger() {
 
                     {loading ? (
                         <div>Loading...</div>
-                    ) : (                                              
-                            conversations.map(c =>  <Conversation _id={c._id} members={c.members} />)
+                    ) : (      
+                        conversations.map(c =>  <Conversation _id={c._id} members={c.members} newId={newId} />)              
                     )}
                 </div>
             </div>
+
             <div className="chatBox column is-6">
                 <div className="chatBoxWrapper">
-                        {
-                            currentChat ?
-                        <>
-
+                    {
+                        currentChat ?
+                    <>
                     <div className="chatBoxTop">
-
-                        <Message/>
-                        <Message own={true} />
-                        <Message />
-                        <Message own={true} />
-                        <Message/>
-                        <Message own={true} />
-                        <Message />
-                        <Message own={true} />
-                        <Message/>
-                        <Message own={true} />
-                        <Message />
-                        <Message own={true} />
+                        <Message currentChatId={currentChat} />
                     </div>
                     <div className="chatBoxBottom">
                         <textarea className="chatMessageInput" placeholder="Whats on your mind?"></textarea>
                         <button className="chatSubmitButton">Send</button>
                     </div>
-                    </> : <span className='noConversationText'>Open a conversation to view a chat</span> }
+                    </> : <span className='noConversationText'>Click on a user to open a conversation</span>}
                 </div>
-            </div>
+            </div>  
             <div className="chatOnline column">
                 <div className="chatOnlineWrapper">
                     <p className='onlineText'>Families Online</p>
