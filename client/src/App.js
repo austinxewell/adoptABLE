@@ -3,7 +3,6 @@ import Home from './components/Home'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Nav from './components/Nav';
-import Donate from './components/Donate'
 import About from './components/About';
 import Contact from './components/Contact';
 import Adopt from './components/Adopt'
@@ -41,57 +40,6 @@ const client = new ApolloClient({
 
 function App() {
 
-  
-  const [currentPage, handlePageChange] = useState('Home');
-
-  function renderPage(currentPage) {
-    switch(currentPage) {
-      default:
-        return(
-          <Home />
-        );
-      case 'Login':
-        return(
-          <Login className='' currentPage={currentPage} handlePageChange={handlePageChange}/>
-        )
-      case 'SignUp':
-        return(
-          <SignUp className='' currentPage={currentPage} handlePageChange={handlePageChange}/>
-        )
-      case 'Logout':
-        return (    
-          <Home />
-        )
-      case 'About':
-        return(
-          <About />
-        );
-      case 'Contact':
-        return(
-          <Contact />
-        );
-      case 'Adopt':
-        return(
-          <Adopt />
-        );
-      case 'Messenger':
-        return(
-          <Messenger />
-        );
-      case 'Success':
-        return(
-          <Success />
-        );
-      case 'Profile':
-        return(
-          <Profile />
-        );
-      case 'Donate':
-        return(
-          <Donate />
-        );
-    }
-  }
 
   return (
     <ApolloProvider client={client}>
@@ -112,11 +60,12 @@ function App() {
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/logout" component={Home} />
                     <Route exact path="/signup" component={SignUp} />
+                    <Route exact path="/donate" component={Donate} />
 
                     <Route component={Home} />
                   </Switch>
                 </div>
-            
+            <Footer />
             </Router>
           </div>
           <br />

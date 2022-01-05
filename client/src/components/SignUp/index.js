@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 
@@ -48,7 +49,7 @@ export default function SignUp(props) {
             <h2 className='container'>
             SignUp
             </h2>
-            <a className='container aSignUp' href='#login' onClick={() => props.handlePageChange('Login')}>← Go to Login</a>
+            <Link className='container aSignUp' to='login'>← Go to Login</Link>
 
           </div>
           <div className='container'>
