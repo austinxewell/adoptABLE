@@ -79,12 +79,9 @@ export const UPDATE_USER = gql`
 `;
 
 export const ADD_DONATION = gql`
-  mutation addDonation($users: [ID]!) {
-    addDonation(users: $users) {
+  mutation addDonation($price: Int) {
+    addDonation(price: $price) {
       purchaseDate
-      users {
-        _id
-      }
     }
   }
 `;

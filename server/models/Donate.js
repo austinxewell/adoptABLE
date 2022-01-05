@@ -7,6 +7,9 @@ const donateSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    price: {
+        type: Number
+    },
     users:
         {
           type: Schema.Types.ObjectId,

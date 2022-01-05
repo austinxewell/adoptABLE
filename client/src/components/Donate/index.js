@@ -6,8 +6,11 @@ import { useLazyQuery } from '@apollo/client'
 const stripePromise = loadStripe('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
 
 export default function Donate(props){
-  const [donateState, setDonateState] = useState({ donate : '' })
-  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+  const [donateState, setDonateState] = useState( 0 )
+  // const variables = donateState
+  const [getCheckout, { called, loading, data }] = useLazyQuery(QUERY_CHECKOUT,
+    { variables: { price: donateState } });
+
 
   useEffect(() => {
     if (data) {
@@ -17,25 +20,28 @@ export default function Donate(props){
     }
   }, [data]);
 
+  if (called && loading) return <p>Loadjfkld;ajfkl;sdajflk;sadjl;kfjasklf;sajdklfjsdal;fjsdakl;fjsdalkfssds;ks</p>
 
   const submitCheckout = async (event) => {
     event.preventDefault();
-
-    try {
-      const { data } = await getCheckout({
+    console.log(donateState)
+    
+    try { 
+     const {data} = await getCheckout({
         variables: { ...donateState },
       });
-      console.log([data])
-
-    } catch (e) {
+      console.log(data)
+    }
+     catch (e) {
       console.error(e);
     }
+  }
 
     // clear form values
     // setDonateState({
     //   donate : ''
     // });
-  };
+  // };
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -44,6 +50,7 @@ export default function Donate(props){
       [name]: value,
     });
   };
+
 
 
     return(
@@ -59,7 +66,7 @@ export default function Donate(props){
                 <form>
                   <div>
                     <label className='columns is-centered donateLabel'>How much would you like to Donate?</label>
-                    <input className='donateInput' placeholder='' name='donate' type='donate' id='donate' value={donateState.donate} onChange={handleChange}></input>
+                    <input className='donateInput' placeholder='' name='price' type='number' id='price' value={donateState.price} onChange={handleChange}></input>
                   </div>
                   <div className='columns is-centered'>
                     <button className='donateSubmitButton' type="submit" onClick={submitCheckout}>Checkout</button>
@@ -70,4 +77,4 @@ export default function Donate(props){
           </div>
         </section>
     )
-}
+  }

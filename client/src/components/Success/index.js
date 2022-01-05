@@ -8,9 +8,7 @@ function Success() {
 
   useEffect(() => {
     async function saveDonation() {
-
-
-      setTimeout(() => {
+        setTimeout(() => {
         window.location.assign('/');
       }, 3000);
     }
