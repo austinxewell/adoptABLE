@@ -1,25 +1,33 @@
 :root {
-  --primary-color: #E1B6E4;
-  --secondary-color: #A35390;
-  --terciary-color: #602750;
-  --quartinary-color: #CE65BA;
+  --primary-color: #e1b6e4;
+  --secondary-color: #a35390;
+  --tertiary-color: #602750;
+  --quartinary-color: #ce65ba;
   --quintinary-color: #327087;
-  --sextinary-color: #31405F;
+  --sextinary-color: #31405f;
 }
 
-.aboutBox {
-  background-color: var(--primary-color);
-  border: 2px solid var(--sextinary-color);
+.aboutBox h1 {
+  text-shadow: 4px 4px 8px var(--quartinary-color);
+  padding-right: 20px;
+}
+
+.aboutBox h3 {
+  color: var(--sextinary-color);
+  text-shadow: 4px 4px 8px var(--quintinary-color);
 }
 
 .signUpContainer {
   margin-top: 10px;
+  border-radius: 30px;
+  background-color: var(--primary-color);
+  border: 2px solid var(--sextinary-color);
 }
 
 .aboutImg {
   border-radius: 50px;
-  padding: 8px;
-  height: 500px;
+  padding: 15px;
+  height: 450px;
 }
 
 .aboutContent {
