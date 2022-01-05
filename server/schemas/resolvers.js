@@ -204,12 +204,14 @@ const resolvers = {
     },
       //delete a product and is relation to all users.
       deleteProduct: async (parent, { productId }, context) => {
+        //var product = await Product.findOne({productId});
+
         if(context.user) {
-          await Product.findByIdAndRemove(
-            { _id: productId },
+          const deleteUser = await Product.findByIdAndRemove(
+            { _id: productId }
           );
 
-          return (`Product with the ID: ${productId} has been removed.`)
+          return (`Product with the ID: ${deleteUser} has been removed.`)
         }
 
         throw new AuthenticationError('You need to be logged in!');
@@ -264,7 +266,8 @@ const resolvers = {
   //update product details
   updateProduct: async (parent, { productName, productNote, productId }, context) => {
     if (context.user) {
-      var product = await Product.findOne({productId});
+      var product = await Product.findOne({_id: productId});
+      console.log(`Updating ${product}`)
       
       const updatedProduct = await Product.findByIdAndUpdate( 
         { _id: product._id },

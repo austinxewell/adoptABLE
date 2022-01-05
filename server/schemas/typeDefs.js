@@ -79,7 +79,7 @@ const typeDefs = gql`
     addTag(tagName: String!): Product
     deleteTag(tagId: String!): Product
     updateUser(email: String, familyMembers: String): User
-    updateProduct(productName: String, productNote: String): Product
+    updateProduct(productName: String, productNote: String, productId: ID): Product
     addConversation(receiverId: String!): Conversation
     createMessage(text: String!, conversationId: String!): Conversation
     addDonate(users: [ID]!): Donate
