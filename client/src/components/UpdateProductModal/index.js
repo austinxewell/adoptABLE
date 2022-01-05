@@ -4,14 +4,15 @@ import { DELETE_PRODUCT, UPDATE_PRODUCT } from "../../utils/mutations";
 
 
 export default function NewProductModal({ currentProduct, onClose }) {
-    const [product, setProduct] = useState({ productName: '', productNote: ''});
+    const [product, setProduct] = useState({ productName: '', productNote: '', productId: ""});
     const [updateProduct] = useMutation(UPDATE_PRODUCT)
     const [deleteitem] = useMutation(DELETE_PRODUCT)
 
     useEffect(() => {
         setProduct({
             productName: currentProduct.productName,
-            productNote: currentProduct.productNote
+            productNote: currentProduct.productNote,
+            productId: currentProduct._id
         })
     }, [])
     
@@ -20,12 +21,12 @@ export default function NewProductModal({ currentProduct, onClose }) {
         console.log(product)
         const updatingProduct = await updateProduct({
             variables: {
+                productId: product.productId,
                 productName: product.productName,
                 productNote: product.productNote
             }
         })
         console.log(updatingProduct);
-        onclose();
     }
 
     const handleInputChange = (event) => {
@@ -38,10 +39,10 @@ export default function NewProductModal({ currentProduct, onClose }) {
     }
 
     const handleDelete = async (product) => {
-        console.log(product.productId)
+        console.log(DELETE_PRODUCT)
         const removeProduct = await deleteitem({
             variables: {
-                _id: product.productId
+                productId: product.productId
             }
         })
         console.log(removeProduct)

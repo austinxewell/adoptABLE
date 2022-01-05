@@ -37,7 +37,9 @@ export default function Profile() {
     const handleDeleteFriend = async (friend) => {
         console.log(friend)
         const removing = await removeFamily({
+            variables: {
                 adoptedFamilyId: friend._id
+            }
         })
         console.log(removing)
     }
