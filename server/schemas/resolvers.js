@@ -85,43 +85,48 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-
-    //for checkout
-    checkout: async(parent, args, context) => {
-      const url = new URL(context.headers.referer).origin
-      const donate = new Donate({ users: args.users });
-      const { users } = await donate.populate('users').execPopulate();
-      const line_items = [];
-
-      for (let i = 0; i < 1; i++) {
-        const user = await stripe.users.create({
-          name: users.username,
-          description: users[i].description,
+    donate: async (parent, { _id }, context) => {
+      
+      if (context.user) {
+        const user = await User.findById(context.user._id)
+        
+        .populate({
+          path: 'donates.users',
         });
 
-        const price = await stripe.prices.create({
-          user: user.id,
-          unit_amount: users[i].price * 100,
-          currency: 'usd',
-        });
-
-        line_items.push({
-          price: price.id,
-          quantity: 1
-        });
+        return user.donates.id(_id);
       }
 
-      const session = await stripe.checkout.Sessions.create({
+      throw new AuthenticationError('Not logged in');
+    },
+    checkout: async (parent, args, context) => {
+      const url = new URL(context.headers.referer).origin;
+      const donate = new Donate({ users: args.users });
+      console.log(donate._id)
+      const usd = 'usd'
+      const line_items = [{
+        quantity: 1,
+        price_data: {
+          unit_amount : (12 * 100) ,
+          currency : usd,
+          product_data : {name : 'Donate Test'}
+        }
+      }];
+
+      
+
+      const user  = await donate.populate('users').execPopulate();
+      console.log(user.users._id)
+      const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
-        line_items,
+        line_items,        
         mode: 'payment',
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${url}/`
       });
 
       return { session: session.id };
-
-    },
+    }
   },
 
   Mutation: {

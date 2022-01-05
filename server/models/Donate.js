@@ -7,12 +7,11 @@ const donateSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    users: [
+    users:
         {
           type: Schema.Types.ObjectId,
           ref: 'User'
         }
-      ]
     });
 
 const Donate = mongoose.model('Donate', donateSchema)

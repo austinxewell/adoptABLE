@@ -11,6 +11,7 @@ const typeDefs = gql`
     familyMembers: Int
     products: [Product]
     adoptedFamily: [User]
+    donates: [Donate]
   }
 
   type Query {
@@ -26,6 +27,7 @@ const typeDefs = gql`
     conversations: [Conversation]
     myConversations: [Conversation]
     checkout(users: [ID]!): Checkout
+    donate(_id: ID!): Donate
   }
 
   type Product {
@@ -80,11 +82,13 @@ const typeDefs = gql`
     updateProduct(productName: String, productNote: String): Product
     addConversation(receiverId: String!): Conversation
     createMessage(text: String!, conversationId: String!): Conversation
+    addDonate(users: [ID]!): Donate
   }
 
   type Donate {
     _id: ID
     purchaseDate: String
+    users: [User]
   }
 
   type Checkout {
