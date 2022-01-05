@@ -77,3 +77,14 @@ export const UPDATE_USER = gql`
     }
   }
 `;
+
+export const ADD_DONATION = gql`
+  mutation addDonation($users: [ID]!) {
+    addDonation(users: $users) {
+      purchaseDate
+      users {
+        _id
+      }
+    }
+  }
+`;

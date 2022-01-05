@@ -45,6 +45,7 @@ function App() {
     <ApolloProvider client={client}>
 
         <header>
+
           <div className='container'>
             <Router>
               <Nav />
@@ -65,7 +66,7 @@ function App() {
                     <Route component={Home} />
                   </Switch>
                 </div>
-            <Footer />
+              <Footer />
             </Router>
           </div>
           <br />
