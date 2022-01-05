@@ -4,10 +4,8 @@ import "./message.css"
 
 import { QUERY_ME_BASIC } from '../../utils/queries';
 
-
 export default function Message({ messageData}) {
     const [own, setOwn] = useState()
-
     const { loading, data } = useQuery(QUERY_ME_BASIC);
     const currentUser = data?.me.username
 
