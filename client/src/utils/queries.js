@@ -25,9 +25,10 @@ export const QUERY_MY_CONVERSATIONS = gql`
             messages{
                 text
                 sender
+                createdAt
             }
         }
-    }
+    },
 `;
 
 export const QUERY_ME_BASIC = gql`

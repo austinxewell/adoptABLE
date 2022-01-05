@@ -8,11 +8,13 @@ import UpdateProductModal from '../UpdateProductModal';
 import { useMutation } from '@apollo/client';
 import { DELETE_ADOPTED_FAMILY, UPDATE_USER } from '../../utils/mutations';
 import UpdateProfile from '../UpdateProfile';
+import { useHistory } from 'react-router';
 
 export default function Profile() {
     const [currentProduct, setCurrentProduct] = useState();
     const {loading, data} = useQuery(QUERY_ME_BASIC);
     const me = data?.me || [];
+    const history = useHistory();
     const { products, adoptedFamily } = me;
     const [removeFamily] = useMutation(DELETE_ADOPTED_FAMILY);
 
@@ -41,7 +43,8 @@ export default function Profile() {
                 adoptedFamilyId: friend._id
             }
         })
-        console.log(removing)
+        console.log(removing);
+        history.go(0);
     }
 
     return (
@@ -64,7 +67,7 @@ export default function Profile() {
                             <label>Current Email:</label>
                             <span>{me.email}</span>
                             <label>Family Count:</label>
-                            <span>{me.familyMembers}</span>
+                            <div>{me.familyMembers}</div>
                             <button className="button is-info" onClick={toggleEdit}>Update Information</button>
                             <hr/>
                             <label>Current Items Needed</label>

@@ -1,35 +1,36 @@
 :root {
-    --primary-color: #E1B6E4;
-    --secondary-color: #A35390;
-    --terciary-color: #602750;
-    --quartinary-color: #CE65BA;
-    --quintinary-color: #327087;
-    --sextinary-color: #31405F;
-  }
+  --primary-color: #e1b6e4;
+  --secondary-color: #a35390;
+  --terciary-color: #602750;
+  --quartinary-color: #ce65ba;
+  --quintinary-color: #327087;
+  --sextinary-color: #31405f;
+}
 
-  .aLogin {
-    color: var(--quintinary-color);
-  }
+.boxLogin {
+  background-color: whitesmoke;
+  height: 100vh;
+  border: 2px solid var(--sextinary-color);
+  border-radius: 30px;
+  padding-top: 100px;
+}
 
-  .aLogin:hover {
-    color: var(--terciary-color);
-  }
+.boxLogin h1 {
+  text-shadow: 4px 4px 8px var(--quartinary-color);
+  padding: 20px;
+  color: var(--terciary-color);
+}
 
-  .boxLogin {
-    background-color: var(--primary-color);
-    border: 2px solid var(--sextinary-color);
-  }
+.loginLabel {
+  color: var(--secondary-color);
+  text-shadow: 4px 4px 5px var(--primary-color);
+  font-weight: bolder;
+  font-size: xx-large;
+}
+.loginForm input {
+  background-color: white;
+}
 
-  .loginContainer {
-    margin-top: 10px;
-  }
-
-  .loginLabel {
-    color: var(--quintinary-color);
-    font-weight: bolder;
-    font-size: xx-large;  
-  }
-  
-  .loginSubmitButton {
-    background-color: #31405f;
-  }
+.loginSubmitButton {
+  background-color: #31405f;
+}

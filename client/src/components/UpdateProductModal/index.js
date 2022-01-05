@@ -1,12 +1,14 @@
 import { useMutation } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { DELETE_PRODUCT, UPDATE_PRODUCT } from "../../utils/mutations";
+import { useHistory } from 'react-router'; 
 
 
 export default function NewProductModal({ currentProduct, onClose }) {
     const [product, setProduct] = useState({ productName: '', productNote: '', productId: ""});
     const [updateProduct] = useMutation(UPDATE_PRODUCT)
     const [deleteitem] = useMutation(DELETE_PRODUCT)
+    const history = useHistory();
 
     useEffect(() => {
         setProduct({
@@ -27,6 +29,8 @@ export default function NewProductModal({ currentProduct, onClose }) {
             }
         })
         console.log(updatingProduct);
+        onClose();
+        history.go(0);
     }
 
     const handleInputChange = (event) => {
@@ -46,6 +50,8 @@ export default function NewProductModal({ currentProduct, onClose }) {
             }
         })
         console.log(removeProduct)
+        onClose();
+        history.go(0);
     }
 
     return (

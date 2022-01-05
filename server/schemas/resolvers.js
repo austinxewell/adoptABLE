@@ -305,6 +305,7 @@ const resolvers = {
     },
     //creates messages within the conversation.
     createMessage: async (parent, { text, conversationId  }, context) => {
+      console.log('Test')
       if(context.user) {
         var updatedConversation = await Conversation.findByIdAndUpdate(
           { _id: conversationId },
