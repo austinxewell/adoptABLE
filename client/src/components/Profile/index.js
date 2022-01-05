@@ -65,14 +65,14 @@ export default function Profile() {
                             <h3>{capitalizeFirstLetter(me.username)}</h3>
                             <hr />
                             <label>Current Email:</label>
-                            <span>{me.email}</span>
+                            <div className="userinfo">{me.email}</div>
                             <label>Family Count:</label>
-                            <div>{me.familyMembers}</div>
+                            <div className="userinfo">{me.familyMembers}</div>
                             <button className="button is-info" onClick={toggleEdit}>Update Information</button>
                             <hr/>
                             <div className="columns">
                                 <div className="column is-3">
-                                    <div className="container">Current Items Needed</div>
+                                    <div className="container sectionheader">Current Items Needed</div>
                                     {products.map((product) => (
                                         <div className="card" key={product._id} onClick={() => toggleUpdateProductModal(product)}>
                                             <div className="card-header">{capitalizeFirstLetter(product.productName)}</div>
@@ -85,10 +85,10 @@ export default function Profile() {
                                             </div>
                                         </div>
                                     ))}
-                                    <button onClick={() => toggleProductModal()} className="button is-link pb-5">Add new item</button>
+                                    <button onClick={() => toggleProductModal()} className="button is-info pb-5">Add new item</button>
                                 </div>
                                 <div className="column is-9">
-                                    <div className="container sectionheader">Friends</div>
+                                    <div className="container friendsheader sectionheader">Friends</div>
                                     <div className="columns is-flex-wrap-wrap">
                                         {adoptedFamily.map((friends) => (
                                             <div key={friends.username} className="card column is-3">
