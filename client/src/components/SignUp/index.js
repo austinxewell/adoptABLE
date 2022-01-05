@@ -48,7 +48,7 @@ export default function SignUp() {
             
             <div className='columns is-centered'>
               
-              <h2 className=''>Sign-Up</h2>
+              <h1 className=''>Sign-Up</h1>
 
             </div>
           

@@ -1,24 +1,36 @@
 :root {
-    --primary-color: #E1B6E4;
-    --secondary-color: #A35390;
-    --terciary-color: #602750;
-    --quartinary-color: #CE65BA;
-    --quintinary-color: #327087;
-    --sextinary-color: #31405F;
-  }
+  --primary-color: #e1b6e4;
+  --secondary-color: #a35390;
+  --terciary-color: #602750;
+  --quartinary-color: #ce65ba;
+  --quintinary-color: #327087;
+  --sextinary-color: #31405f;
+}
 
-  .boxSignUp {
-    background-color: var(--primary-color);
-    height: 100vh;
-    border: 2px solid var(--sextinary-color);
-  }
+.boxSignUp {
+  background-color: whitesmoke;
+  height: 100vh;
+  border: 2px solid var(--sextinary-color);
+  border-radius: 30px;
+}
 
-  .signUpLabel {
-    color: var(--quintinary-color);
-    font-weight: bolder;
-    font-size: xx-large;  
-  }
+.boxSignUp h1 {
+  text-shadow: 4px 4px 8px var(--quartinary-color);
+  padding: 20px;
+  color: var(--terciary-color);
+}
 
-  .signUpSubmitButton {
-    background-color: #31405f;
-  }
+.boxSignUp form input {
+  background-color: white;
+}
+
+.signUpLabel {
+  color: var(--secondary-color);
+  text-shadow: 4px 4px 5px var(--primary-color);
+  font-weight: bolder;
+  font-size: xx-large;
+}
+
+.signUpSubmitButton {
+  background-color: #31405f;
+}

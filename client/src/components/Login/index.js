@@ -47,13 +47,13 @@ export default function Login (props) {
           
           <div className='columns is-centered'>
             
-            <h2 className=''>Login</h2>
+            <h1 className=''>Login</h1>
           
           </div>
           
           <div className='columns is-centered is-hcentered'>
             
-            <form className='' onSubmit={handleFormSubmit}>
+            <form className='loginForm' onSubmit={handleFormSubmit}>
               
               <div className=''>
                 
