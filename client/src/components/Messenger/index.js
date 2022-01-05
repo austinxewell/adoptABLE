@@ -1,13 +1,14 @@
 import React, { useState, useEffect }  from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 
-import  { QUERY_MY_CONVERSATIONS } from '../../utils/queries'
+import  { QUERY_MY_CONVERSATIONS, QUERY_ME_BASIC } from '../../utils/queries'
 import { CREATE_MESSAGE } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 import './messenger.css';
 import Message from "../Message";
 import Conversation from "../Conversations";
 import ChatOnline from "../ChatOnline";
+import ConversationLink from "../ConversationLink"
 
 
 export default function Messenger() {
@@ -25,6 +26,10 @@ export default function Messenger() {
     const [newMessage, setNewMessage] = useState({text: ""});
     const [sendMessage] = useMutation(CREATE_MESSAGE)
 
+    const { loading: secondLoading, data : meData } = useQuery(QUERY_ME_BASIC);
+    const [adoptedFamilies, setAdoptedFamilies] = useState([])
+
+    const adoptedFamilyData = meData?.me.adoptedFamily
    
     useEffect(() => {
         if(conversations && conversations.length){
@@ -67,7 +72,11 @@ export default function Messenger() {
                     <div class="dropdown">
                         <button class="dropbtn">Start a Conversation</button>
                         <div class="dropdown-content">
-                            <a href="#">Link 1</a>
+                        {secondLoading ? (
+                        <div>Loading...</div>
+                    ) : (      
+                        adoptedFamilyData.map(c =>  <ConversationLink adoptedFamilyData={c} />)              
+                    )}
                         </div>
                     </div>
 

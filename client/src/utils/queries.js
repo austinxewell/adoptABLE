@@ -28,7 +28,7 @@ export const QUERY_MY_CONVERSATIONS = gql`
                 createdAt
             }
         }
-    }
+    },
 `;
 
 export const QUERY_ME_BASIC = gql`
