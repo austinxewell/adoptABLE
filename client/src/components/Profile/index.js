@@ -89,7 +89,7 @@ export default function Profile() {
                                 </div>
                                 <div className="column is-9">
                                     <div className="container sectionheader">Friends</div>
-                                    <div className="columns">
+                                    <div className="columns is-flex-wrap-wrap">
                                         {adoptedFamily.map((friends) => (
                                             <div key={friends.username} className="card column is-3">
                                                 <div className="card-header">

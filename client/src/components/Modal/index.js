@@ -6,17 +6,31 @@ import './modal.css'
 import { useMutation } from '@apollo/client';
 import { useHistory } from 'react-router';
 
-function Modal ({ onClose, currentFamily, currentFriends, setAllFriends }) {
+function Modal ({ onClose, currentFamily }) {
     const { _id, username, products, familyMembers, email } = currentFamily;
     const [adoptUser] = useMutation(ADOPT_USER)
+    const [adopted, setAdopted] = useState(false)
+    const [adoptButton, setAdoptButton] = useState('')
 
     const [showList, setShowList] = useState(false);
+
+    useEffect(() => {
+        if(adopted) {
+            setAdoptButton('Adopted')
+        } else {
+            setAdoptButton('Adopt')
+        }
+    })
 
     const history = useHistory();
 
     function toggleList() {
         setShowList(!showList);
         console.log(showList);
+    }
+
+    function toggleAdoption() {
+        setAdopted(!adopted);
     }
 
     const adoptFamily = async (id) => {
@@ -26,11 +40,12 @@ function Modal ({ onClose, currentFamily, currentFriends, setAllFriends }) {
                 adoptedFamilyId: id
             }
         })
-        console.log(addingUser)
-        setAllFriends([
-            ...currentFriends,
-            id
-        ])
+        console.log(addingUser);
+        toggleAdoption();
+        // setAllFriends([
+        //     ...currentFriends,
+        //     id
+        // ])
     };
 
     return(
@@ -58,8 +73,8 @@ function Modal ({ onClose, currentFamily, currentFriends, setAllFriends }) {
                     
                 </section>
                 <footer className="modal-card-foot">
-                    <button className="button is-success" onClick={() => adoptFamily(_id)}>Adopt</button>
-                    <button className="button" onClick={onClose}>Cancel</button>
+                    <button className="button is-success" onClick={() => adoptFamily(_id)}>{adoptButton}</button>
+                    <button className="button" onClick={onClose}>Close</button>
                 </footer>
             </div>
         </div>

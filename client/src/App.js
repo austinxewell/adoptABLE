@@ -66,13 +66,12 @@ function App() {
                     <Route component={Home} />
                   </Switch>
                 </div>
+                <br />
+                <br />
+                <br />
             <Footer />
             </Router>
           </div>
-          <br />
-          <br />
-        
-        
     </ApolloProvider>  
   )
 }
