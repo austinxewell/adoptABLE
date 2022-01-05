@@ -1,26 +1,38 @@
-import {React, useState}  from 'react';
+import React, { useState, useEffect }  from 'react';
 import { useQuery } from '@apollo/client';
 
 import  { QUERY_MY_CONVERSATIONS } from '../../utils/queries'
 import Auth from '../../utils/auth';
-import './Messenger.css';
+import './messenger.css';
 import Message from "../Message";
 import Conversation from "../Conversations";
 import ChatOnline from "../ChatOnline";
 
 
 export default function Messenger() {
-    const { loading, data } = useQuery(QUERY_MY_CONVERSATIONS);
-    const conversations = data?.myConversations || [];
+    
+    
     const loggedIn = Auth.loggedIn();
 
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
-    const newId = childId => {setCurrentChat(childId)}
+    const newId = conversationId => {setCurrentChat(conversationId)}
     
+    const { loading, data } = useQuery(QUERY_MY_CONVERSATIONS);
+    const conversations = data?.myConversations;
 
-
-
+   
+        useEffect(() => {
+            if(conversations && conversations.length){
+                var conversationData = conversations.filter(obj => {
+                    return obj._id===currentChat
+                })
+                var conversationObj = conversationData.pop();
+                var messageArry = conversationObj.messages
+                setMessages(messageArry)
+            }
+        },[currentChat])
+    
     return (
         <section>
             <div className='container columns has-text-centered is-centered mt-3 titleWrapper'>
@@ -41,7 +53,7 @@ export default function Messenger() {
                     {loading ? (
                         <div>Loading...</div>
                     ) : (      
-                        conversations.map(c =>  <Conversation _id={c._id} members={c.members} newId={newId} />)              
+                        conversations.map(c =>  <Conversation _id={c._id} members={c.members} conversationId={newId} />)              
                     )}
                 </div>
             </div>
@@ -52,7 +64,11 @@ export default function Messenger() {
                         currentChat ?
                     <>
                     <div className="chatBoxTop">
-                        <Message currentChatId={currentChat} />
+                        {loading ? (
+                            <div>Loading...</div>
+                    ) : messages && messages.length?(      
+                        messages.map(c =>  <Message messageData={c}  />)              
+                    ): ''}
                     </div>
                     <div className="chatBoxBottom">
                         <textarea className="chatMessageInput" placeholder="Whats on your mind?"></textarea>
