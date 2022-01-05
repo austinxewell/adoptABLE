@@ -12,9 +12,13 @@
   padding: 15px;
 }
 
+.boxHome {
+  padding-top: 50px;
+}
+
 .boxHome h1 {
   text-shadow: 4px 4px 8px var(--quartinary-color);
-  padding-right: 20px;
+  padding: 10px;
 }
 
 .boxHome h3 {
