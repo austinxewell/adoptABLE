@@ -3,10 +3,9 @@ import React, { useState } from "react";
 import { ADD_PRODUCT } from "../../utils/mutations";
 
 
-export default function NewProductModal({ product, onClose }) {
+export default function NewProductModal({ onClose }) {
     const [newproduct, setNewProduct] = useState({ productName: '', productNote: ''});
     const [addProduct] = useMutation(ADD_PRODUCT)
-    console.log(product)
 
     const addNewProduct = async (newproduct) => {
         console.log(newproduct)
@@ -17,6 +16,7 @@ export default function NewProductModal({ product, onClose }) {
             }
         })
         console.log(addingProduct);
+        onClose();
     }
 
     const handleInputChange = (event) => {
@@ -26,17 +26,7 @@ export default function NewProductModal({ product, onClose }) {
             ...newproduct,
             [name]: value
         })
-        console.log(newproduct)
     }
-
-    // if(product.productName) {
-    //     setNewProduct({
-    //         ...newproduct,
-    //         [productName]: product.productName,
-    //         [productNote]: product.productNote
-    //     })
-    //     console.log(newproduct)
-    // }
 
     return (
         <div className="modal is-active">

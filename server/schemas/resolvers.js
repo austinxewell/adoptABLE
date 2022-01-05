@@ -1,4 +1,4 @@
-const { User, Product, Category, Tag, Conversation, Message } = require("../models")
+const { User, Product, Category, Tag, Conversation, Message, Donate } = require("../models")
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
@@ -85,46 +85,47 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    //for checkout
-    checkout: async(parent, args, context) => {
-      const order = new Order({ users: args.users });
-      const { users } = await order.populate('users').execPopulate();
-      const line_items = [];
-
-      for (let i = 0; i < products.length; i++) {
-        const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`]
+    donate: async (parent, { _id }, context) => {
+      
+      if (context.user) {
+        const user = await User.findById(context.user._id)
+        
+        .populate({
+          path: 'donates.users',
         });
 
-        const price = await stripe.prices.create({
-          product: product.id,
-          unit_amount: products[i].price * 100,
-          currency: 'usd',
-        });
-
-        line_items.push({
-          price: price.id,
-          quantity: 1
-        });
+        return user.donates.id(_id);
       }
 
+      throw new AuthenticationError('Not logged in');
+    },
+    checkout: async (parent, args, context) => {
+      const url = new URL(context.headers.referer).origin;
+      const donate = new Donate({ users: args.users });
+      console.log(donate._id)
+      const usd = 'usd'
+      const line_items = [{
+        quantity: 1,
+        price_data: {
+          unit_amount : (12 * 100) ,
+          currency : usd,
+          product_data : {name : 'Donate Test'}
+        }
+      }];
+
+      
+
+      const user  = await donate.populate('users').execPopulate();
+      console.log(user.users._id)
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
-        line_items,
+        line_items,        
         mode: 'payment',
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${url}/`
       });
 
       return { session: session.id };
-
-    },
-
-    conversationById: async ( parent, { _id }) => {
-      return Conversation.findOne({ _id })
-      .select('-__v -password')
     }
   },
 
@@ -203,12 +204,14 @@ const resolvers = {
     },
       //delete a product and is relation to all users.
       deleteProduct: async (parent, { productId }, context) => {
+        //var product = await Product.findOne({productId});
+
         if(context.user) {
-          await Product.findByIdAndRemove(
-            { _id: productId },
+          const deleteUser = await Product.findByIdAndRemove(
+            { _id: productId }
           );
 
-          return (`Product with the ID: ${productId} has been removed.`)
+          return (`Product with the ID: ${deleteUser} has been removed.`)
         }
 
         throw new AuthenticationError('You need to be logged in!');
@@ -263,7 +266,8 @@ const resolvers = {
   //update product details
   updateProduct: async (parent, { productName, productNote, productId }, context) => {
     if (context.user) {
-      var product = await Product.findOne({productId});
+      var product = await Product.findOne({_id: productId});
+      console.log(`Updating ${product}`)
       
       const updatedProduct = await Product.findByIdAndUpdate( 
         { _id: product._id },

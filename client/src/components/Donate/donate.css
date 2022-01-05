@@ -1,8 +1,31 @@
 :root {
-    --primary-color: #E1B6E4;
-    --secondary-color: #A35390;
-    --terciary-color: #602750;
-    --quartinary-color: #CE65BA;
-    --quintinary-color: #327087;
-    --sextinary-color: #31405F;
-  }
+  --primary-color: #E1B6E4;
+  --secondary-color: #A35390;
+  --terciary-color: #602750;
+  --quartinary-color: #CE65BA;
+  --quintinary-color: #327087;
+  --sextinary-color: #31405F;
+}
+
+.donateBox {
+  background-color: var(--primary-color);
+  border: 2px solid var(--sextinary-color);
+}
+
+.donateContainer {
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.donateLabel {
+  color: var(--quintinary-color);
+  font-weight: bolder;
+  font-size: xx-large;  
+}
+
+.donateInput {
+  width: fit-content;
+}
+.donateSubmitButton {
+  background-color: #31405f;
+}

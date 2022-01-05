@@ -37,7 +37,9 @@ export const QUERY_ME_BASIC = gql`
             _id
             email
             username
+            familyMembers
             products {
+                _id
                 productName
                 productNote
             }
@@ -49,18 +51,10 @@ export const QUERY_ME_BASIC = gql`
     }
 `;
 
-export const QUERY_CONVERSATION_BY_ID = gql`
-query($_id: ID!){
-  conversationById(_id: $_id){
-    _id
-    members{
-      username
+export const QUERY_CHECKOUT = gql`
+    query getCheckout($users: [ID]!) {
+        checkout(users: $users) {
+            session
+        }
     }
-    messages{
-      sender
-      text
-      createdAt
-    }
-  }
-}
-`;
+`

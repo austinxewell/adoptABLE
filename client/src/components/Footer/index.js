@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './footer.css'
 
 export default function Footer (props) {
@@ -6,14 +7,13 @@ export default function Footer (props) {
         <footer className='columns navbar navbarFooter is-fixed-bottom'>
             <nav className='column donatenav'>
                 <div className='columns navbar-item is-centered'>
-                    <a 
+                    <Link 
                     className='columns navoptions' 
-                    href='#donate' 
-                    onClick={() => props.handlePageChange('Donate')}
+                    to='donate' 
                     key='Donate'
                     >
                     Donate
-                    </a>
+                    </Link>
                 </div>
             </nav>
         </footer>
