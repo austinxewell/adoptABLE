@@ -9,11 +9,31 @@ export default function Adopt () {
 
     const { loading, data : data1 } = useQuery(QUERY_USERS);
     const { data } = useQuery(QUERY_ME_BASIC)
-    const [famies, setFamilies] = useState()
+    const [notFriends, setNotFriends] = useState([]);
+    const [allFriends, setAllFriends] = useState([]);
 
     const families = data1?.users || [];
-    const friends = data?.me || [];
+    console.log(families)
+    const friends = data?.me.adoptedFamily || [];
+    const myId = data?.me._id;
     console.log(friends);
+    const currentFriends = friends.map(function(friend) {
+        return friend._id
+    });
+    setAllFriends(currentFriends);
+
+    useEffect(() => {
+        const notFriendsArray = families.filter(function(each) { 
+            if(currentFriends.includes(each._id) || each._id === myId) {
+                console.log('your friend')
+            } else {
+                return each
+            }
+        })
+        setNotFriends(notFriendsArray);
+    }, []);
+
+    console.log(families);
 
     const [currentFamily, setCurrentFamily] = useState();
 
@@ -40,9 +60,9 @@ export default function Adopt () {
                 </div>
             ) : (
             <div className='boxAdopt adoptFamilyContainer columns is-vcentered'>
-                {isModalOpen && <Modal currentFamily={currentFamily} onClose={toggleModal} />}
+                {isModalOpen && <Modal setAllFriends={setAllFriends} currentFriends={currentFriends} currentFamily={currentFamily} onClose={toggleModal} />}
                 <div className="columns is-flex-wrap-wrap">
-                    {families.map((family, i) => (
+                    {notFriends.map((family, i) => (
                         <div className="column px-5 is-3" key={family.username}>
                             <div className="card p-3" onClick={() => toggleModal(family, i)}>
                                 <div className="card-content">

@@ -42,11 +42,13 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-
-        <header>
           <div className='container'>
             <Router>
-              <Nav />
+              <div className="container pb-5">
+                <Nav />
+              </div>
+              <br />
+              <br />
                 <div className='container'>
                   <Switch>
                     <Route exact path="/" component={Home} />
@@ -69,7 +71,7 @@ function App() {
           </div>
           <br />
           <br />
-        </header>
+        
         
     </ApolloProvider>  
   )

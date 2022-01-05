@@ -4,12 +4,15 @@ import List from '../List';
 import { ADOPT_USER } from '../../utils/mutations';
 import './modal.css'
 import { useMutation } from '@apollo/client';
+import { useHistory } from 'react-router';
 
-function Modal ({ onClose, currentFamily }) {
+function Modal ({ onClose, currentFamily, currentFriends, setAllFriends }) {
     const { _id, username, products, familyMembers, email } = currentFamily;
     const [adoptUser] = useMutation(ADOPT_USER)
 
     const [showList, setShowList] = useState(false);
+
+    const history = useHistory();
 
     function toggleList() {
         setShowList(!showList);
@@ -24,6 +27,10 @@ function Modal ({ onClose, currentFamily }) {
             }
         })
         console.log(addingUser)
+        setAllFriends([
+            ...currentFriends,
+            id
+        ])
     };
 
     return(

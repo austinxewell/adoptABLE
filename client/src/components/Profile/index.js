@@ -70,9 +70,9 @@ export default function Profile() {
                             <div>{me.familyMembers}</div>
                             <button className="button is-info" onClick={toggleEdit}>Update Information</button>
                             <hr/>
-                            <label>Current Items Needed</label>
                             <div className="columns">
                                 <div className="column is-3">
+                                    <div className="container">Current Items Needed</div>
                                     {products.map((product) => (
                                         <div className="card" key={product._id} onClick={() => toggleUpdateProductModal(product)}>
                                             <div className="card-header">{capitalizeFirstLetter(product.productName)}</div>
@@ -85,9 +85,10 @@ export default function Profile() {
                                             </div>
                                         </div>
                                     ))}
-                                    <button onClick={() => toggleProductModal()} className="button is-link">Add new item</button>
+                                    <button onClick={() => toggleProductModal()} className="button is-link pb-5">Add new item</button>
                                 </div>
                                 <div className="column is-9">
+                                    <div className="container sectionheader">Friends</div>
                                     <div className="columns">
                                         {adoptedFamily.map((friends) => (
                                             <div key={friends.username} className="card column is-3">
