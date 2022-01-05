@@ -1,6 +1,6 @@
 import React from 'react'
 import {useQuery} from '@apollo/client'
-import "./conversations.css"
+import "./Conversations.css"
 
 import  { QUERY_ME_BASIC } from '../../utils/queries'
 

@@ -5,10 +5,10 @@ import './home.css'
 export default function Home () {
     return (
         <section className=''>
-          <div className='container boxHome columns has-text-centered is-centered mt-3'>
-            <h2 className='container'>
-            adoptABLE
-            </h2>
+          <div className='container boxHome columns has-text-right is-centered mt-3'>
+            <h1 className='container'>
+                  adoptABLE
+            </h1>
           </div>
           <div className='container'>
             <div>
