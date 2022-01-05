@@ -11,10 +11,14 @@ nav {
   background-color: var(--sextinary-color);
 }
 
+nav a {
+  color: var(--quartinary-color);
+}
+
 .navbarFooter {
   background-color: var(--sextinary-color);
   font-family: 'Lora', normal;
-  font-size: larger;
+  font-size: xx-large;
 }
 
 .donatenav {
