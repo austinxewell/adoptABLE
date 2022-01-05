@@ -1,10 +1,12 @@
 import React, { useState, useEffect} from 'react';
 import { useMutation } from '@apollo/client';
 import { UPDATE_USER } from '../../utils/mutations';
+import { useHistory } from 'react-router';
 
 export default function UpdateProfile({ me, onClose }) {
     const [updateUser] = useMutation(UPDATE_USER);
     const [currentMe, setCurrentMe] = useState({ email: "", familyMembers: ""});
+    const history = useHistory();
     useEffect(() => {
         setCurrentMe({
             email: me.email,
@@ -21,6 +23,7 @@ export default function UpdateProfile({ me, onClose }) {
         })
         console.log(updatedMe)
         onClose();
+        history.go(0);
     }
 
     const handleInputChange = (event) => {

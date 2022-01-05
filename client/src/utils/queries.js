@@ -49,3 +49,16 @@ export const QUERY_ME_BASIC = gql`
         }
     }
 `;
+
+export const QUERY_ADOPT = gql`
+query($username: String!) {
+    users {
+        _id
+        username
+        adoptedFamily {
+          _id
+          username
+        }
+    }
+}
+`;

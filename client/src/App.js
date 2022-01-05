@@ -40,112 +40,36 @@ const client = new ApolloClient({
 
 function App() {
 
-  
-  const [currentPage, handlePageChange] = useState('Home');
-
-  function renderPage(currentPage) {
-    switch(currentPage) {
-      default:
-        return(
-          <Home />
-        );
-      case 'Login':
-        return(
-          <Login />
-        )
-      case 'SignUp':
-        return(
-          <SignUp />
-        )
-      case 'Logout':
-        return (    
-          <Home />
-        )
-      case 'About':
-        return(
-          <About />
-        );
-      case 'Contact':
-        return(
-          <Contact />
-        );
-      case 'Adopt':
-        return(
-          <Adopt />
-        );
-      case 'Messenger':
-        return(
-          <Messenger />
-        );
-      case 'Success':
-        return(
-          <Success />
-        );
-      case 'Profile':
-        return(
-          <Profile />
-        )
-    }
-  }
-
   return (
     <ApolloProvider client={client}>
+        <div className='container'>
+          <Router>
+            <Nav />
+            <br />
+            <br />
+            <div className='container mt-5'>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/about" component={About} />
+                <Route exact path="/contact" component={Contact} />
+                <Route exact path="/adopt" component={Adopt} />
+                <Route exact path="/messenger" component={Messenger} />
+                <Route exact path="/profile" component={Profile} />
+                <Route exact path="/adoptABLE" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/logout" component={Home} />
+                <Route exact path="/signup" component={SignUp} />
 
-        <header>
-          <div className='container'>
-            <Router>
-              <Nav />
-                <div className='container'>
-                  <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/about" component={About} />
-                    <Route exact path="/contact" component={Contact} />
-                    <Route exact path="/adobt" component={Adopt} />
-                    <Route exact path="/messenger" component={Messenger} />
-                    <Route exact path="/profile" component={Profile} />
-                    <Route exact path="/adoptABLE" component={Home} />
-                    <Route exact path="/login" component={Login} />
-                    <Route exact path="/logout" component={Home} />
-                    <Route exact path="/signup" component={SignUp} />
-
-                    <Route component={Home} />
-                  </Switch>
-                </div>
-            
-            </Router>
-          </div>
-          <br />
-          <br />
-        </header>
-        
+                <Route component={Home} />
+              </Switch>
+            </div>
+            <div>
+              <Footer />
+            </div>
+          </Router>
+        </div>
     </ApolloProvider>  
-    )
-
-  // return (
-  //   <ApolloProvider client={client}>
-  //     <Router>
-  //       <div className='container'>
-  //         <StoreProvider>
-  //         <header className=''>
-  //           <Nav className='' currentPage={currentPage} handlePageChange={handlePageChange} />
-  //         </header>
-  //         <br/>
-  //         <main className=''>
-  //           <br/>
-  //           <div className=''>
-  //             <br/>
-  //           {renderPage(currentPage)}
-  //           </div>
-  //         </main>
-  //         <br/>
-  //         <br/>
-  //         <br/>
-  //         <Footer />
-  //         </StoreProvider>
-  //       </div>
-  //     </Router>
-  //   </ApolloProvider>
-  // );
+  )
 }
 
 export default App;
