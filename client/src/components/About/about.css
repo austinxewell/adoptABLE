@@ -1,14 +1,14 @@
 :root {
-  --primary-color: #E1B6E4;
-  --secondary-color: #A35390;
+  --primary-color: #e1b6e4;
+  --secondary-color: #a35390;
   --tertiary-color: #602750;
-  --quartinary-color: #CE65BA;
+  --quartinary-color: #ce65ba;
   --quintinary-color: #327087;
-  --sextinary-color: #31405F;
+  --sextinary-color: #31405f;
 }
 
 .aboutBox h1 {
-  text-shadow: 4px 4px 5px var(--quartinary-color);
+  text-shadow: 4px 4px 8px var(--quartinary-color);
   padding-right: 20px;
 }
 
