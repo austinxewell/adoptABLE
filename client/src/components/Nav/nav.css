@@ -1,10 +1,10 @@
 :root {
-  --primary-color: #E1B6E4;
-  --secondary-color: #A35390;
+  --primary-color: #e1b6e4;
+  --secondary-color: #a35390;
   --terciary-color: #602750;
-  --quartinary-color: #CE65BA;
+  --quartinary-color: #ce65ba;
   --quintinary-color: #327087;
-  --sextinary-color: #31405F;
+  --sextinary-color: #31405f;
 }
 
 nav {
@@ -13,15 +13,15 @@ nav {
 
 .navbar {
   background-color: var(--sextinary-color);
-  font-family: 'Lora', normal;
+  font-family: "Lora", normal;
   font-size: xx-large;
   height: 60px;
   align-items: center;
 }
 
 .navoptions {
-  font-family: 'Lora', serif;
-  -webkit-text-stroke: .1px white;
+  font-family: "Lora", serif;
+  -webkit-text-stroke: 0.1px white;
   size: 30px;
   font-weight: bolder;
   text-shadow: 4px 4px 5px black;

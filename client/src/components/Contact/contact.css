@@ -24,7 +24,7 @@
 
 .contactContainer1 label {
   color: whitesmoke;
-  text-shadow: 4px 4px 4px var(--quartinary-color);
+  text-shadow: 4px 4px 4px black;
 }
 
 .contactContainer1 h4 {
@@ -34,11 +34,12 @@
 }
 
 .contactContainer2 {
-  margin-top: 18px;
+  margin-top: 30px;
 }
 
 h2 {
-  text-shadow: 4px 4px 4px var(--quartinary-color);
+  text-shadow: 4px 4px 10px var(--quartinary-color);
+  margin-top: 20px;
 }
 
 .contactinput {
