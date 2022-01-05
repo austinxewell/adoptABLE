@@ -1,14 +1,19 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
+import React, { useState, useEffect } from "react";
 import "./conversationLink.css"
-
-import { QUERY_ME_BASIC } from "../../utils/queries";
-
-
 
 export default function ConversationLink({adoptedFamilyData}){
 
+    const [adoptedFamilyId, setAdoptedFamilyId] =  useState();
+
+    console.log('conversations link level: ', adoptedFamilyData)
+
+    useEffect(() => {
+        if(adoptedFamilyId !== ""){
+        setAdoptedFamilyId("")
+        }
+    },)
+
     return(
-        <a href="#">{adoptedFamilyData.username}</a>
+        <a onClick={() => setAdoptedFamilyId(adoptedFamilyData._id)} href="#">{adoptedFamilyData.username}</a>
     )
 }

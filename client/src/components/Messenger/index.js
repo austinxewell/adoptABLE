@@ -27,9 +27,19 @@ export default function Messenger() {
     const [sendMessage] = useMutation(CREATE_MESSAGE)
 
     const { loading: secondLoading, data : meData } = useQuery(QUERY_ME_BASIC);
-    const [adoptedFamilies, setAdoptedFamilies] = useState([])
+
+    const [adoptedFamilyId, setAdoptedFamilyId] =  useState();
 
     const adoptedFamilyData = meData?.me.adoptedFamily
+
+    useEffect(() => {
+        if(adoptedFamilyId !== ""){
+        setAdoptedFamilyId("")
+        }
+    },[])
+    
+
+    console.log('messenger level: ', adoptedFamilyId)
    
     useEffect(() => {
         if(conversations && conversations.length){
@@ -75,7 +85,7 @@ export default function Messenger() {
                         {secondLoading ? (
                         <div>Loading...</div>
                     ) : (      
-                        adoptedFamilyData.map(c =>  <ConversationLink adoptedFamilyData={c} />)              
+                        adoptedFamilyData.map(c => <a key={c._id} onClick={() => setAdoptedFamilyId(c._id)} href="#">{c.username}</a>)              
                     )}
                         </div>
                     </div>
@@ -96,8 +106,8 @@ export default function Messenger() {
                     <div className="chatBoxTop">
                         {loading ? (
                             <div>Loading...</div>
-                    ) : messages && messages.length?(      
-                        messages.map(c =>  <Message messageData={c}  />)              
+                    ) : messages && messages.length?(                     
+                            messages.map(c => <Message messageData={c}  />)                               
                     ): ''}
                     </div>
                     <div className="chatBoxBottom">
