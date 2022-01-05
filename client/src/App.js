@@ -40,7 +40,6 @@ const client = new ApolloClient({
 
 function App() {
 
-
   return (
     <ApolloProvider client={client}>
 
@@ -53,7 +52,7 @@ function App() {
                     <Route exact path="/" component={Home} />
                     <Route exact path="/about" component={About} />
                     <Route exact path="/contact" component={Contact} />
-                    <Route exact path="/adobt" component={Adopt} />
+                    <Route exact path="/adopt" component={Adopt} />
                     <Route exact path="/messenger" component={Messenger} />
                     <Route exact path="/profile" component={Profile} />
                     <Route exact path="/adoptABLE" component={Home} />
@@ -73,33 +72,7 @@ function App() {
         </header>
         
     </ApolloProvider>  
-    )
-
-  // return (
-  //   <ApolloProvider client={client}>
-  //     <Router>
-  //       <div className='container'>
-  //         <StoreProvider>
-  //         <header className=''>
-  //           <Nav className='' currentPage={currentPage} handlePageChange={handlePageChange} />
-  //         </header>
-  //         <br/>
-  //         <main className=''>
-  //           <br/>
-  //           <div className=''>
-  //             <br/>
-  //           {renderPage(currentPage)}
-  //           </div>
-  //         </main>
-  //         <br/>
-  //         <br/>
-  //         <br/>
-  //         <Footer />
-  //         </StoreProvider>
-  //       </div>
-  //     </Router>
-  //   </ApolloProvider>
-  // );
+  )
 }
 
 export default App;

@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Modal from '../Modal';
 import { useQuery } from '@apollo/client';
-import { QUERY_USERS } from '../../utils/queries';
+import { QUERY_USERS, QUERY_ME_BASIC, QUERY_ADOPT } from '../../utils/queries';
 import { capitalizeFirstLetter, cleanupName } from '../../utils/helper';
 import './adopt.css'
-import { useStoreContext } from '../../utils/GlobalState';
 
 export default function Adopt () {
 
-    const { loading, data } = useQuery(QUERY_USERS);
-    const [state, dispatch] = useStoreContext();
+    const { loading, data : data1 } = useQuery(QUERY_USERS);
+    const { data } = useQuery(QUERY_ME_BASIC)
+    const [famies, setFamilies] = useState()
 
-    const families = data?.users || [];
-    console.log(families);
+    const families = data1?.users || [];
+    const friends = data?.me || [];
+    console.log(friends);
 
     const [currentFamily, setCurrentFamily] = useState();
 
@@ -20,9 +21,7 @@ export default function Adopt () {
 
     function toggleModal(name, i) {
         setCurrentFamily(name);
-        console.log(currentFamily)
         setIsModalOpen(!isModalOpen);
-        console.log(isModalOpen)
     };
 
     return (
