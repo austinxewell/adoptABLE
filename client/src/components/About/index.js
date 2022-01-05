@@ -5,16 +5,16 @@ import img from '../../assets/images/statsimage.jpg';
 export default function About () {
     return (
         <section className=''>
-          <div className='container aboutBox columns has-text-centered is-centered mt-3'>
-            <h2 className='container'>
+          <div className='container aboutBox columns has-text-left is-centered mt-3'>
+            <h1 className='container'>
             About
-            </h2>
+            </h1>
           </div>
           <div className='container'>
         <div>
             <div className='aboutBox aboutContainer columns is-vcentered'>
                 <img className="aboutImg is-half column" src={img} alt="Facts about Domestic Violence" />
-                <h3 className='aboutContent column'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h3>
+                <h3 className='aboutContent column'>With domestic violence cases rising sharply by 25-50% in 2021 alone, adoptABLE aims to provide additional assistance to victims and their families. <br></br><br></br>Using adoptABLE, victims can create anonymous accounts seeking assistance and donors can "adopt" families to assist. We are a small start-up project looking to make a big difference in our community. Our team is passionate about assisting victims of domestic violence and we hope to bring hope and success to families in need.</h3>
             </div>
         </div>
         </div>
