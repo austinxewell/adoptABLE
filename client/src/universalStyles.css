@@ -1,0 +1,92 @@
+:root {
+  --primary-color: #E1B6E4;
+  --secondary-color: #A35390;
+  --terciary-color: #602750;
+  --quartinary-color: #CE65BA;
+  --quintinary-color: #327087;
+  --sextinary-color: #31405F;
+}
+
+textarea {
+  resize: none;
+}
+
+h1 {
+  color: var(--sextinary-color);
+  font-weight: bolder;
+  font-family: 'Shadows Into Light Two', cursive;
+  font-size: 100px; 
+}
+
+h2 {
+  color: var(--sextinary-color);
+    font-weight: bolder;
+    font-family: 'Shadows Into Light Two', cursive;
+    font-size: 60px;
+     text-decoration: underline;
+}
+
+h3 {
+  color: var(--quintinary-color);
+}
+
+h4 {
+  color: var(--quintinary-color);
+  font-weight: bold;
+}
+
+h5 {
+  color: var(--quintinary-color);
+}
+
+/* h6 {
+
+} */
+
+/* p {
+
+} */
+
+/* a {
+  color: var(--quintinary-color);
+} */
+
+/* img {
+  
+} */
+
+
+
+/* html {
+  background-color: #E1B6E4;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+} */
+
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+
+/* .purplecolor1 {
+  background-color: #E1B6E4;
+  background-size: cover;
+} */
+
+/* .purplecolor2 {
+  background-color: rgba(163, 83, 144, 0.4);
+  max-width: 100%;
+  background-size: cover;
+} */

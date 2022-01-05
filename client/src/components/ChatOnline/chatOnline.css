@@ -1,0 +1,37 @@
+:root {
+    --primary-color: #E1B6E4;
+    --secondary-color: #A35390;
+    --terciary-color: #602750;
+    --quartinary-color: #CE65BA;
+    --quintinary-color: #327087;
+    --sextinary-color: #31405F;
+  }
+
+.chatOnlineFriend{
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.chatOnlineFriend:hover{
+    background-color: var(--quintinary-color);
+    color: white;
+}
+
+.chatOnlineImgContainer{
+    position: relative;
+    margin-right: 10px;
+}
+
+.chatOnlineBadge{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: limegreen;
+    position: absolute;
+    top: 0;
+    right: 0;
+}

@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
+const tagSchema = require('./Tag');
 
 const productSchema = new Schema(
   {
@@ -23,12 +24,7 @@ const productSchema = new Schema(
         ref: 'User'
       }
     ],
-    tags: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Tag'
-      }
-    ]
+    tags: [tagSchema]
   },
 );
 

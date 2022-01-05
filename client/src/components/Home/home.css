@@ -1,0 +1,32 @@
+:root {
+    --primary-color: #E1B6E4;
+    --secondary-color: #A35390;
+    --terciary-color: #602750;
+    --quartinary-color: #CE65BA;
+    --quintinary-color: #327087;
+    --sextinary-color: #31405F;
+  }
+  /* body {
+  } */
+
+  .homeImg {
+    border-radius: 30px;
+    padding: 15px;
+  }
+  
+  .boxHome h1 {
+    text-shadow: 4px 4px 5px #CE65BA;
+    padding: 60px 0px 20px 20px;
+  }
+  .boxHome h3 {
+    color: #31405F;
+    text-shadow: 4px 4px 5px #327087;
+  }
+
+  .homeContainer {
+    margin-top: 10px;
+    border-radius: 30px;
+    background-color: var(--primary-color);
+    border: 2px solid var(--sextinary-color);
+  }
+  

@@ -1,0 +1,62 @@
+:root {
+    --primary-color: #E1B6E4;
+    --secondary-color: #A35390;
+    --terciary-color: #602750;
+    --quartinary-color: #CE65BA;
+    --quintinary-color: #327087;
+    --sextinary-color: #31405F;
+  }
+
+.message{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    background-color: var(--primary-color);
+    border-radius: 20px;
+}
+
+.messageTop{
+    display: flex;
+}
+
+/* E1B6E4, A35390, 602750, CE65BA, 327087, 31405F */
+
+.messageText{
+    padding: 10px;
+    border-radius: 20px 20px 20px 0px;
+    background-color: var(--quintinary-color);
+    max-width: 300px;
+    color: black;
+    font-size: 15px;
+    color: white;
+}
+
+.messageBottom{
+    font-size: 12px;
+    color: white;
+    background-color: var(--quintinary-color);
+    border-radius: 5px 5px 5px 0px;
+    padding: 1px;
+    width: fit-content;
+}
+
+.message.own{
+    align-items: flex-end;
+    color: var(--sextinary-color);
+}
+
+.message.own .messageText{
+    align-items: flex-end;
+    border-radius: 20px 20px 0px 20px ;
+    background-color: var(--sextinary-color);
+    color: white;
+    
+}
+
+.message.own .messageBottom {
+    align-items: flex-end;
+    font-size: 12px;
+    color: white;
+    background-color: var(--sextinary-color);
+    border-radius: 5px 5px 0px 5px;
+}

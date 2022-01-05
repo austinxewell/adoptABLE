@@ -1,13 +1,12 @@
 const faker = require('faker');
 
 const db = require('../config/connection')
-const { Product, User, Category, Tag } = require('../models');
+const { Product, User, Category } = require('../models');
 
 db.once('open', async () => {
     await Product.deleteMany({});
     await User.deleteMany({});
     await Category.deleteMany({});
-    await Tag.deleteMany({});
 
     //create User Data
     const userData = [];
@@ -103,37 +102,6 @@ db.once('open', async () => {
       } 
 
       console.log('---> Added Products to Categories <---')
-
-
-      // create tags
-      const tagData = [];
-
-      for (let i = 0; i < 50; i += 1) {
-        const tagName = faker.commerce.productAdjective();
-
-        tagData.push({ tagName })
-    }
-
-    const createdTag = await Tag.collection.insertMany(tagData);
-
-    console.log('---> Added Tags <---')
-
-      //create tags for products
-      for (let i = 0; i < 100; i += 1) {
-        const randomProductIndex = Math.floor(Math.random() * createdProduct.ops.length);
-        const { _id: productId } = createdProduct.ops[randomProductIndex];
-  
-        let tagId = productId;
-  
-        while (tagId === productId) {
-          const randomTagIndex = Math.floor(Math.random() * createdTag.ops.length);
-          tagId = createdTag.ops[randomTagIndex];
-        }
-  
-        await Product.updateOne({ _id: productId }, { $addToSet: { tags: tagId }})
-      } 
-
-      console.log('---> Added Tags to Products <---')
 
   console.log('Data has been seeded!');
   process.exit(0);

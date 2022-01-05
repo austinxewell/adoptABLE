@@ -11,6 +11,7 @@ const typeDefs = gql`
     familyMembers: Int
     products: [Product]
     adoptedFamily: [User]
+    donates: [Donate]
   }
 
   type Query {
@@ -23,6 +24,10 @@ const typeDefs = gql`
     category(categoryName: String): Category
     tags: [Tag]
     tag(tagName: String!): Tag
+    conversations: [Conversation]
+    myConversations: [Conversation]
+    checkout(users: [ID]!): Checkout
+    donate(_id: ID!): Donate
   }
 
   type Product {
@@ -43,6 +48,20 @@ const typeDefs = gql`
   type Tag {
     _id: ID
     tagName: String
+    products: [Product]
+  }
+
+  type Conversation {
+    _id: ID
+    members: [User]
+    messages: [Message]
+  }
+
+  type Message {
+    _id: ID
+    sender: String
+    text: String
+    createdAt: String
   }
 
   type Auth {
@@ -57,6 +76,23 @@ const typeDefs = gql`
     deleteAdoptedFamily(adoptedFamilyId: ID!): User
     addProduct(productName: String!, productNote: String!): Product
     deleteProduct(productId: String!): Product
+    addTag(tagName: String!): Product
+    deleteTag(tagId: String!): Product
+    updateUser(email: String, familyMembers: String): User
+    updateProduct(productName: String, productNote: String, productId: ID): Product
+    addConversation(receiverId: String!): Conversation
+    createMessage(text: String!, conversationId: String!): Conversation
+    addDonate(users: [ID]!): Donate
+  }
+
+  type Donate {
+    _id: ID
+    purchaseDate: String
+    users: [User]
+  }
+
+  type Checkout {
+    session: ID
   }
 `;
 

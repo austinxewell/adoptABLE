@@ -1,0 +1,29 @@
+.card {
+    margin: 5px;
+    padding: 3px;
+}
+
+.card:hover {
+    background-color: rgb(196, 196, 196);
+    color: black;
+}
+
+.card-header {
+    margin: 3px;
+    font-size: 16px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.productnote {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.productnotes {
+    font-size: 12px;
+}
+
+.button {
+    margin: 5px
+}

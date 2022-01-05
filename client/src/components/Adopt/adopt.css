@@ -1,0 +1,38 @@
+:root {
+  --primary-color: #E1B6E4;
+  --secondary-color: #A35390;
+  --terciary-color: #602750;
+  --quartinary-color: #CE65BA;
+  --quintinary-color: #327087;
+  --sextinary-color: #31405F;
+}
+
+.boxAdopt {
+  background-color: var(--primary-color);
+  border: 2px solid var(--sextinary-color);
+}
+
+.adoptContainer {
+  padding-top: 15px;
+}
+
+.adoptFamilyContainer {
+  padding-top: 10px;
+}
+
+.card {
+  border: 1px solid var(--sextinary-color);
+  border-radius: 5%;
+}
+
+.card:hover {
+  background-color: var(--sextinary-color);
+  border: 1px solid var(--sextinary-color);
+  color: var(--primary-color);
+}
+
+.cardfamilyname {
+  font-family: 'Shadows Into Light Two';
+  font-weight: bold;
+  font-size: x-large;
+}
