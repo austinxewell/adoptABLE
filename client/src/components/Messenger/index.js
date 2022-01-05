@@ -1,7 +1,8 @@
 import React, { useState, useEffect }  from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 
 import  { QUERY_MY_CONVERSATIONS } from '../../utils/queries'
+import { CREATE_MESSAGE } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 import './messenger.css';
 import Message from "../Message";
@@ -21,17 +22,37 @@ export default function Messenger() {
     const { loading, data } = useQuery(QUERY_MY_CONVERSATIONS);
     const conversations = data?.myConversations;
 
+    const [newMessage, setNewMessage] = useState({text: ""});
+    const [sendMessage] = useMutation(CREATE_MESSAGE)
+
    
-        useEffect(() => {
-            if(conversations && conversations.length){
-                var conversationData = conversations.filter(obj => {
-                    return obj._id===currentChat
-                })
-                var conversationObj = conversationData.pop();
-                var messageArry = conversationObj.messages
-                setMessages(messageArry)
+    useEffect(() => {
+        if(conversations && conversations.length){
+            var conversationData = conversations.filter(obj => {
+                return obj._id===currentChat
+            })
+            var conversationObj = conversationData.pop();
+            var messageArry = conversationObj.messages
+            setMessages(messageArry)
+        }
+    },[currentChat])
+
+    const saveMessage = async() => {
+        const pushMessage = await sendMessage({
+            variables: {
+                text: newMessage.text,
+                conversationId: currentChat
             }
-        },[currentChat])
+        })
+    }
+
+    const  handleMessageInput = (event) => {
+        const {name, value} = event.target;
+        setNewMessage({
+            ...newMessage, 
+            [name]: value
+        })
+    }
     
     return (
         <section>
@@ -71,8 +92,8 @@ export default function Messenger() {
                     ): ''}
                     </div>
                     <div className="chatBoxBottom">
-                        <textarea className="chatMessageInput" placeholder="Whats on your mind?"></textarea>
-                        <button className="chatSubmitButton">Send</button>
+                        <textarea onChange={handleMessageInput} name="text" className="chatMessageInput" placeholder="Whats on your mind?"></textarea>
+                        <button onClick={saveMessage} className="chatSubmitButton">Send</button>
                     </div>
                     </> : <span className='noConversationText'>Click on a user to open a conversation</span>}
                 </div>
