@@ -8,10 +8,12 @@ import './messenger.css';
 import Message from "../Message";
 import Conversation from "../Conversations";
 import ChatOnline from "../ChatOnline";
+import {useHistory, useRouteMatch} from "react-router-dom";
 
 export default function Messenger() {  
     const loggedIn = Auth.loggedIn();
-    const [currentChat, setCurrentChat] = useState(null);
+    const {params} = useRouteMatch();
+    const [currentChat, setCurrentChat] = useState(params.id);
     const [messages, setMessages] = useState([]);
     const newId = conversationId => {setCurrentChat(conversationId)}
     const { loading, data } = useQuery(QUERY_MY_CONVERSATIONS);
@@ -20,8 +22,19 @@ export default function Messenger() {
     const [sendMessage] = useMutation(CREATE_MESSAGE)
     const [addConversation] = useMutation(ADD_CONVERSATION)
     const { loading: secondLoading, data : meData } = useQuery(QUERY_ME_BASIC);
-    const [adoptedFamilyId, setAdoptedFamilyId] =  useState();
     const adoptedFamilyData = meData?.me.adoptedFamily
+
+    const history = useHistory()
+
+    function refreshPage() {
+        history.go(0)  
+    }
+
+    useEffect(() => {
+        if(currentChat !== params.id) {
+            setCurrentChat(params.id)
+        }
+    },[params.id])
 
     const addNewConversation = async (event) => {
         const addingConversation = await addConversation({
@@ -29,20 +42,22 @@ export default function Messenger() {
                 receiverId: event._id
             }
         })
-        console.log(addingConversation)
-        onclose();
+        refreshPage()
     }
    
     useEffect(() => {
-        if(conversations && conversations.length){
+        if(!loading && conversations && conversations.length){
             var conversationData = conversations.filter(obj => {
                 return obj._id===currentChat
             })
             var conversationObj = conversationData.pop();
-            var messageArry = conversationObj.messages
-            setMessages(messageArry)
+            if(conversationObj){
+                var messageArry = conversationObj.messages
+                setMessages(messageArry)
+            }
+
         }
-    },[currentChat])
+    },[currentChat, loading])
 
     const saveMessage = async() => {
         const pushMessage = await sendMessage({
@@ -51,6 +66,7 @@ export default function Messenger() {
                 conversationId: currentChat
             }
         })
+        refreshPage()
     }
 
     const  handleMessageInput = (event) => {
@@ -71,6 +87,7 @@ export default function Messenger() {
             <div id='messageBox' className='columns' className={`messenger ${loggedIn}`}>
                 <div className="chatMenu column">
                     <div className="chatMenuWrapper">
+                    <p className='onlineText'>Current Conversations</p>
                         <div class="dropdown">
                             <button class="dropbtn">Start a Conversation</button>
                             <div class="dropdown-content">
@@ -84,7 +101,9 @@ export default function Messenger() {
                         {loading ? (
                             <div>Loading...</div>
                         ) : (      
-                            conversations.map(c =>  <Conversation _id={c._id} members={c.members} conversationId={newId} />)              
+                            <div className='conversationsWrapper'>
+                            {conversations.map(c =>  <Conversation _id={c._id} members={c.members} conversationId={newId} />)}
+                            </div>                           
                         )}
                     </div>
                 </div>
@@ -104,7 +123,7 @@ export default function Messenger() {
                             <textarea onChange={handleMessageInput} name="text" className="chatMessageInput" placeholder="Whats on your mind?"></textarea>
                             <button onClick={saveMessage} className="chatSubmitButton">Send</button>
                         </div>
-                        </> : <span className='noConversationText'>Click on a user to open a conversation</span>}
+                        </> : <span className='noConversationText'>Click on a user in the "Current Conversations" to view a conversation</span>}
                     </div>
                 </div>  
                 <div className="chatOnline column">
