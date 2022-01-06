@@ -1,0 +1,84 @@
+:root {
+  --primary-color: #e1b6e4;
+  --secondary-color: #a35390;
+  --tertiary-color: #602750;
+  --quartinary-color: #ce65ba;
+  --quintinary-color: #327087;
+  --sextinary-color: #31405f;
+}
+
+.boxContact h1 {
+  text-shadow: 4px 4px 8px var(--quartinary-color);
+  padding-right: 20px;
+  font-weight: bolder;
+  padding-top: 60px;
+}
+
+.contactContainer1 {
+  margin-top: 10px;
+}
+
+.contactContainer1 form {
+  background-color: #553f70;
+  border-radius: 20px;
+}
+
+.contactContainer1 label {
+  color: whitesmoke;
+  text-shadow: 4px 4px 4px black;
+}
+
+.contactContainer1 h4 {
+  color: var(--sextinary-color);
+  padding: 30px;
+  margin-top: 100px;
+}
+
+.contactContainer2 {
+  margin-top: 30px;
+}
+
+h2 {
+  text-shadow: 4px 4px 10px var(--quartinary-color);
+  margin-top: 20px;
+}
+
+.contactinput {
+  background-color: whitesmoke;
+  border: 1px solid black;
+  color: var(--tertiary-color);
+  border-radius: 10px;
+}
+
+.contactinput:focus {
+  font-size: large;
+  background-color: aliceblue;
+  border: solid 1px black;
+}
+
+.contactlabel {
+  color: #31405f;
+  font-weight: bold;
+}
+
+.contactlinks {
+  color: var(--quintinary-color);
+  font-weight: bolder;
+  width: max-content;
+  font-size: xx-large;
+}
+
+.contactlinks:hover {
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+.contactsubmitbutton {
+  background-color: var(--primary-color);
+  color: var(--sextinary-color);
+}
+
+.contactimage {
+  border-radius: 10%;
+  width: 40%;
+}

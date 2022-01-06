@@ -1,0 +1,48 @@
+:root {
+  --primary-color: #e1b6e4;
+  --secondary-color: #a35390;
+  --terciary-color: #602750;
+  --quartinary-color: #ce65ba;
+  --quintinary-color: #327087;
+  --sextinary-color: #31405f;
+}
+
+.boxLogin {
+  background-color: whitesmoke;
+  height: 80vh;
+  border: 2px solid var(--sextinary-color);
+  border-radius: 30px;
+  padding-top: 100px;
+}
+
+.boxLogin h1 {
+  text-shadow: 4px 4px 8px var(--quartinary-color);
+  padding: 20px;
+  color: var(--terciary-color);
+}
+
+.aLogin {
+  color: var(--sextinary-color);
+  padding: 20px;
+}
+
+.loginFail {
+  color: red;
+  text-shadow: 1px 1px 8px grey;
+  font-size: 26px;
+}
+
+.loginLabel {
+  color: var(--secondary-color);
+  text-shadow: 4px 4px 5px var(--primary-color);
+  font-weight: bolder;
+  font-size: xx-large;
+}
+.loginForm input {
+  background-color: white;
+  width: 20%;
+}
+
+.loginSubmitButton {
+  background-color: #31405f;
+}

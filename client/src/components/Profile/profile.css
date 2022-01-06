@@ -1,0 +1,76 @@
+:root {
+    --primary-color: #e1b6e4;
+    --secondary-color: #a35390;
+    --terciary-color: #602750;
+    --quartinary-color: #ce65ba;
+    --quintinary-color: #327087;
+    --sextinary-color: #31405f;
+  }
+
+.profileBox {
+  text-shadow: 4px 4px 8px var(--quartinary-color);
+  padding: 10px;
+  padding-top: 60px;
+}
+
+.card {
+    margin: 5px;
+    padding: 3px;
+    border-radius: 6px;
+}
+
+.card:hover {
+    background-color: rgb(196, 196, 196);
+    color: black;
+    border-color: var(--secondary-color);
+}
+
+.card-header {
+    margin: 3px;
+    font-size: 16px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.productnote {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.productnotes {
+    font-size: 14px;
+}
+
+.button {
+    margin: 5px
+}
+
+.friendsheader {
+    padding-bottom: 8px;
+}
+
+.sectionheader {
+    font-weight: bold;
+    text-decoration: underline;
+    font-family: 'lora', normal;
+}
+
+.userinfo label {
+    font-size: 20px;
+    font-family: 'lora', normal;
+    text-decoration: underline;
+}
+
+.userinfo {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+h3 {
+    font-weight: bolder;
+
+}
+
+.is-danger {
+    background-color: rgba(194,0,0,.2);
+}

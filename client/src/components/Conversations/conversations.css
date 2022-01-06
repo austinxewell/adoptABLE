@@ -1,0 +1,33 @@
+:root {
+    --primary-color: #E1B6E4;
+    --secondary-color: #A35390;
+    --terciary-color: #602750;
+    --quartinary-color: #CE65BA;
+    --quintinary-color: #327087;
+    --sextinary-color: #31405F;
+  }
+
+.conversation{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.conversation:hover{
+    background-color: #327087;
+    color: white;
+}
+
+.conversationName{
+    font-weight: 525;
+    color: black;
+}
+
+.onlineText{
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 2px solid #31405F;
+}

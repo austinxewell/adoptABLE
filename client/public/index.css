@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.purplecolor1 {
+  background-color: #E1B6E4;
+}
+
+.cardfamilyname {
+  font-weight: bold;
+  font-size: 100px;
+  font-family: 'Shadows Into Light Two', cursive;
+}

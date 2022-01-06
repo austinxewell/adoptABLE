@@ -1,0 +1,34 @@
+:root {
+  --primary-color: #E1B6E4;
+  --secondary-color: #A35390;
+  --terciary-color: #602750;
+  --quartinary-color: #CE65BA;
+  --quintinary-color: #327087;
+  --sextinary-color: #31405F;
+}
+
+.donateBox h1 {
+  text-shadow: 4px 4px 8px var(--quartinary-color);
+  padding: 10px;
+}
+
+.donateContainer {
+  background-color: whitesmoke;
+  border: 2px solid var(--sextinary-color);
+  border-radius: 30px;
+  padding-top: 100px;
+}
+
+.donateLabel {
+  color: var(--quintinary-color);
+  font-weight: bolder;
+  font-size: xx-large;  
+}
+
+.donateInput {
+  width: fit-content;
+  background-color: white;
+}
+.donateSubmitButton {
+  background-color: #31405f;
+}

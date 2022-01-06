@@ -1,0 +1,43 @@
+:root {
+  --primary-color: #e1b6e4;
+  --secondary-color: #a35390;
+  --terciary-color: #602750;
+  --quartinary-color: #ce65ba;
+  --quintinary-color: #327087;
+  --sextinary-color: #31405f;
+}
+
+.boxSignUp {
+  background-color: whitesmoke;
+  height: 80vh;
+  border: 2px solid var(--sextinary-color);
+  border-radius: 30px;
+  padding-top: 20px;
+}
+
+.boxSignUp h1 {
+  text-shadow: 4px 4px 8px var(--quartinary-color);
+  padding: 20px;
+  color: var(--terciary-color);
+}
+
+.aSignUp {
+  color: var(--sextinary-color);
+  padding: 20px;
+}
+
+.boxSignUp form input {
+  background-color: white;
+  width: 20%;
+}
+
+.signUpLabel {
+  color: var(--secondary-color);
+  text-shadow: 4px 4px 5px var(--primary-color);
+  font-weight: bolder;
+  font-size: xx-large;
+}
+
+.signUpSubmitButton {
+  background-color: #31405f;
+}

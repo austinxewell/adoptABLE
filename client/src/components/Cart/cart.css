@@ -1,0 +1,30 @@
+:root {
+    --primary-color: #E1B6E4;
+    --secondary-color: #A35390;
+    --terciary-color: #602750;
+    --quartinary-color: #CE65BA;
+    --quintinary-color: #327087;
+    --sextinary-color: #31405F;
+  }
+
+  .cartMenu {
+    height: 39px;
+  }
+
+  .dropdown-content {
+    padding: 10px;
+    width: fit-content;
+  }
+
+  .dropdown-item {
+    font-size: larger;
+  }
+
+  .button {
+    font-family: 'lora', serif;
+    font-size: 13px;
+  }
+
+  .checkoutbutton {
+    font-size: larger;
+  }
