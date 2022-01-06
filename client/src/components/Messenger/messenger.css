@@ -13,9 +13,8 @@
 }
 
 .messenger{
-    height: calc(100vh - 70px);
+    height: calc(80vh - 70px);
     display: flex;
-    /* padding-top: 10px; */
 }
 
 .chatMenuInput{
@@ -122,4 +121,9 @@
     color: var(--sextinary-color);
     text-align: center;
     cursor: default;
+  }
+
+  .conversationsWrapper {
+    overflow-y: scroll;
+    height: calc(60vh - 70px);
   }

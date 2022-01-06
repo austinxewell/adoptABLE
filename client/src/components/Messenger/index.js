@@ -85,7 +85,9 @@ export default function Messenger() {
                         {loading ? (
                             <div>Loading...</div>
                         ) : (      
-                            conversations.map(c =>  <Conversation _id={c._id} members={c.members} conversationId={newId} />)              
+                            <div className='conversationsWrapper'>
+                            {conversations.map(c =>  <Conversation _id={c._id} members={c.members} conversationId={newId} />)}
+                            </div>                           
                         )}
                     </div>
                 </div>
