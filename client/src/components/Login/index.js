@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../../utils/mutations';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../../utils/mutations";
 
-import './login.css'
+import "./login.css";
 
-import Auth from '../../utils/auth';
+import Auth from "../../utils/auth";
 
-export default function Login (props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+export default function Login(props) {
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
@@ -37,55 +37,61 @@ export default function Login (props) {
 
     // clear form values
     setFormState({
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     });
   };
 
-    return (
-      <section className=''>
-          <div className='container boxLogin has-text-centered is-centered mt-3'>
-            <h2 className='container'>
-            Login
-            </h2>
-            <Link className='container aLogin' to='signup'>← Go to Signup</Link>
-            </div>
-            <div className='container'>
-              <div>
-              
-                <div className='boxLogin loginContainer columns is-centered is-vcentered'>
-                
-                  <form className='' onSubmit={handleFormSubmit}>
-                  
-                    <div className=''>
-                    
-                      <label className='columns is-centered loginLabel' htmlFor="">Email:</label>
-                    
-                      <input className='' placeholder='Your Email' name='email' type='email' id='email' value={formState.email} onChange={handleChange} />
-                  
-                    </div>
-                  
-                    <div className=''>
-                    
-                      <label className='columns is-centered loginLabel' htmlFor="">Password:</label>
-                    
-                      <input className='' placeholder='*******' name='password' type='password' id='password' value={formState.password} onChange={handleChange} />
-                  
-                    </div>
-                  
-                    <div className='columns is-centered'>
-                    
-                      <button className='loginSubmitButton' type="submit">Submit</button>
-                  
-                    </div>
-                
-                  </form>
-                
-                {error && <div>Login failed</div>}
-                </div>
-              </div>
-            </div>
-          </section>
-      );
-    
+  return (
+    <section className="">
+      <div className="container boxLogin has-text-centered is-centered mt-3">
+        <h1 className="container">Login</h1>
+        <Link className="container aLogin" to="signup">
+          ← Go to Signup
+        </Link>
+        {error && <div className="loginFail">Login failed</div>}
+
+        <form className="loginForm" onSubmit={handleFormSubmit}>
+          <div className="">
+            <label className="columns is-centered loginLabel" htmlFor="">
+              Email:
+            </label>
+
+            <input
+              className=""
+              placeholder="Your Email"
+              name="email"
+              type="email"
+              id="email"
+              value={formState.email}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="">
+            <label className="columns is-centered loginLabel" htmlFor="">
+              Password:
+            </label>
+
+            <input
+              className=""
+              placeholder="*******"
+              name="password"
+              type="password"
+              id="password"
+              value={formState.password}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="columns is-centered">
+            <button className="loginSubmitButton" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
+        
+      </div>
+    </section>
+  );
 }

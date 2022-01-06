@@ -7,6 +7,13 @@
     --sextinary-color: #31405F;
   }
 
+.titleWrapper {
+  text-shadow: 4px 4px 8px var(--quartinary-color);
+  padding: 10px;
+  background-color: none;
+  padding-top: 60px;
+}
+
 #messageBox {
     color: var(--quintinary-color);
     font-size: large;
@@ -61,11 +68,6 @@
     justify-content: center;
 }
 
-.titleWrapper{
-    border: 2px solid var(--sextinary-color);
-    background-color: var(--primary-color);
-}
-
 .chatMenuWrapper,
 .chatBoxWrapper,
 .chatOnlineWrapper{
@@ -73,6 +75,7 @@
     height: 100%;
     border: 2px solid var(--sextinary-color);
     background-color: var(--primary-color);
+    border-radius: 20px;
 }
 
 .dropbtn {

@@ -24,7 +24,7 @@ export default function Adopt () {
 
 
     useEffect(() => {
-
+        if(!loading) {
             const notFriendsArray = families.filter(function(each) { 
                 if(currentFriends.includes(each._id) || each._id === myId) {
                     console.log('your friend')
@@ -33,8 +33,10 @@ export default function Adopt () {
                 }
             })
             setNotFriends(notFriendsArray);
+        }
+            
 
-    }, []);
+    }, [loading]);
 
     console.log(families);
 
@@ -50,9 +52,9 @@ export default function Adopt () {
     return (
         <main className=''>
           <div className='container boxAdopt has-text-centered is-centered mt-3'>
-            <h2 className='container'>
+            <h1 className='container'>
             Adopt
-            </h2>
+            </h1>
             <h3 className='container'>Families in need</h3>
           </div>
           <div className='container adoptContainer'>

@@ -9,10 +9,10 @@
 
 .boxSignUp {
   background-color: whitesmoke;
-  height: 100vh;
+  height: 80vh;
   border: 2px solid var(--sextinary-color);
   border-radius: 30px;
-  padding-top: 100px;
+  padding-top: 20px;
 }
 
 .boxSignUp h1 {
@@ -21,8 +21,14 @@
   color: var(--terciary-color);
 }
 
+.aSignUp {
+  color: var(--sextinary-color);
+  padding: 20px;
+}
+
 .boxSignUp form input {
   background-color: white;
+  width: 20%;
 }
 
 .signUpLabel {
