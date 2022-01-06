@@ -71,6 +71,7 @@ export default function Messenger() {
             <div id='messageBox' className='columns' className={`messenger ${loggedIn}`}>
                 <div className="chatMenu column">
                     <div className="chatMenuWrapper">
+                    <p className='onlineText'>Current Conversations</p>
                         <div class="dropdown">
                             <button class="dropbtn">Start a Conversation</button>
                             <div class="dropdown-content">
@@ -104,7 +105,7 @@ export default function Messenger() {
                             <textarea onChange={handleMessageInput} name="text" className="chatMessageInput" placeholder="Whats on your mind?"></textarea>
                             <button onClick={saveMessage} className="chatSubmitButton">Send</button>
                         </div>
-                        </> : <span className='noConversationText'>Click on a user to open a conversation</span>}
+                        </> : <span className='noConversationText'>Click on a user in the "Current Conversations" to view a conversation</span>}
                     </div>
                 </div>  
                 <div className="chatOnline column">
