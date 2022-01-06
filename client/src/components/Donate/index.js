@@ -21,6 +21,7 @@ export default function Donate(props) {
   }, [data]);
 
   const submitCheckout = async (event) => {
+    event.preventDefault()
 
     getCheckout({
       variables: { ...donateState },
