@@ -88,9 +88,9 @@ export default function Messenger() {
                 <div className="chatMenu column">
                     <div className="chatMenuWrapper">
                     <p className='onlineText'>Current Conversations</p>
-                        <div class="dropdown">
-                            <button class="dropbtn">Start a Conversation</button>
-                            <div class="dropdown-content">
+                        <div className="dropdown">
+                            <button className="dropbtn">Start a Conversation</button>
+                            <div className="dropdown-content">
                                 {secondLoading ? (
                                 <div>Loading...</div>
                                 ) : (      
