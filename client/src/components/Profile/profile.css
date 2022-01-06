@@ -11,8 +11,6 @@
     margin: 5px;
     padding: 3px;
     border-radius: 6px;
-    background-color: rgba(49,64,95, 1);
-    color:var(--secondary-color)
 }
 
 .card:hover {

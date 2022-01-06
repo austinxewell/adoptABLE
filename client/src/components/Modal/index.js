@@ -42,6 +42,7 @@ function Modal ({ onClose, currentFamily }) {
         })
         console.log(addingUser);
         toggleAdoption();
+        history.go(0);
         // setAllFriends([
         //     ...currentFriends,
         //     id

@@ -27,6 +27,8 @@ export default function Profile() {
         setIsProductModalOpen(!isProductModalOpen);
     }
 
+
+
     function toggleEdit() {
         setIsEditOn(!isEditOn);
     }

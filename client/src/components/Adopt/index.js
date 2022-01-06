@@ -24,7 +24,7 @@ export default function Adopt () {
 
 
     useEffect(() => {
-
+        if(!loading) {
             const notFriendsArray = families.filter(function(each) { 
                 if(currentFriends.includes(each._id) || each._id === myId) {
                     console.log('your friend')
@@ -33,8 +33,10 @@ export default function Adopt () {
                 }
             })
             setNotFriends(notFriendsArray);
+        }
+            
 
-    }, []);
+    }, [loading]);
 
     console.log(families);
 
