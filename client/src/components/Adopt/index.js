@@ -52,9 +52,9 @@ export default function Adopt () {
     return (
         <main className=''>
           <div className='container boxAdopt has-text-centered is-centered mt-3'>
-            <h2 className='container'>
+            <h1 className='container'>
             Adopt
-            </h2>
+            </h1>
             <h3 className='container'>Families in need</h3>
           </div>
           <div className='container adoptContainer'>

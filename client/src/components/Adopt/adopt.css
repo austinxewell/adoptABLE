@@ -7,22 +7,29 @@
   --sextinary-color: #31405F;
 }
 
-.boxAdopt {
-  background-color: var(--primary-color);
-  border: 2px solid var(--sextinary-color);
+.boxAdopt h1 {
+  text-shadow: 4px 4px 8px var(--quartinary-color);
+  padding: 10px;
 }
 
 .adoptContainer {
   padding-top: 15px;
+  margin-top: 10px;
+  border-radius: 30px;
+  background-color: var(--primary-color);
+  border: 2px solid var(--sextinary-color);
 }
 
 .adoptFamilyContainer {
   padding-top: 10px;
+  padding-bottom: 20px;
 }
 
 .card {
   border: 1px solid var(--sextinary-color);
-  border-radius: 5%;
+  border-radius: 30px;
+  background-color: whitesmoke;
+  color: var(--sextinary-color);
 }
 
 .card:hover {

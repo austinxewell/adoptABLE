@@ -80,9 +80,9 @@ export default function Messenger() {
     return (
         <section>
                 <div className='container columns has-text-centered is-centered mt-3 titleWrapper'>
-                    <h2 className='container'>
+                    <h1>
                     Messenger
-                    </h2>
+                    </h1>
                 </div>
             <div id='messageBox' className='columns' className={`messenger ${loggedIn}`}>
                 <div className="chatMenu column">
