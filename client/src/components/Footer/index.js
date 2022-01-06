@@ -8,7 +8,7 @@ export default function Footer (props) {
             <nav className='column donatenav'>
                 <div className='columns navbar-item is-centered'>
                     <Link 
-                    className='columns navoptions' 
+                    className='columns navoptions pb-6' 
                     to='donate' 
                     key='Donate'
                     >

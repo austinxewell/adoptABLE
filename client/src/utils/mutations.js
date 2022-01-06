@@ -96,3 +96,15 @@ export const CREATE_MESSAGE = gql`
     }
   }
 `;
+
+export const ADD_CONVERSATION = gql`
+  mutation addConversation($receiverId: String!){
+    addConversation(receiverId: $receiverId){
+      _id
+      members {
+        _id
+        username
+      }
+    }
+  }
+`;

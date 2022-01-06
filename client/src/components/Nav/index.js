@@ -50,7 +50,7 @@ export default function Nav(props) {
                         <>
                             <div className='columns navbar-item'>
                             {tabsIn.map(tab => (
-                                    <Link  className='column  navoptions'
+                                    <Link  className='column navoptions'
                                         to={tab.toLowerCase()}
                                         key={tab}>
                                         {tab}

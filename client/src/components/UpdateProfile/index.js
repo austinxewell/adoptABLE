@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { useMutation } from '@apollo/client';
 import { UPDATE_USER } from '../../utils/mutations';
 import { useHistory } from 'react-router';
+import './updateprofile.css'
 
 export default function UpdateProfile({ me, onClose }) {
     const [updateUser] = useMutation(UPDATE_USER);
@@ -45,8 +46,7 @@ export default function UpdateProfile({ me, onClose }) {
                 <section className="modal-card-body">
                     <label>Email:</label>
                     <input name="email" value={currentMe.email} onChange={handleInputChange}></input>
-                    <hr />
-                    <label>Family Members</label>
+                    <label>Family Members:</label>
                     <input name="familyMembers" value={currentMe.familyMembers} onChange={handleInputChange}></input>
                     <hr />
                     <button className="button is-success" onClick={updateMe}>Save</button>

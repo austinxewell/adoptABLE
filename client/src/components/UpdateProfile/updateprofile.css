@@ -1,0 +1,23 @@
+:root {
+    --primary-color: #e1b6e4;
+    --secondary-color: #a35390;
+    --terciary-color: #602750;
+    --quartinary-color: #ce65ba;
+    --quintinary-color: #327087;
+    --sextinary-color: #31405f;
+  }
+
+.modal-card-header {
+    height: 30px;
+}
+
+.modal-card-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--secondary-color);
+    font-family: 'lora', nomral;
+}
+
+input:focus {
+    font-size: 18px;
+}
