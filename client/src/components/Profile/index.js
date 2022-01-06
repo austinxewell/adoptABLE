@@ -60,8 +60,8 @@ export default function Profile() {
                         {isEditOn && <UpdateProfile onClose={toggleEdit} me={me}/> }
                         {isUpdateProductModalOpen && <UpdateProductModal currentProduct={currentProduct} onClose={toggleUpdateProductModal} />}
                         {isProductModalOpen && <NewProductModal onClose={toggleProductModal} />}
-                        <div>
-                            <h2>Profile</h2>
+                        <div className="profileBox">
+                            <h1>Profile</h1>
                         </div>
                         <div>
                             <h3>{capitalizeFirstLetter(me.username)}</h3>

@@ -7,14 +7,16 @@
   --sextinary-color: #31405F;
 }
 
-.donateBox {
-  background-color: var(--primary-color);
-  border: 2px solid var(--sextinary-color);
+.donateBox h1 {
+  text-shadow: 4px 4px 8px var(--quartinary-color);
+  padding: 10px;
 }
 
 .donateContainer {
-  margin-top: 10px;
-  padding-top: 10px;
+  background-color: whitesmoke;
+  border: 2px solid var(--sextinary-color);
+  border-radius: 30px;
+  padding-top: 100px;
 }
 
 .donateLabel {
@@ -25,6 +27,7 @@
 
 .donateInput {
   width: fit-content;
+  background-color: white;
 }
 .donateSubmitButton {
   background-color: #31405f;
