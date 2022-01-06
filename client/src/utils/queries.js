@@ -52,9 +52,9 @@ export const QUERY_ME_BASIC = gql`
 `;
 
 export const QUERY_CHECKOUT = gql`
-    query getCheckout($users: [ID]!) {
-        checkout(users: $users) {
-            session
-        }
+query checkout($price:Int!) {
+    checkout(price: $price) {
+      session
     }
+  }
 `

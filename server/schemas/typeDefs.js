@@ -26,8 +26,8 @@ const typeDefs = gql`
     tag(tagName: String!): Tag
     conversations: [Conversation]
     myConversations: [Conversation]
-    checkout(users: [ID]!): Checkout
-    donate(_id: ID!): Donate
+    checkout(price:Int): Checkout
+    donate(id:ID): Donate
   }
 
   type Product {
@@ -64,6 +64,17 @@ const typeDefs = gql`
     createdAt: String
   }
 
+  type Donate {
+    _id: ID
+    purchaseDate: String
+    price: Int
+    users: [User]
+  }
+
+  type Checkout {
+    session: ID
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -82,18 +93,9 @@ const typeDefs = gql`
     updateProduct(productName: String, productNote: String, productId: ID): Product
     addConversation(receiverId: String!): Conversation
     createMessage(text: String!, conversationId: String!): Conversation
-    addDonate(users: [ID]!): Donate
+    addDonate(price:Int!): Donate
   }
 
-  type Donate {
-    _id: ID
-    purchaseDate: String
-    users: [User]
-  }
-
-  type Checkout {
-    session: ID
-  }
 `;
 
 // export the typeDefs

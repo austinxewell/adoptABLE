@@ -1,8 +1,7 @@
 const { User, Product, Category, Tag, Conversation, Message, Donate } = require("../models")
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
-
+const stripe = require('stripe')(process.env.STRIPE)
 
 const resolvers = {
   Query: {
@@ -85,39 +84,49 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    donate: async (parent, { _id }, context) => {
+    donate: async ()  => {
+      return Donate.find()
       
-      if (context.user) {
-        const user = await User.findById(context.user._id)
-        
-        .populate({
-          path: 'donates.users',
-        });
+      // if (context.user) {
+      //   const user = await Donate.findById(
+      //       {_id: context.user._id},
+      //       {price: {price}},
+      //       {new: true}
+      //     )
+      //     .populate({
+      //     path: 'donates.users',
+      //   },
+      //   );
 
-        return user.donates.id(_id);
-      }
+      //   return( user.donates, price);
+      // }
 
-      throw new AuthenticationError('Not logged in');
+      // throw new AuthenticationError('Not logged in');
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
-      const donate = new Donate({ users: args.users });
-      console.log(donate._id)
+      // const donate = new Donate({ users: context.user });
+      // console.log(donate._id)
+      console.log(context.user)
+      // const donateId = trim(donate._id)
       const usd = 'usd'
       const line_items = [{
         quantity: 1,
         price_data: {
-          unit_amount : (12 * 100) ,
+          unit_amount : (args.price * 100) ,
           currency : usd,
-          product_data : {name : 'Donate Test'}
+          product_data : {name : 'Donation'}
         }
       }];
 
       
 
-      const user  = await donate.populate('users').execPopulate();
-      console.log(user.users._id)
+      // const user  = await donate.populate('users').execPopulate();
+      // console.log(user.users._id)
+      // const userId = trim(user.users_id)
       const session = await stripe.checkout.sessions.create({
+        // client_reference_id : '"' + donateId + '"',
+        // customer: '"' + userId + '"',
         payment_method_types: ['card'],
         line_items,        
         mode: 'payment',
@@ -308,6 +317,15 @@ const resolvers = {
         return updatedConversation
       }
       throw new AuthenticationError('You need to be logged in!');
+    },
+    // Adds Donate
+    addDonate: async (parent, {price}, context) => {
+      // if(context.user) {
+        const createDonate = await Donate.create({price}
+        )
+        return createDonate
+      // }
+      // throw new AuthenticationError('You need to be logged in!')
     }
 }
 };
