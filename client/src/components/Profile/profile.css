@@ -1,11 +1,24 @@
+:root {
+    --primary-color: #e1b6e4;
+    --secondary-color: #a35390;
+    --terciary-color: #602750;
+    --quartinary-color: #ce65ba;
+    --quintinary-color: #327087;
+    --sextinary-color: #31405f;
+  }
+
 .card {
     margin: 5px;
     padding: 3px;
+    border-radius: 6px;
+    background-color: rgba(49,64,95, 1);
+    color:var(--secondary-color)
 }
 
 .card:hover {
     background-color: rgb(196, 196, 196);
     color: black;
+    border-color: var(--secondary-color);
 }
 
 .card-header {
@@ -17,13 +30,43 @@
 
 .productnote {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .productnotes {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .button {
     margin: 5px
+}
+
+.friendsheader {
+    padding-bottom: 8px;
+}
+
+.sectionheader {
+    font-weight: bold;
+    text-decoration: underline;
+    font-family: 'lora', normal;
+}
+
+label {
+    font-size: 20px;
+    font-family: 'lora', normal;
+    text-decoration: underline;
+}
+
+.userinfo {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+h3 {
+    font-weight: bolder;
+
+}
+
+.is-danger {
+    background-color: rgba(194,0,0,.2);
 }
