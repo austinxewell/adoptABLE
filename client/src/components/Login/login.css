@@ -9,7 +9,7 @@
 
 .boxLogin {
   background-color: whitesmoke;
-  height: 100vh;
+  height: 80vh;
   border: 2px solid var(--sextinary-color);
   border-radius: 30px;
   padding-top: 100px;
@@ -21,6 +21,17 @@
   color: var(--terciary-color);
 }
 
+.aLogin {
+  color: var(--sextinary-color);
+  padding: 20px;
+}
+
+.loginFail {
+  color: red;
+  text-shadow: 1px 1px 8px grey;
+  font-size: 26px;
+}
+
 .loginLabel {
   color: var(--secondary-color);
   text-shadow: 4px 4px 5px var(--primary-color);
@@ -29,6 +40,7 @@
 }
 .loginForm input {
   background-color: white;
+  width: 20%;
 }
 
 .loginSubmitButton {
