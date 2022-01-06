@@ -10,6 +10,7 @@
 .aboutBox h1 {
   text-shadow: 4px 4px 8px var(--quartinary-color);
   padding-right: 20px;
+  padding-top: 60px;
 }
 
 .aboutBox h3 {

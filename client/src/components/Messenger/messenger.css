@@ -11,6 +11,7 @@
   text-shadow: 4px 4px 8px var(--quartinary-color);
   padding: 10px;
   background-color: none;
+  padding-top: 60px;
 }
 
 #messageBox {
