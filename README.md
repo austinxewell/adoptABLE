@@ -10,7 +10,7 @@
   * [Tests](#tests)
   * [Questions](#questions)
   # Installation
-  This is a deployed web application. You can view the application at https://adoptable-dv.herokuapp.com/. You can view the code/files at https://github.com/austinxewell/adoptABLE.
+  This is a deployed web application. You can view the application at https://adoptable-dv.herokuapp.com/. You can view the code/files at https://github.com/austinxewell/adoptABLE. Some of the technologies used in this web application include, React, apollo, GraphQL, Node.js, Express.js, MongoDB, Mongoose, Stripe, axios, JWT's, and is built in the MERN stack.
   # Usage
    adoptABLE is an easy to navigate webpage. You will have access to view basic information without creating an account. Once an account has been created you will gain access to view the families looking to be "adopted" and you will be able to see their basic information and their products needed. You will also gain access to our messaging feature.  You can communicate with the families you have adopted or have been adopted by. Once logged in, another feature you will gain access to is the ability to view your own profile, edit your products, and remove adopted families if needed. Our web application has a donation feature powered by stipe that is fully functional. Please feel free to create an account and play around on our web application.
 
