@@ -55,7 +55,8 @@ function App() {
                     <Route exact path="/about" component={About} />
                     <Route exact path="/contact" component={Contact} />
                     <Route exact path="/adopt" component={Adopt} />
-                    <Route exact path="/messenger" component={Messenger} />
+                    <Route exact path="/messenger/" component={Messenger} />
+                    <Route exact path="/messenger/:id" component={Messenger} />
                     <Route exact path="/profile" component={Profile} />
                     <Route exact path="/adoptABLE" component={Home} />
                     <Route exact path="/login" component={Login} />
