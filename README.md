@@ -1,7 +1,7 @@
 # adoptABLE 
   [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
   # Description
-  An "adopt a family" website specifically for victims of DV. The families would get to add anonymous family member information and then products needed (winter clothing, holiday gifts, Christmas tree, hygiene products) or assistance needed (seeking GED tutoring, transportation, gas cards, food cards, place to stay, etc). The donors would see the anonymous family information and choose to "adopt" the family to help out with any items they can. DV shelters are overrun right now, in 2021 in Utah alone victims seeking assistance increased by 25-50%.
+  An "adopt a family" website specifically for victims of DV. The families would get to add anonymous family member information and then products needed (winter clothing, holiday gifts, Christmas tree, hygiene products) or assistance needed (seeking GED tutoring, transportation, gas cards, food cards, place to stay, etc). The donors would see the anonymous family information and choose to "adopt" the family to help out with any items they can. DV shelters are overrun right now, in 2021 in Utah alone victims seeking assistance increased by 25-50%.  Some of the technologies used in this project include React, apollo, GraphQL, Node.js, Express.js, MongoDB, Mongoose, and Stripe
   # Table of Contents
   * [Installation](#installation)
   * [Usage](#usage)
