@@ -104,7 +104,7 @@ const resolvers = {
       // throw new AuthenticationError('Not logged in');
     },
     checkout: async (parent, args, context) => {
-      const url = new URL(context.headers.referer).origin;
+      const url = 'https://adoptable-dv.herokuapp.com/';
       // const donate = new Donate({ users: context.user });
       // console.log(donate._id)
       console.log(context.user)
