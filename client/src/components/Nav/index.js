@@ -2,20 +2,21 @@ import React from "react";
 import Auth from "../../utils/auth";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
+
 import "./nav.css";
 
 export default function Nav(props) {
-  const tabsOut = ["adoptABLE", "About", "Contact"];
+  const tabsOut = ["adoptABLE", "about", "contact"];
   const tabsIn = [
     "adoptABLE",
-    "About",
-    "Contact",
-    "Adopt",
-    "Messenger",
-    "Profile",
+    "about",
+    "contact",
+    "adopt",
+    "messenger",
+    "profile",
   ];
-  const registerOut = ["Login", "SignUp"];
-  const registerIn = ["Logout"];
+  const registerOut = ["login", "signup"];
+  const registerIn = ["logout"];
 
   function logout(event) {
     console.log("logging out");
@@ -31,7 +32,7 @@ export default function Nav(props) {
             <div className="columns navbar-item">
               {registerIn.map((register) => (
                 <Link
-                  className="column is-2 navoptions"
+                  className="column is-2 nav-options"
                   to={register.toLowerCase()}
                   onClick={logout}
                   key={register}
@@ -45,7 +46,7 @@ export default function Nav(props) {
           <div className="columns navbar-item">
             {registerOut.map((register) => (
               <Link
-                className="column is-2 navoptions"
+                className="column is-2 nav-options"
                 to={register.toLowerCase()}
                 key={register}
               >
@@ -61,7 +62,7 @@ export default function Nav(props) {
             <div className="columns navbar-item">
               {tabsIn.map((tab) => (
                 <Link
-                  className="column navoptions"
+                  className="column nav-options"
                   to={tab.toLowerCase()}
                   key={tab}
                 >
@@ -74,7 +75,7 @@ export default function Nav(props) {
           <div className="columns navbar-item">
             {tabsOut.map((tab) => (
               <Link
-                className="column navoptions"
+                className="column nav-options"
                 to={tab.toLowerCase()}
                 key={tab}
               >

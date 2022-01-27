@@ -42,38 +42,38 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-          <div className='container'>
-            <Router>
-              <div className="container pb-5">
-                <Nav />
-              </div>
-              <br />
-              <br />
-                <div className='container'>
-                  <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/about" component={About} />
-                    <Route exact path="/contact" component={Contact} />
-                    <Route exact path="/adopt" component={Adopt} />
-                    <Route exact path="/messenger/" component={Messenger} />
-                    <Route exact path="/messenger/:id" component={Messenger} />
-                    <Route exact path="/profile" component={Profile} />
-                    <Route exact path="/adoptABLE" component={Home} />
-                    <Route exact path="/login" component={Login} />
-                    <Route exact path="/logout" component={Home} />
-                    <Route exact path="/signup" component={SignUp} />
-                    <Route exact path="/donate" component={Donate} />
-
-                    <Route component={Home} />
-                  </Switch>
-                </div>
-                <br />
-                <br />
-                <br />
-            <Footer />
-            </Router>
+      <div className='container background-container'>
+        <Router>
+          <div className="container pb-5">
+            <Nav />
           </div>
-    </ApolloProvider>  
+          <br />
+          <br />
+          <div className='container'>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/contact" component={Contact} />
+              <Route exact path="/adopt" component={Adopt} />
+              <Route exact path="/messenger/" component={Messenger} />
+              <Route exact path="/messenger/:id" component={Messenger} />
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/adoptABLE" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/logout" component={Home} />
+              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/donate" component={Donate} />
+
+              <Route component={Home} />
+            </Switch>
+          </div>
+          <br />
+          <br />
+          <br />
+          <Footer />
+        </Router>
+      </div>
+    </ApolloProvider>
   )
 }
 

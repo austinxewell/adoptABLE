@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --primary-color: #E1B6E4;
     --secondary-color: #A35390;
     --terciary-color: #602750;
@@ -17,11 +17,11 @@
 
 .messageTop{
     display: flex;
-}
+} */
 
 /* E1B6E4, A35390, 602750, CE65BA, 327087, 31405F */
 
-.messageText{
+/* .messageText{
     padding: 10px;
     border-radius: 20px 20px 20px 0px;
     background-color: var(--quintinary-color);
@@ -60,6 +60,6 @@
     color: black;
     background-color: none;
     border-radius: 5px 5px 0px 5px;
-}
+} */
 
 
