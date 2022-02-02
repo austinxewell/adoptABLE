@@ -42,14 +42,14 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <div className='container background-container'>
+      <div className=''>
         <Router>
-          <div className="container pb-5">
+          <div className="">
             <Nav />
           </div>
           <br />
           <br />
-          <div className='container'>
+          <div className=''>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/about" component={About} />
@@ -59,9 +59,9 @@ function App() {
               <Route exact path="/messenger/:id" component={Messenger} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/adoptABLE" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/logout" component={Home} />
-              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/log in" component={Login} />
+              <Route exact path="/log out" component={Home} />
+              <Route exact path="/sign up" component={SignUp} />
               <Route exact path="/donate" component={Donate} />
 
               <Route component={Home} />

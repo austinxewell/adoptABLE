@@ -8,21 +8,28 @@
   --dark: #000000;
 }
 
-nav {
+.nav-options {
+  display: flex;
   background-color: var(--primary-color);
+  padding: 10px 0px;
 }
 
-.nav-options {
+.nav-button {
   text-align: center;
   margin: 10px 10px 5px 10px;
   color: var(--light);
   font-family: 'Lato', sans-serif;
   font-size: 22px;
+  text-decoration: none;
+  padding: 10px;
 }
 
-.nav-options:hover {
+.nav-button:hover {
   color: var(--quartinary-color);
+}
 
+.nav-right-options {
+  margin-left: auto;
 }
 
 

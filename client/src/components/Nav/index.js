@@ -6,17 +6,17 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import "./nav.css";
 
 export default function Nav(props) {
-  const tabsOut = ["adoptABLE", "about", "contact"];
+  const tabsOut = ["adoptABLE", "About", "Contact"];
   const tabsIn = [
     "adoptABLE",
-    "about",
-    "contact",
-    "adopt",
-    "messenger",
-    "profile",
+    "About",
+    "Contact",
+    "Adopt",
+    "Messenger",
+    "Profile",
   ];
-  const registerOut = ["login", "signup"];
-  const registerIn = ["logout"];
+  const registerOut = ["Log In", "Sign Up"];
+  const registerIn = ["Log Out"];
 
   function logout(event) {
     console.log("logging out");
@@ -25,14 +25,15 @@ export default function Nav(props) {
   }
 
   return (
-    <header className="columns navbar is-fixed-top">
-      <nav className="column">
+    <header className="nav-options">
+      {/* left nav options */}
+      <nav className="nav-left-options">
         {Auth.loggedIn() ? (
           <>
-            <div className="columns navbar-item">
+            <div className="">
               {registerIn.map((register) => (
                 <Link
-                  className="column is-2 nav-options"
+                  className=""
                   to={register.toLowerCase()}
                   onClick={logout}
                   key={register}
@@ -43,10 +44,10 @@ export default function Nav(props) {
             </div>
           </>
         ) : (
-          <div className="columns navbar-item">
+          <div className="">
             {registerOut.map((register) => (
               <Link
-                className="column is-2 nav-options"
+                className="nav-button"
                 to={register.toLowerCase()}
                 key={register}
               >
@@ -56,13 +57,15 @@ export default function Nav(props) {
           </div>
         )}
       </nav>
-      <nav className="column">
+      
+      {/* right nav options */}
+      <nav className="nav-right-options">
         {Auth.loggedIn() ? (
           <>
-            <div className="columns navbar-item">
+            <div className="">
               {tabsIn.map((tab) => (
                 <Link
-                  className="column nav-options"
+                  className="nav-button"
                   to={tab.toLowerCase()}
                   key={tab}
                 >
@@ -72,10 +75,10 @@ export default function Nav(props) {
             </div>
           </>
         ) : (
-          <div className="columns navbar-item">
+          <div className="">
             {tabsOut.map((tab) => (
               <Link
-                className="column nav-options"
+                className="nav-button"
                 to={tab.toLowerCase()}
                 key={tab}
               >
