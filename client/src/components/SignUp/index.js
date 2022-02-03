@@ -51,7 +51,7 @@ export default function SignUp(props) {
     <section className="">
       <div className="container boxSignUp has-text-centered is-centered mt-3">
         <h1 className="container">SignUp</h1>
-        <Link className="container aSignUp" to="login">
+        <Link className="container aSignUp" to="log in">
           ← Go to Login
         </Link>
         {error && <div className="loginFail">Signup Failed</div>}

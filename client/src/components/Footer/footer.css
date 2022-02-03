@@ -26,6 +26,7 @@ ul {
   text-decoration: none;
   color: var(--light);
   font-size: 12px;
+  text-shadow: 2px 2px var(--dark);
 }
 
 .resource-list a:hover,

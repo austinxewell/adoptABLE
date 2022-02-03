@@ -44,22 +44,15 @@ export default function Login(props) {
 
   return (
     <section className="">
-      <div className="container boxLogin has-text-centered is-centered mt-3">
-        <h1 className="container">Login</h1>
-        <Link className="container aLogin" to="signup">
-          ← Go to Signup
-        </Link>
-        {error && <div className="loginFail">Login failed</div>}
+      <h1 className="">Login</h1>
+      <div className="login-wrapper">
+        {error && <div className="failed-login">Login Failed</div>}
 
-        <form className="loginForm" onSubmit={handleFormSubmit}>
+        <form className="" onSubmit={handleFormSubmit}>
           <div className="">
-            <label className="columns is-centered loginLabel" htmlFor="">
-              Email:
-            </label>
-
             <input
-              className=""
-              placeholder="Your Email"
+              className="email-input"
+              placeholder="Email"
               name="email"
               type="email"
               id="email"
@@ -67,15 +60,10 @@ export default function Login(props) {
               onChange={handleChange}
             />
           </div>
-
           <div className="">
-            <label className="columns is-centered loginLabel" htmlFor="">
-              Password:
-            </label>
-
             <input
-              className=""
-              placeholder="*******"
+              className="password-input"
+              placeholder="Password"
               name="password"
               type="password"
               id="password"
@@ -83,14 +71,19 @@ export default function Login(props) {
               onChange={handleChange}
             />
           </div>
-
-          <div className="columns is-centered">
-            <button className="loginSubmitButton" type="submit">
-              Submit
+          <div className="">
+            <button className="login-button" type="submit">
+              Log In
             </button>
           </div>
+          <button className="go-to-signup-button">
+            <Link
+              className="go-to-singup-text"
+              to="sign up">
+              ← Go to Sign Up
+            </Link>
+          </button>
         </form>
-        
       </div>
     </section>
   );

@@ -1,3 +1,60 @@
+.login-wrapper {
+  background-color: rgb(130,101,167, 0.5);
+  border-radius: 20px;
+  box-shadow: 4px 4px 8px var(--dark);
+  padding: 20px;
+  margin: auto;
+  width: 250px;
+  text-align: center;
+}
+
+.failed-login {
+  color: red;
+  text-shadow: 1px 1px 2px var(--dark);
+  font-size: 26px;
+}
+
+.email-input {
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.password-input {
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.login-button,
+.go-to-signup-button {
+  margin-top: 5px;
+  width: 88%;
+  text-decoration: none;
+  background-color: var(--primary-color);
+  color: var(--light);
+  height: 40px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+.login-button:hover {
+  cursor: pointer;
+  font-style: italic;
+  color: var(--quartinary-color);
+}
+
+.go-to-singup-text {
+  text-decoration: none;
+  color: var(--light);
+}
+
+.go-to-singup-text:hover {
+  font-style: italic;
+  color: var(--quartinary-color);
+}
+
+
+
+
 /* :root {
   --primary-color: #e1b6e4;
   --secondary-color: #a35390;

@@ -1,17 +1,9 @@
-:root {
-  --primary-color: #2A1B3D;
-  --secondary-color: #D83F87;
-  --terciary-color: #44318D;
-  --quartinary-color: #8265A7;
-  --quintinary-color: #E3E2DE;
-  --light: #ffffff;
-  --dark: #000000;
-}
-
 .nav-options {
   display: flex;
   background-color: var(--primary-color);
   padding: 10px 0px;
+  position: sticky;
+  top: 0;
 }
 
 .nav-button {
