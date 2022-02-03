@@ -9,16 +9,12 @@
 }
 
 .failed-login {
-  color: red;
+  color: tomato;
   text-shadow: 1px 1px 2px var(--dark);
   font-size: 26px;
 }
 
-.email-input {
-  margin-bottom: 5px;
-  padding: 5px;
-}
-
+.email-input,
 .password-input {
   margin-bottom: 5px;
   padding: 5px;

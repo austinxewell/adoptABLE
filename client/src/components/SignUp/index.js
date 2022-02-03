@@ -49,21 +49,14 @@ export default function SignUp(props) {
 
   return (
     <section className="">
-      <div className="container boxSignUp has-text-centered is-centered mt-3">
-        <h1 className="container">SignUp</h1>
-        <Link className="container aSignUp" to="log in">
-          ← Go to Login
-        </Link>
-        {error && <div className="loginFail">Signup Failed</div>}
+      <h1>SignUp</h1>
+      <div className="signup-wrapper">
+        {error && <div className="failed-signup">Signup Failed</div>}
         <form className="" id="" onSubmit={handleFormSubmit}>
           <div className="">
-            <label className="columns is-centered signUpLabel" htmlFor="">
-              Username:
-            </label>
-
             <input
-              className=""
-              placeholder="Your Username"
+              className="create-username-input"
+              placeholder="Create Username"
               name="username"
               type="text"
               id="username"
@@ -71,15 +64,10 @@ export default function SignUp(props) {
               onChange={handleChange}
             />
           </div>
-
           <div className="">
-            <label className="columns is-centered signUpLabel" htmlFor="">
-              Email address:
-            </label>
-
             <input
-              className=""
-              placeholder="Your Email"
+              className="create-email-input"
+              placeholder="Create Email"
               name="email"
               type="email"
               id="email"
@@ -87,15 +75,10 @@ export default function SignUp(props) {
               onChange={handleChange}
             />
           </div>
-
           <div className="">
-            <label className="columns is-centered signUpLabel" htmlFor="">
-              Password:
-            </label>
-
             <input
-              className=""
-              placeholder="******"
+              className="create-password-input"
+              placeholder="Create Password"
               name="password"
               type="password"
               id="password"
@@ -103,12 +86,16 @@ export default function SignUp(props) {
               onChange={handleChange}
             />
           </div>
-
-          <div className="columns is-centered">
-            <button className="signUpSubmitButton" type="submit">
-              Submit
+          <div className="">
+            <button className="create-account-button" type="submit">
+              Create Account
             </button>
           </div>
+          <button className="go-to-login-button">
+            <Link className="go-to-login-text" to="log in">
+              ← Go to Login
+            </Link>
+          </button>
         </form>
       </div>
     </section>

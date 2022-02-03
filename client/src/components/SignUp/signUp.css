@@ -1,3 +1,59 @@
+.signup-wrapper {
+  background-color: rgb(130,101,167, 0.5);
+  border-radius: 20px;
+  box-shadow: 4px 4px 8px var(--dark);
+  padding: 20px;
+  margin: auto;
+  width: 250px;
+  text-align: center;
+}
+
+.create-username-input,
+.create-password-input,
+.create-email-input {
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.create-account-button,
+.go-to-login-button {
+  margin-top: 5px;
+  width: 88%;
+  text-decoration: none;
+  background-color: var(--primary-color);
+  color: var(--light);
+  height: 40px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+.create-account-button:hover {
+  cursor: pointer;
+  font-style: italic;
+  color: var(--quartinary-color);
+}
+
+.go-to-login-text {
+  text-decoration: none;
+  color: var(--light);
+}
+
+.go-to-login-text:hover {
+  font-style: italic;
+  color: var(--quartinary-color);
+}
+
+.failed-signup {
+  color: tomato;
+  text-shadow: 1px 1px 2px var(--dark);
+  font-size: 26px;
+}
+
+
+
+
+
+
 /* :root {
   --primary-color: #e1b6e4;
   --secondary-color: #a35390;
