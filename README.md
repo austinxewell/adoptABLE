@@ -16,12 +16,6 @@
 
 ---
 
-## 🔗 Live Demo
-
-**[adoptABLE Web App](https://adoptable-dv.herokuapp.com/)**
-
----
-
 ## 📦 About the Project
 
 adoptABLE is a platform designed for domestic violence victims to safely and anonymously request donations and support from the public.
